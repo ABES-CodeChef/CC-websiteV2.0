@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Galaxy from "./Galaxy";
+import logo from "../assets/logo.png";
 
 export default function Landing() {
   const { scrollYProgress } = useScroll();
@@ -7,11 +8,17 @@ export default function Landing() {
 
   return (
     <div className="relative w-full bg-black text-white overflow-x-hidden">
+     
+      <div className="fixed top-4 left-4 z-50">
+        <img
+          src={logo} 
+          alt="CodeChef Logo"
+          className="w-12 sm:w-16 md:w-20 lg:w-24 xl:w-28 object-contain"
+        />
+      </div>
+
       <div className="fixed inset-0 z-0 h-screen overflow-hidden">
-        <motion.div
-          style={{ opacity: galaxyOpacity }}
-          className="w-full h-full"
-        >
+        <motion.div style={{ opacity: galaxyOpacity }} className="w-full h-full">
           <Galaxy
             mouseRepulsion
             mouseInteraction
@@ -34,30 +41,27 @@ export default function Landing() {
           className="z-10 text-center lg:text-left space-y-10 w-full lg:w-1/2"
         >
           <div className="space-y-4">
- <motion.h1
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.3, duration: 0.6 }}
-  className="
-    text-center
-    text-4xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl
-    font-bold leading-tight
-    px-4 sm:px-6 md:px-8
-  "
->
-  <div className="block w-full">
-    <span className="font-bold text-white">Cooking</span>{" "}
-    <span className="font-light text-white/80">code,</span>
-  </div>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="
+                text-center
+                text-4xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl
+                font-bold leading-tight
+                px-4 sm:px-6 md:px-8
+              "
+            >
+              <div className="block w-full">
+                <span className="font-bold text-white">Cooking</span>{" "}
+                <span className="font-light text-white/80">code,</span>
+              </div>
 
-  <div className="block -ml-2 mt-2 sm:mt-3 w-full sm:w-4xl">
-    <span className="font-bold text-white">Building</span>{" "}
-    <span className="font-light text-white/80">community</span>
-  </div>
-</motion.h1>
-
-
-
+              <div className="block -ml-2 mt-2 sm:mt-3 w-full sm:w-4xl">
+                <span className="font-bold text-white">Building</span>{" "}
+                <span className="font-light text-white/80">community</span>
+              </div>
+            </motion.h1>
           </div>
 
           <motion.div
@@ -66,12 +70,12 @@ export default function Landing() {
             transition={{ delay: 0.5, duration: 0.6 }}
             className="flex flex-wrap justify-center lg:justify-start gap-4 mt-12 sm:mt-16 sm:ml-12"
           >
-            <button className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-transparent border border-blue-400/40 text-white font-semibold rounded-xl backdrop-blur-sm overflow-hidden transition-all duration-300 hover:scale-105">
+            <button className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-transparent border border-blue-400/40 cursor-pointer text-white font-semibold rounded-xl backdrop-blur-sm overflow-hidden transition-all duration-300 hover:scale-105">
               <span className="relative z-10">Get Started</span>
               <div className="absolute inset-0 bg-linear-to-r from-blue-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl blur-[1px]" />
             </button>
 
-            <button className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-transparent border border-white/20 text-white font-semibold rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/40">
+            <button className="group relative cursor-pointer px-6 sm:px-8 py-3 sm:py-4 bg-transparent border border-white/20 text-white font-semibold rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/40">
               <span className="relative z-10">Learn More</span>
               <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl blur-[1px]" />
             </button>
@@ -104,7 +108,7 @@ export default function Landing() {
                 transformStyle: "preserve-3d",
               }}
             >
-              {[
+              {[ 
                 "translateZ(128px)",
                 "rotateY(90deg) translateZ(128px)",
                 "rotateY(180deg) translateZ(128px)",
@@ -127,9 +131,6 @@ export default function Landing() {
                 style={{
                   width: "60px",
                   height: "60px",
-                  // background:
-                  //   "radial-gradient(circle at 30% 30%, rgba(147,51,234,0.9), rgba(59,130,246,0.6))",
-                  // boxShadow: "0 0 25px rgba(147,51,234,0.6)",
                   transform: "translate(-50%, -50%)",
                 }}
                 animate={{
