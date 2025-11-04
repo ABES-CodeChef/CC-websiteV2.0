@@ -16,7 +16,7 @@ export default function Landing() {
   const { scrollYProgress } = useScroll();
   const galaxyOpacity = useTransform(scrollYProgress, [0.45, 0.55], [1, 0]);
 
-  // ✅ Smooth scrolling to sections
+
   const scrollToSection = (href) => {
     const element = document.querySelector(href);
     if (element) {
@@ -35,13 +35,13 @@ export default function Landing() {
     {
       title: "Events",
       icon: <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-      href: "/events", // ✅ Future route
+      href: "/events", 
       onClick: () => navigate("/events"),
     },
     {
       title: "Team",
       icon: <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-      href: "/team", // ✅ Future route
+      href: "/team", 
       onClick: () => navigate("/team"),
     },
     {
@@ -175,21 +175,6 @@ export default function Landing() {
             </motion.div>
           </div>
         </motion.div>
-      </section>
-
- 
-      <section
-        id="events"
-        className="relative min-h-screen bg-white text-black flex items-center justify-center"
-      >
-        <h2 className="text-4xl sm:text-5xl font-bold">Events Section</h2>
-      </section>
-
-      <section
-        id="team"
-        className="relative min-h-screen bg-gray-100 text-black flex items-center justify-center"
-      >
-        <h2 className="text-4xl sm:text-5xl font-bold">Team Section</h2>
       </section>
 
       <section
