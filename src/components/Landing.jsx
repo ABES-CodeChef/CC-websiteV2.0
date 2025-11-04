@@ -1,97 +1,77 @@
-import { useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Galaxy from "./Galaxy";
 import logo from "../assets/logo.png";
-import { IconHome, IconCalendar, IconUsers, IconMail, IconTrophy, IconMenu2, IconX } from "@tabler/icons-react";
+import { FloatingDock } from "./ui/floating-dock";
+import { useNavigate } from "react-router-dom"; 
+import {
+  IconHome,
+  IconCalendar,
+  IconUsers,
+  IconMail,
+  IconTrophy,
+} from "@tabler/icons-react";
 
 export default function Landing() {
+   const navigate = useNavigate();
   const { scrollYProgress } = useScroll();
   const galaxyOpacity = useTransform(scrollYProgress, [0.45, 0.55], [1, 0]);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navLinks = [
-    { title: "Home", icon: IconHome, href: "#home" },
-    { title: "Events", icon: IconCalendar, href: "#events" },
-    { title: "Team", icon: IconUsers, href: "#team" },
-    { title: "Achievements", icon: IconTrophy, href: "#achievements" },
-    { title: "Contact", icon: IconMail, href: "#contact" },
-  ];
-
+  // ✅ Smooth scrolling to sections
   const scrollToSection = (href) => {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
-      setMobileMenuOpen(false);
     }
   };
 
+
+ const navLinks = [
+    {
+      title: "Home",
+      icon: <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "#home",
+      onClick: () => scrollToSection("#home"),
+    },
+    {
+      title: "Events",
+      icon: <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "/events", // ✅ Future route
+      onClick: () => navigate("/events"),
+    },
+    {
+      title: "Team",
+      icon: <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "/team", // ✅ Future route
+      onClick: () => navigate("/team"),
+    },
+    {
+      title: "Achievements",
+      icon: <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "#achievements",
+      onClick: () => scrollToSection("#achievements"),
+    },
+    {
+      title: "Contact",
+      icon: <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "#contact",
+      onClick: () => scrollToSection("#contact"),
+    },
+  ];
   return (
     <div className="relative w-full bg-black text-white overflow-x-hidden">
+     
       <div className="fixed top-4 left-4 z-50">
         <img
           src={logo}
           alt="CodeChef Logo"
-          className="w-12 sm:w-16 md:w-20 lg:w-24 xl:w-28 object-contain"
+          className="w-20 sm:w-16 md:w-20 lg:w-24 xl:w-28 object-contain"
         />
       </div>
 
-      <button
-        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className="fixed top-4 right-4 z-50 lg:hidden p-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl hover:bg-white/20 transition-all"
-      >
-        {mobileMenuOpen ? (
-          <IconX className="w-6 h-6 text-white" />
-        ) : (
-          <IconMenu2 className="w-6 h-6 text-white" />
-        )}
-      </button>
+    
+      <FloatingDock items={navLinks} />
 
-      {mobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="fixed top-20 right-4 z-40 lg:hidden bg-black/90 backdrop-blur-xl border border-white/20 rounded-2xl p-4 shadow-2xl"
-        >
-          <div className="flex flex-col gap-2">
-            {navLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <button
-                  key={link.title}
-                  onClick={() => scrollToSection(link.href)}
-                  className="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 rounded-xl transition-all"
-                >
-                  <Icon className="w-5 h-5" />
-                  <span className="font-medium">{link.title}</span>
-                </button>
-              );
-            })}
-          </div>
-        </motion.div>
-      )}
-
-      <div className="hidden lg:block fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
-        <div className="flex items-center gap-2 px-6 py-4 bg-black/80 backdrop-blur-xl border border-white/20 rounded-full shadow-2xl">
-          {navLinks.map((link) => {
-            const Icon = link.icon;
-            return (
-              <button
-                key={link.title}
-                onClick={() => scrollToSection(link.href)}
-                className="group relative flex flex-col items-center gap-1 px-4 py-2 hover:bg-white/10 rounded-xl transition-all"
-                title={link.title}
-              >
-                <Icon className="w-6 h-6 text-neutral-300 group-hover:text-white transition-colors" />
-                <span className="text-xs text-neutral-400 group-hover:text-white transition-colors">
-                  {link.title}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
+    
       <div className="fixed inset-0 z-0 h-screen overflow-hidden">
         <motion.div style={{ opacity: galaxyOpacity }} className="w-full h-full">
           <Galaxy
@@ -108,7 +88,10 @@ export default function Landing() {
         </motion.div>
       </div>
 
-      <section id="home" className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center lg:justify-between container mx-auto px-6 sm:px-8 lg:px-12 py-20 gap-16">
+      <section
+        id="home"
+        className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center lg:justify-between container mx-auto px-6 sm:px-8 lg:px-12 py-20 gap-16"
+      >
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -142,7 +125,7 @@ export default function Landing() {
           >
             <button className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-transparent border border-blue-400/40 cursor-pointer text-white font-semibold rounded-xl backdrop-blur-sm overflow-hidden transition-all duration-300 hover:scale-105">
               <span className="relative z-10">Get Started</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
+              <div className="absolute inset-0 bg-linear-to-r from-blue-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
             </button>
 
             <button className="group relative cursor-pointer px-6 sm:px-8 py-3 sm:py-4 bg-transparent border border-white/20 text-white font-semibold rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/40">
@@ -151,6 +134,7 @@ export default function Landing() {
             </button>
           </motion.div>
         </motion.div>
+
 
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -193,19 +177,32 @@ export default function Landing() {
         </motion.div>
       </section>
 
-      <section id="events" className="relative min-h-screen bg-white text-black flex items-center justify-center">
+ 
+      <section
+        id="events"
+        className="relative min-h-screen bg-white text-black flex items-center justify-center"
+      >
         <h2 className="text-4xl sm:text-5xl font-bold">Events Section</h2>
       </section>
 
-      <section id="team" className="relative min-h-screen bg-gray-100 text-black flex items-center justify-center">
+      <section
+        id="team"
+        className="relative min-h-screen bg-gray-100 text-black flex items-center justify-center"
+      >
         <h2 className="text-4xl sm:text-5xl font-bold">Team Section</h2>
       </section>
 
-      <section id="achievements" className="relative min-h-screen bg-white text-black flex items-center justify-center">
+      <section
+        id="achievements"
+        className="relative min-h-screen bg-white text-black flex items-center justify-center"
+      >
         <h2 className="text-4xl sm:text-5xl font-bold">Achievements Section</h2>
       </section>
 
-      <section id="contact" className="relative min-h-screen bg-black text-white flex items-center justify-center">
+      <section
+        id="contact"
+        className="relative min-h-screen bg-black text-white flex items-center justify-center"
+      >
         <h2 className="text-4xl sm:text-5xl font-bold">Contact Section</h2>
       </section>
     </div>
