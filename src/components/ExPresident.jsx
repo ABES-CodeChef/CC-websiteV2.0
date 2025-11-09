@@ -184,8 +184,8 @@ const ExPresident = () => {
     <div className="min-h-screen  py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
-          <div className="lg:sticky lg:top-24   max-w-sm mt-40">
-            <h1 className="text-5xl w-4xl font-bold text-gray-900 mb-7 leading-tight">
+          <div className="lg:sticky lg:top-24   max-w-sm mt-48">
+            <h1 className="text-5xl w-4xl font-bold text-gray-900 mb-7 leading-[1.1] ">
               Meet<br />Our Kitchen Crew
             </h1>
             
@@ -200,12 +200,12 @@ const ExPresident = () => {
 
             <a 
               href="/team"
-              className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 mb-8 text-sm uppercase tracking-wide"
+              className="inline-block bg-rose-500 hover:bg-rose-600 text-white font-semibold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 mb-8 text-sm uppercase tracking-wide"
             >
-              KNOW MORE
+              Explore Our Kitchen
             </a>
 
-            <p className="text-3xl text-gray-900 leading-snug">
+            <p className="text-3xl text-gray-900 leading-snug mt-5">
               <span className='font-light text-black/80'>Our Secret ingredient?</span><br />
               <span className="font-bold text-black"> Perfect code.</span>
             </p>
