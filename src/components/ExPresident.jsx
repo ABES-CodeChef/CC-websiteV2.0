@@ -184,26 +184,33 @@ const ExPresident = () => {
     <div className="min-h-screen  py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
-          <div className="lg:sticky lg:top-24 mt-40">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              Our Legacy Leaders
+          <div className="lg:sticky lg:top-24   max-w-sm mt-40">
+            <h1 className="text-5xl w-4xl font-bold text-gray-900 mb-7 leading-tight">
+              Meet<br />Our Kitchen Crew
             </h1>
-            <div className="h-1 w-24 bg-linear-to-r from-blue-600 to-purple-600 mb-8"></div>
             
-            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-              Throughout our organization's history, we've been fortunate to have exceptional leaders who have shaped our vision and driven our success. Each president has brought unique perspectives, innovative ideas, and unwavering dedication to our community.
+            <p className="text-base text-gray-500 font-light mb-6 leading-relaxed">
+              We are a Team of passionate coders dedicated to advancing programming skills and creating opportunities for growth. With a mix of diverse talents, we collaborate to organize events, challenges, and workshops for our coding community.
             </p>
             
-            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-              These remarkable individuals have not only led with excellence but have also mentored the next generation of leaders, creating a lasting impact that continues to influence our organization today.
-            </p>
-            
-            <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-              Their contributions have been instrumental in establishing the strong foundation upon which we continue to build. We honor their service and celebrate the enduring legacy they've created.
+           
+            <p className="text-base text-gray-500 font-light mb-10 leading-relaxed">
+              Together, we're cooking up a collaborative coding culture that fuels learning, pushes boundaries, and serves up a hearty helping of innovation—with a side of creativity.
             </p>
 
-            {/*  */}
+            <a 
+              href="/team"
+              className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 mb-8 text-sm uppercase tracking-wide"
+            >
+              KNOW MORE
+            </a>
+
+            <p className="text-3xl text-gray-900 leading-snug">
+              <span className='font-light text-black/80'>Our Secret ingredient?</span><br />
+              <span className="font-bold text-black"> Perfect code.</span>
+            </p>
           </div>
+           
 
           <div>
             <div 
