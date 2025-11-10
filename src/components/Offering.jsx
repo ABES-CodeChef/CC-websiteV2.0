@@ -4,7 +4,7 @@ import { PinContainer } from "./PinContainer";
 
 const Offering = () => {
   return (
-    <div className="offering-container overflow-x-hidden w-full h-screen">
+    <div  className="offering-container overflow-x-hidden w-full h-screen">
       <div className="offering-main">
         <div className="text text-white">
           <h2>

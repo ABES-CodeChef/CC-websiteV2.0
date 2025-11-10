@@ -181,7 +181,7 @@ const ExPresident = () => {
   };
 
   return (
-    <div className="min-h-screen  py-20 px-6">
+    <div  className="min-h-screen  py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div className="lg:sticky lg:top-24   max-w-sm mt-48">
