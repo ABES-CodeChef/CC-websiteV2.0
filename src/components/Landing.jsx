@@ -74,6 +74,7 @@ export default function Landing() {
 
      
       <section
+      
         id="home"
         className="relative min-h-screen w-full flex flex-col lg:flex-row items-center justify-center lg:justify-between overflow-hidden px-4 sm:px-6 md:px-10"
       >

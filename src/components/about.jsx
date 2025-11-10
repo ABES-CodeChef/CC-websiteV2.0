@@ -4,7 +4,7 @@ import ShinyText from './Shiny-Text';
 
 const About = () => {
   return (
-    <div className="about-container" style={{
+    <div  className="about-container" style={{
       display: 'flex',
       minHeight: '100vh',
       backgroundColor: '#ffffff',
