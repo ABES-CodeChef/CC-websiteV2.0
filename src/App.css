@@ -11,16 +11,17 @@
   font-display: swap;
 }
 .offering-container{
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height:100%; */
   background: #000000;
+  overflow-x: hidden;
 }
 
 .offering-main{
   padding-top: 5rem;
 }
 .offering-main h2{
-  font-size: 3rem;
+  font-size: 3.2rem;
   text-align: center;
 font-family: 'Panchang', sans-serif;
   
@@ -28,6 +29,7 @@ font-family: 'Panchang', sans-serif;
 .offering-main span{
 text-transform: uppercase;
 }
+
 .cards-container{
   padding: 5rem;
   padding-top: 10rem;
@@ -42,4 +44,15 @@ border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .cards h3{
   font-family: 'Technor',sans-serif;
+}
+@media (max-width:480px) {
+  
+  .cards-container{
+    gap: 4rem;
+    padding: 5rem;
+    
+  }
+  .offering-main h2{
+    font-size: 2.5rem;
+  }
 }

@@ -4,19 +4,19 @@ import { PinContainer } from './PinContainer';
 
 const Offering = () => {
   return (
-    <div className='offering-container '>
+    <div className='offering-container h-full md:h-screen w-full '>
 <div className="offering-main">
     <div className="text text-white">
         <h2>Our <span>Initiatives</span></h2>
     </div>
-    <div className="cards-container flex flex-row  justify ">
+    <div className="cards-container flex md:flex-row flex-col gap-100 md:gap-0  justify ">
     
       <PinContainer
         title=" Coding WorkSpaces & Upskill"
         href=""
       >
         <div className="flex basis-full flex-col cards   bg-transparent backdrop-blur-sm p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[22rem] h-[25rem] ">
-          <h3 className="max-w-xs !pb-2 !m-0 font-bold text-start  text-base text-slate-100">
+          <h3 className="max-w-xs !pb-2 !m-0 font-bold text-start md:hidden  text-base text-slate-100">
          Coding WorkSpaces & Upskill
           </h3>
           <div className="text-base !m-0 !p-0 font-normal text-start leading-relaxed">
@@ -34,7 +34,7 @@ const Offering = () => {
         href=""
       >
         <div className="flex basis-full flex-col cards  bg-transparent backdrop-blur-sm p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[22rem] h-[25rem] ">
-          <h3 className="max-w-xs !pb-2 !m-0 font-bold text-start  text-base text-slate-100">
+          <h3 className="max-w-xs !pb-2 !m-0 font-bold text-start md:hidden  text-base text-slate-100">
       Connect With Cool Mentors
           </h3>
           <div className="text-base !m-0 !p-0 font-normal text-start leading-relaxed">
@@ -51,7 +51,7 @@ Connect with Experienced mentors,seniors and explore new perspectives.
         href=""
       >
         <div className="flex basis-full flex-col cards  bg-transparent backdrop-blur-sm p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[22rem] h-[25rem] ">
-          <h3 className="max-w-xs !pb-2 !m-0 font-bold text-start  text-base text-slate-100">
+          <h3 className="max-w-xs !pb-2 !m-0 font-bold text-start md:hidden text-base text-slate-100">
      Innovation Hub
           </h3>
           <div className="text-base !m-0 !p-0 font-normal text-start leading-relaxed">

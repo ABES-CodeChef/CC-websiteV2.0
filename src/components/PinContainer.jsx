@@ -11,13 +11,13 @@ export const PinContainer = ({
   className,
   containerClassName
 }) => {
-  const [transform, setTransform] = useState("translate(-50%,-50%) rotateX(0deg)");
+  const [transform, setTransform] = useState("translate(-50%,-50%) rotateX(-25deg) scale(0.72)");
 
   const onMouseEnter = () => {
-    setTransform("translate(-50%,-50%) rotateX(25deg) scale(0.72)");
+    setTransform("translate(-50%,-50%) rotateX(0deg) scale(0.9)");
   };
   const onMouseLeave = () => {
-    setTransform("translate(-50%,-50%) rotateX(0deg) scale(1)");
+    setTransform("translate(-50%,-50%) rotateX(-25deg) scale(0.72)");
   };
 
   return (
