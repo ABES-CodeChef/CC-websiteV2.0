@@ -8,7 +8,7 @@
   width: 100vw;
   /* max-width: 1200px; */
   position: relative;
-  gap: 40px; /* slightly narrowed gap between sections */
+  gap: 40px; 
 }
 
 /* Shared section styles */
@@ -23,13 +23,13 @@
 /* Left section */
 .footer-title h2 {
   margin: 0;
-  font-size: 65px;
+  font-size: 42px;
   font-weight: 700;
 }
 
 .footer-title h3 {
   margin: 6px 0 0;
-  font-size: 45px;
+  font-size: 42px;
   color: #fff;
   font-weight: 700;
 }
@@ -39,8 +39,8 @@
   color: #000;
   text-decoration: none;
   font-weight: bold;
-  padding: 16px 28px;
-  font-size: 22px;
+  padding: 14px 20px;
+  font-size: 15px;
   border-radius: 20px;
   transition: transform 0.2s ease;
   width: fit-content;
@@ -51,15 +51,15 @@
 }
 
 .footer-copy {
-  font-size: 18px;
+  font-size: 17px;
   color: #bbb;
 }
 
 /* Center section */
 .footer-center {
   align-items: center;
-  text-align: center;
-  margin-top: 10px; /* slight vertical alignment tweak */
+  text-align: left;
+  margin-top: 10px; 
 }
 
 .footer-nav {
@@ -72,7 +72,7 @@
   color: #fff;
   text-decoration: none;
   font-weight: 600;
-  font-size: 30px;
+  font-size: 27px;
   transition: color 0.2s ease;
 }
 
@@ -83,11 +83,11 @@
 
 
 .footer-nav a.active {
-  color: #ff7a00; /* orange for active link */
+  color: #ff7a00; 
 }
 
 .footer-nav a:not(.active):hover {
-  color: #ff7a00; /* yellow on hover for non-active links */
+  color: #ff7a00; 
 }
 
 /* Right section */
@@ -99,7 +99,7 @@
 }
 
 .footer-address {
-  font-size: 15px;
+  font-size: 16px;
   color: #ddd;
   line-height: 1.6;
   text-align: left;
