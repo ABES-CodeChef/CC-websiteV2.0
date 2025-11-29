@@ -1,8 +1,58 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FloatingNav } from "../components/FloatingNavbar";
+import {
+  IconHome,
+  IconCalendar,
+  IconUsers,
+  IconMail,
+  IconTrophy,
+} from "@tabler/icons-react";
 
 export default function TeamGrid() {
   const [scales, setScales] = useState({});
   const itemRefs = useRef([]);
+  const navigate = useNavigate();
+
+  const scrollToSection = (selector) => {
+    const element = document.querySelector(selector);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const navLinks = [
+    {
+      title: "Home",
+      icon: <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "/",
+      onClick: () => navigate("/"),
+    },
+    {
+      title: "Events",
+      icon: <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "/events",
+      onClick: () => navigate("/events"),
+    },
+    {
+      title: "Team",
+      icon: <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "/team",
+      onClick: () => navigate("/team"),
+    },
+    {
+      title: "Achievements",
+      icon: <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "#achievements",
+      onClick: () => scrollToSection("#achievements"),
+    },
+    {
+      title: "Contact",
+      icon: <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "/contact",
+      onClick: () => navigate("/contact"),
+    },
+  ];
 
   const teamMembers = [
     { name: 'Vishesh Maurya', role: 'Advisory', img: 1, row: 0, col: 0, transformOrigin: 'right bottom', linkedin: 'https://linkedin.com/in/alexjohnson' },
@@ -68,6 +118,8 @@ export default function TeamGrid() {
 
   return (
     <section className="relative w-full bg-black text-white">
+      <FloatingNav navItems={navLinks} />
+
       {/* Scroll indicator */}
       <div className="absolute left-1/2 top-24 grid -translate-x-1/2 content-start justify-items-center gap-6 text-center">
         <span className="relative max-w-[12ch] text-xs uppercase leading-tight text-white/50 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-gradient-to-b after:from-transparent after:to-white/50 after:content-['']">
@@ -78,7 +130,6 @@ export default function TeamGrid() {
       {/* Sticky header */}
       <div className="pointer-events-none sticky top-1/2 z-20 -translate-y-1/2 text-center text-white mix-blend-difference">
         <h2 className="text-9xl font-semibold tracking-tighter">Teams</h2>
-
       </div>
 
       {/* Grid */}
