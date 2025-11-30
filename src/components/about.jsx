@@ -74,6 +74,7 @@ const About = () => {
           once={false}
           animationStepDuration={0.4}
           className="about-image-transition"
+          style={{ width: '527px', height: '750px' }}
         />
       </div>
     </div>

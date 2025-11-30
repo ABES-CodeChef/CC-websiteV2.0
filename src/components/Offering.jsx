@@ -6,7 +6,7 @@ import Spline from '@splinetool/react-spline'
 
 const Offering = () => {
   return (
-    <div className='offering-container '>
+    <div className='offering-container font-sans'>
 <div className="offering-main flex flex-col justify-around items-center mb-20 md:gap-2 gap-20">
     <div className="text relative md:left-20 md:top-10 text-white">
         <h2>Our <span>Initiatives</span></h2>
