@@ -9,6 +9,7 @@ import {
   IconTrophy,
 } from "@tabler/icons-react";
 import "../styles/Landing.css";
+import Squares from './Squares';
 
 import Galaxy from "../components/Galaxy";
 import { FloatingNav } from "./FloatingNavbar";
@@ -79,7 +80,7 @@ export default function Landing() {
         className="relative min-h-screen w-full flex flex-col lg:flex-row items-center justify-center lg:justify-between overflow-hidden px-4 sm:px-6 md:px-10"
       >
        
-        <motion.div
+        {/* <motion.div
           style={{ opacity: galaxyOpacity }}
           className="absolute inset-0 h-full w-full z-0"
         >
@@ -94,8 +95,17 @@ export default function Landing() {
             twinkleIntensity={0.3}
             rotationSpeed={0.05}
           />
-        </motion.div>
+        </motion.div> */}
 
+<motion.div className="absolute inset-0 h-full w-full z-0">
+  <Squares 
+    speed={0.5} 
+    squareSize={40}
+    direction='diagonal'
+    borderColor='#111111'
+    hoverFillColor='#222222'
+  />
+</motion.div>
     
         <motion.div
           initial={{ opacity: 0, x: -50 }}

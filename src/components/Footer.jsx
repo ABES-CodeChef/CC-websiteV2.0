@@ -18,13 +18,13 @@ const Footer = () => {
 
       {/* Center Section */}
       <div className="footer-section footer-center">
-        <nav className="footer-nav">
-          <a href="#home" className="active">Home</a>
-          <Link to="/events">Events</Link>
-          <a href="#team">Team</a>
-          <a href="#achievements">Achievements</a>
-        </nav>
-      </div>
+  <nav className="footer-nav">
+    <a href="/" className="active">Home</a>
+    <Link to="/events">Events</Link>
+    <a href="/team">Team</a>
+    <a href="#achievements">Achievements</a>
+  </nav>
+</div>
 
       {/* Right Section */}
       <div className="footer-section footer-right">
