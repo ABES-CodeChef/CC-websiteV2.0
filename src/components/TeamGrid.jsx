@@ -1,59 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FloatingNav } from "../components/FloatingNavbar";
-import {
-  IconHome,
-  IconCalendar,
-  IconUsers,
-  IconMail,
-  IconTrophy,
-} from "@tabler/icons-react";
 
 export default function TeamGrid() {
   const [scales, setScales] = useState({});
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const itemRefs = useRef([]);
-  const navigate = useNavigate();
-
-  const scrollToSection = (selector) => {
-    const element = document.querySelector(selector);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const navLinks = [
-    {
-      title: "Home",
-      icon: <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-      href: "/",
-      onClick: () => navigate("/"),
-    },
-    {
-      title: "Events",
-      icon: <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-      href: "/events",
-      onClick: () => navigate("/events"),
-    },
-    {
-      title: "Team",
-      icon: <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-      href: "/team",
-      onClick: () => navigate("/team"),
-    },
-    {
-      title: "Achievements",
-      icon: <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-      href: "#achievements",
-      onClick: () => scrollToSection("#achievements"),
-    },
-    {
-      title: "Contact",
-      icon: <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-      href: "/contact",
-      onClick: () => navigate("/contact"),
-    },
-  ];
 
   const teamMembers = [
     { name: 'Vishesh Maurya', role: 'Advisory', img: 1, row: 0, col: 0, transformOrigin: 'right bottom', linkedin: 'https://linkedin.com/in/alexjohnson', tech: ['React', 'Node.js', 'AWS'] },
@@ -86,7 +36,7 @@ export default function TeamGrid() {
         const windowHeight = window.innerHeight;
         const itemCenter = rect.top + rect.height / 2;
         const viewportCenter = windowHeight / 2;
-        
+      
         const distance = Math.abs(itemCenter - viewportCenter);
         const maxDistance = windowHeight / 2 + rect.height / 2;
         
@@ -119,21 +69,18 @@ export default function TeamGrid() {
 
   return (
     <section className="relative w-full bg-black text-white">
-      <FloatingNav navItems={navLinks} />
-
-      {/* Scroll indicator */}
+     
       <div className="absolute left-1/2 top-24 grid -translate-x-1/2 content-start justify-items-center gap-6 text-center">
         <span className="relative max-w-[12ch] text-xs uppercase leading-tight text-white/50 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-gradient-to-b after:from-transparent after:to-white/50 after:content-['']">
           scroll down to meet the teams
         </span>
       </div>
 
-      {/* Sticky header */}
       <div className="pointer-events-none sticky top-1/2 z-20 -translate-y-1/2 text-center text-white mix-blend-difference">
         <h2 className="text-9xl font-semibold tracking-tighter">Teams</h2>
       </div>
 
-      {/* Grid */}
+     
       <div className="relative z-0 mb-[50vh] mt-[50vh]">
         {grid.map((row, rowIndex) => (
           <div key={rowIndex} className="flex w-full">
@@ -160,23 +107,45 @@ export default function TeamGrid() {
                      src={`https://picsum.photos/seed/${member.img}/800/800`}
                     />
                     
-                    {/* Tech Stack Overlay */}
-                    <div className={`absolute inset-0 bg-black/40 backdrop-blur-sm flex flex-col items-center justify-center gap-3 transition-opacity duration-300 ${
-                      hoveredIndex === member.index ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                    }`}>
-                      <h3 className="text-lg font-bold uppercase tracking-wider">{member.name}</h3>
-                      <p className="text-sm text-white/60 uppercase">{member.role}</p>
-                      <div className="flex flex-wrap gap-2 justify-center px-4 mt-2">
-                        {member.tech.map((tech, i) => (
-                          <span 
-                            key={i}
-                            className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium border border-white/20"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                   
+                  <div
+  className={`absolute inset-0 bg-black/40 backdrop-blur-sm 
+    flex flex-col items-center justify-center 
+    gap-2 sm:gap-3 
+    transition-opacity duration-300 
+    ${hoveredIndex === member.index ? 'opacity-100' : 'opacity-0 pointer-events-none'}
+  `}
+>
+
+  <h3 className="text-sm xs:text-base sm:text-lg font-bold uppercase tracking-wider text-center px-2 leading-tight">
+    {member.name}
+  </h3>
+
+
+  <p className="text-[0.6rem] xs:text-[0.7rem] sm:text-sm text-white/60 uppercase text-center px-2 leading-tight">
+    {member.role}
+  </p>
+
+
+  <div className="flex flex-wrap gap-1 xs:gap-1.5 sm:gap-2 justify-center px-2 sm:px-4 mt-1 sm:mt-2">
+    {member.tech.map((tech, i) => (
+      <span
+        key={i}
+        className="px-1.5 xs:px-2 sm:px-3 py-0.5 sm:py-1 
+          bg-white/10 backdrop-blur-sm 
+          rounded-full 
+          text-[0.55rem] xs:text-[0.6rem] sm:text-xs 
+          font-medium 
+          border border-white/20
+          whitespace-nowrap
+        "
+      >
+        {tech}
+      </span>
+    ))}
+  </div>
+</div>
+
 
                     <div className="absolute -bottom-2 left-0 flex w-full translate-y-full justify-between text-center text-sm uppercase leading-tight opacity-40">
                       <p>{member.name}</p>
