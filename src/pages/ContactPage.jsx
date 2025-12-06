@@ -3,6 +3,17 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../components/Footer";
 import logo from "/logo.png";
+import { FloatingNav } from "../components/FloatingNavbar";
+import {
+  IconHome,
+  IconCalendar,
+  IconUsers,
+  IconMail,
+  IconTrophy,
+} from "@tabler/icons-react"; 
+import { useNavigate } from "react-router-dom";
+
+
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -11,6 +22,8 @@ export default function ContactPage() {
     subject: "",
     message: "",
   });
+   const navigate = useNavigate();
+
 
   const [loading, setLoading] = useState(false);
 
@@ -21,17 +34,59 @@ export default function ContactPage() {
     });
   };
 
-  // Email Validation
+
   const isValidEmail = (email) => {
     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return pattern.test(email);
   };
+    const navLinks = [
+    {
+      title: "Home",
+      icon: (
+        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#home",
+      onClick: () => navigate("/"),
+    },
+    {
+      title: "Events",
+      icon: (
+        <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/events",
+      onClick: () => navigate("/events"),
+    },
+    {
+      title: "Team",
+      icon: (
+        <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/team",
+      onClick: () => navigate("/team"),
+    },
+    {
+      title: "Achievements",
+      icon: (
+        <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#achievements",
+      onClick: () => scrollToSection("#achievements"),
+    },
+    {
+      title: "Contact",
+      icon: (
+        <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/contact",
+      onClick: () => navigate("/contact"),
+    },
+  ];
 
-  // Form Submit
+ 
   const handleSubmit = () => {
     const { name, email, subject, message } = formData;
 
-    // Validation
+   
     if (!name || !email || !subject || !message) {
       toast.error("Please fill all fields!", { position: "top-center" });
       return;
@@ -42,7 +97,7 @@ export default function ContactPage() {
       return;
     }
 
-    // Simulate sending message
+   
     setLoading(true);
 
     setTimeout(() => {
@@ -67,7 +122,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white text-black overflow-x-hidden font-[Poppins]">
       <ToastContainer />
-
+  <FloatingNav navItems={navLinks} />
       <div className="fixed top-4 left-4 z-50">
         <img
           src={logo}
