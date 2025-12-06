@@ -46,7 +46,7 @@ const About = () => {
         </div>
       </div>
 
-      {/*Images*/}
+      
       <div className="about-images" style={{
         flex: 1,
         display: 'flex',
