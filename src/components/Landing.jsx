@@ -9,7 +9,7 @@ import {
   IconTrophy,
 } from "@tabler/icons-react";
 import "../styles/Landing.css";
-import Squares from './Squares';
+import Squares from "./Squares";
 
 import Galaxy from "../components/Galaxy";
 import { FloatingNav } from "./FloatingNavbar";
@@ -26,42 +26,50 @@ export default function Landing() {
   };
 
   const navLinks = [
-  {
-    title: "Home",
-    icon: <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-    href: "#home",
-    onClick: () => navigate("/home"),
-  },
-  {
-    title: "Events",
-    icon: <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-    href: "/events",
-    onClick: () => navigate("/events"),
-  },
-  {
-    title: "Team",
-    icon: <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-    href: "/team",
-    onClick: () => navigate("/team"),
-  },
-  {
-    title: "Achievements",
-    icon: <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-    href: "#achievements",
-    onClick: () => scrollToSection("#achievements"),
-  },
-  {
-    title: "Contact",
-    icon: <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-    href: "/contact",
-    onClick: () => navigate("/contact"),
-  },
-];
-
+    {
+      title: "Home",
+      icon: (
+        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#home",
+      onClick: () => navigate("/home"),
+    },
+    {
+      title: "Events",
+      icon: (
+        <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/events",
+      onClick: () => navigate("/events"),
+    },
+    {
+      title: "Team",
+      icon: (
+        <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/team",
+      onClick: () => navigate("/team"),
+    },
+    {
+      title: "Achievements",
+      icon: (
+        <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#achievements",
+      onClick: () => scrollToSection("#achievements"),
+    },
+    {
+      title: "Contact",
+      icon: (
+        <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/contact",
+      onClick: () => navigate("/contact"),
+    },
+  ];
 
   return (
     <div className="relative w-full bg-black text-white overflow-x-hidden">
-   
       <div className="fixed top-4 left-4 z-50">
         <img
           src={logo}
@@ -70,16 +78,12 @@ export default function Landing() {
         />
       </div>
 
-      
       <FloatingNav navItems={navLinks} />
 
-     
       <section
-      
         id="home"
         className="relative min-h-screen w-full flex flex-col lg:flex-row items-center justify-center lg:justify-between overflow-hidden px-4 sm:px-6 md:px-10"
       >
-       
         {/* <motion.div
           style={{ opacity: galaxyOpacity }}
           className="absolute inset-0 h-full w-full z-0"
@@ -97,16 +101,16 @@ export default function Landing() {
           />
         </motion.div> */}
 
-<motion.div className="absolute inset-0 h-full w-full z-0">
-  <Squares 
-    speed={0.5} 
-    squareSize={40}
-    direction='diagonal'
-    borderColor='#111111'
-    hoverFillColor='#222222'
-  />
-</motion.div>
-    
+        <motion.div className="absolute inset-0 h-full w-full z-0">
+          <Squares
+            speed={0.5}
+            squareSize={40}
+            direction="diagonal"
+            borderColor="#111111"
+            hoverFillColor="#222222"
+          />
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -131,7 +135,6 @@ export default function Landing() {
             </motion.h1>
           </div>
 
-         
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -150,14 +153,16 @@ export default function Landing() {
           </motion.div>
         </motion.div>
 
-        
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
           className="relative z-10 flex items-center justify-center lg:justify-end h-96 w-full lg:w-1/2 cube-container"
         >
-          <div className="relative w-64 h-64 cube" style={{ perspective: "1000px" }}>
+          <div
+            className="relative w-64 h-64 cube"
+            style={{ perspective: "1000px" }}
+          >
             <motion.div
               animate={{
                 rotateX: 360,
