@@ -1,11 +1,13 @@
 import { FaInstagram, FaLinkedin, FaDiscord } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
-import { Link } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
+  const navigate = useNavigate();
   return (
     <footer
-      className="bg-black text-white py-8 px-6 rounded-t-3xl"
+      className="bg-black text-white py-8 px-6 rounded-t-3xl z-10 relative"
       id="contactUs"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 p-6">
@@ -17,7 +19,10 @@ function Footer() {
             Join us for an exciting journey of coding, innovation, and
             creativity. Where innovation meets code and dreams become reality.
           </p>
-          <button className="group relative px-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-black font-semibold rounded-full overflow-visible transition-all duration-500 ease-out hover:pr-8 hover:pl-6 hover:shadow-[0_8px_40px_-12px_rgba(255,165,0,0.4)] hover:translate-y-[-2px]">
+          <button
+            onClick={() => navigate("/events")}
+            className="group relative px-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-black font-semibold rounded-full overflow-visible transition-all duration-500 ease-out hover:pr-8 hover:pl-6 hover:shadow-[0_8px_40px_-12px_rgba(255,165,0,0.4)] hover:translate-y-[-2px]"
+          >
             <span className="relative z-10 flex items-center gap-2 transition-transform duration-500 ease-out group-hover:scale-[1.02]">
               Browse Events
               <FiArrowUpRight
@@ -36,44 +41,30 @@ function Footer() {
           <h3 className="font-audiowide text-xl mb-4">QUICK LINKS</h3>
           <ul className="space-y-2">
             <li>
-              <Link
-                to="about"
-                smooth={true}
-                duration={500}
-                className="text-gray-400 hover:text-white cursor-pointer"
-              >
+              <a href="/events" className="text-gray-400 hover:text-white cursor-pointer">
                 Events
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="timeline"
-                smooth={true}
-                duration={500}
-                className="text-gray-400 hover:text-white cursor-pointer"
-              >
+              <a href="/team" className="text-gray-400 hover:text-white cursor-pointer">
                 Team
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="tracks"
-                smooth={true}
-                duration={500}
-                className="text-gray-400 hover:text-white cursor-pointer"
-              >
+              {/* Assuming you have or will have an achievements page/section */}
+              <a href="/#achievements" className="text-gray-400 hover:text-white cursor-pointer">
                 Achievements
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="sponsors"
+              <ScrollLink
+                to="contactUs"
                 smooth={true}
                 duration={500}
                 className="text-gray-400 hover:text-white cursor-pointer"
               >
-                contact
-              </Link>
+                Contact
+              </ScrollLink>
             </li>
           </ul>
         </div>
