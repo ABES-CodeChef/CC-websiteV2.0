@@ -39,7 +39,7 @@ const ExPresident = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const presidents = [
+    const presidents = [
     {
       id: 1,
       name: "Tanishq Srivastava",
@@ -52,6 +52,16 @@ const ExPresident = () => {
     },
     {
       id: 2,
+      name: "Tanveer Raza",
+      skill: "Rust, Linux Systems Programming",
+      role: "President 2021-2022",
+      image: "/tanveer-bhaiya.jpg",
+      profileImg: "/tanveer-bhaiya.jpg",
+      username: "@tanveer",
+      linkedin: "https://www.linkedin.com/in/atamakahere/"
+    },
+    {
+      id: 3,
       name: "Bhumika Arora",
       skill: "Analyst, KPMG",
       role: "President 2022-2023",
@@ -59,6 +69,16 @@ const ExPresident = () => {
       profileImg: "/bhumika-didi.webp",
       username: "@bhumika",
       linkedin: "https://www.linkedin.com/in/thebhumikaarora/"
+    },
+    {
+      id: 5,
+      name: "Abhinav Jha",
+      skill: "UI/UX Designer",
+      role: "President 2023-2024",
+      image: "/abhinav-bhaiya.webp",
+      profileImg: "/abhinav-bhaiya.webp",
+      username: "@Abhinav",
+      linkedin: "https://www.linkedin.com/in/abhijha301/"
     },
     {
       id: 3,
@@ -70,26 +90,8 @@ const ExPresident = () => {
       username: "saiaryan",
       linkedin: "https://www.linkedin.com/in/saiaryangoswami"
     },
-    {
-      id: 4,
-      name: "Tanveer Raza",
-      skill: "Rust, Linux Systems Programming",
-      role: "President 2021-2022",
-      image: "/tanveer-bhaiya.jpg",
-      profileImg: "/tanveer-bhaiya.jpg",
-      username: "@tanveer",
-      linkedin: "https://www.linkedin.com/in/atamakahere/"
-    },
-    {
-      id: 5,
-      name: "Abhinav Jha",
-      skill: "UI/UX Designer",
-      role: "President 2023-2024",
-      image: "/abhinav-bhaiya.webp",
-      profileImg: "/abhinav-bhaiya.webp",
-      username: "@Abhinav",
-      linkedin: "https://www.linkedin.com/in/abhijha301/"
-    }
+    
+    
   ];
 
   const PresidentCard = ({ president }) => {
