@@ -21,7 +21,7 @@ function Footer() {
           </p>
           <button
             onClick={() => navigate("/events")}
-            className="group relative px-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-black font-semibold rounded-full overflow-visible transition-all duration-500 ease-out hover:pr-8 hover:pl-6 hover:shadow-[0_8px_40px_-12px_rgba(255,165,0,0.4)] hover:translate-y-[-2px]"
+            className="group relative px-5 py-3 bg-linear-to-r from-orange-500 to-orange-600 text-black font-semibold rounded-full overflow-visible transition-all duration-500 ease-out hover:pr-8 hover:pl-6 hover:shadow-[0_8px_40px_-12px_rgba(255,165,0,0.4)] hover:-translate-y-0.5"
           >
             <span className="relative z-10 flex items-center gap-2 transition-transform duration-500 ease-out group-hover:scale-[1.02]">
               Browse Events
@@ -31,7 +31,7 @@ function Footer() {
                 strokeWidth={2.5}
               />
             </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-700 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out rounded-full" />
+            <div className="absolute inset-0 bg-linear-to-r from-orange-600 to-orange-700 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out rounded-full" />
             <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 ease-out bg-[radial-gradient(circle_at_50%_-20%,rgba(255,255,255,0.4),rgba(255,255,255,0))] rounded-full" />
           </button>
         </div>

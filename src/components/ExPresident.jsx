@@ -39,7 +39,7 @@ const ExPresident = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-    const presidents = [
+  const presidents = [
     {
       id: 1,
       name: "Tanishq Srivastava",
@@ -71,7 +71,7 @@ const ExPresident = () => {
       linkedin: "https://www.linkedin.com/in/thebhumikaarora/"
     },
     {
-      id: 5,
+      id: 4,
       name: "Abhinav Jha",
       skill: "UI/UX Designer",
       role: "President 2023-2024",
@@ -81,7 +81,7 @@ const ExPresident = () => {
       linkedin: "https://www.linkedin.com/in/abhijha301/"
     },
     {
-      id: 3,
+      id: 5,
       name: "Sai Aryan Goswami",
       skill: "Full Stack Developer",
       role: "President 2024-2025",
@@ -89,9 +89,7 @@ const ExPresident = () => {
       profileImg: "/sai-bhaiya.jpg",
       username: "saiaryan",
       linkedin: "https://www.linkedin.com/in/saiaryangoswami"
-    },
-    
-    
+    }
   ];
 
   const PresidentCard = ({ president }) => {
@@ -136,43 +134,40 @@ const ExPresident = () => {
             transformStyle: 'preserve-3d'
           }}
         >
-          
           <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
-            
             <img
               src={president.image}
               alt={president.name}
               className="w-full h-full object-cover"
             />
             
-           
-            <div className="absolute top-0 left-0 right-0 p-6 bg-linear-to-b from-black/70 via-black/40 to-transparent z-10">
-              <h3 className="text-white text-2xl font-bold mb-2">{president.name}</h3>
-              <p className="text-blue-300 text-sm font-medium mb-1">{president.skill}</p>
-              <p className="text-gray-200 text-sm">{president.role}</p>
+            <div className="absolute top-0 left-0 right-0 p-4 md:p-6 bg-linear-to-b from-black/70 via-black/40 to-transparent z-10">
+              <h3 className="text-white text-xl md:text-2xl font-bold mb-1 md:mb-2">{president.name}</h3>
+              <p className="text-blue-300 text-xs md:text-sm font-medium mb-1">{president.skill}</p>
+              <p className="text-gray-200 text-xs md:text-sm">{president.role}</p>
             </div>
 
-          
-            <div className="absolute bottom-0 left-0 right-0 p-5 bg-white/20 backdrop-blur-md z-20">
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 bg-white/20 backdrop-blur-md z-20">
               <div className="flex items-center justify-between">
-               
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 md:gap-3">
                   <img
                     src={president.profileImg}
                     alt={president.name}
-                    className="w-12 h-12 rounded-full border-2 border-white shadow-lg object-cover"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-white shadow-lg object-cover"
                   />
                   <div>
-                    <p className="text-white font-semibold text-sm">{president.username}</p>
-                    <p className="text-gray-200 text-xs">Online</p>
+                    <p className="text-white font-semibold text-xs md:text-sm">{president.username}</p>
+                    <p className="text-gray-200 text-[10px] md:text-xs">Online</p>
                   </div>
                 </div>
 
                 <a
                   href={president.linkedin}
-                  className="w-10 h-10 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-blue-500 hover:shadow-lg transition-all duration-300 hover:scale-110"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 md:w-10 md:h-10 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-blue-500 hover:shadow-lg transition-all duration-300 hover:scale-110"
                 >
-                  <Linkedin className="w-5 h-5 text-white" />
+                  <Linkedin className="w-4 h-4 md:w-5 md:h-5 text-white" />
                 </a>
               </div>
             </div>
@@ -183,41 +178,39 @@ const ExPresident = () => {
   };
 
   return (
-    <div  className="min-h-screen  py-20 px-6">
+    <div className="min-h-screen py-12 md:py-20 px-4 md:px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          <div className="lg:sticky lg:top-24   max-w-sm mt-48">
-            <h1 className="text-5xl w-4xl font-bold text-gray-900 mb-7 leading-[1.1] ">
-              Meet<br />Our Kitchen Crew
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-start">
+          <div className="lg:sticky lg:top-24 max-w-full lg:max-w-sm lg:mt-48">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5 md:mb-7 leading-[1.1]">
+              Meet Our<br /> Kitchen Crew
             </h1>
             
-            <p className="text-base text-gray-500 font-light mb-6 leading-relaxed">
+            <p className="text-sm md:text-base text-gray-500 font-light mb-4 md:mb-6 leading-relaxed">
               We are a Team of passionate coders dedicated to advancing programming skills and creating opportunities for growth. With a mix of diverse talents, we collaborate to organize events, challenges, and workshops for our coding community.
             </p>
             
-           
-            <p className="text-base text-gray-500 font-light mb-10 leading-relaxed">
+            <p className="text-sm md:text-base text-gray-500 font-light mb-6 md:mb-10 leading-relaxed">
               Together, we're cooking up a collaborative coding culture that fuels learning, pushes boundaries, and serves up a hearty helping of innovation—with a side of creativity.
             </p>
 
             <a 
               href="/team"
-              className="inline-block bg-rose-500 hover:bg-rose-600 text-white font-semibold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 mb-8 text-sm uppercase tracking-wide"
+              className="inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 md:px-8 py-3 md:py-3.5 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 mb-6 md:mb-8 text-xs md:text-sm uppercase tracking-wide"
             >
               Explore Our Kitchen
             </a>
 
-            <p className="text-3xl text-gray-900 leading-snug mt-5">
+            <p className="text-2xl md:text-3xl text-gray-900 leading-snug mt-4 md:mt-5">
               <span className='font-light text-black/80'>Our Secret ingredient?</span><br />
               <span className="font-bold text-black"> Perfect code.</span>
             </p>
           </div>
            
-
           <div>
             <div 
               ref={row1Ref}
-              className="grid grid-cols-2 gap-6 mb-6 transition-all duration-700 ease-out"
+              className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 transition-all duration-700 ease-out"
               style={{
                 transform: `scale(${row1Scale})`,
                 opacity: row1Scale
@@ -229,7 +222,7 @@ const ExPresident = () => {
             
             <div 
               ref={row2Ref}
-              className="max-w-sm mx-auto mb-6 transition-all duration-700 ease-out"
+              className="max-w-full md:max-w-sm mx-auto mb-6 transition-all duration-700 ease-out"
               style={{
                 transform: `scale(${row2Scale})`,
                 opacity: row2Scale
@@ -237,10 +230,10 @@ const ExPresident = () => {
             >
               <PresidentCard president={presidents[2]} />
             </div>
-            
+      
             <div 
               ref={row3Ref}
-              className="grid grid-cols-2 gap-6 transition-all duration-700 ease-out"
+              className="grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-700 ease-out"
               style={{
                 transform: `scale(${row3Scale})`,
                 opacity: row3Scale

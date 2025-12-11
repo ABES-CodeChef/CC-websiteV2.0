@@ -131,7 +131,7 @@ export default function ContactPage() {
         />
       </div>
 
-      <div className="h-screen flex flex-col items-center justify-center relative px-4 bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="h-screen flex flex-col items-center justify-center relative px-4 bg-linear-to-br from-gray-50 to-gray-100">
         <h1 className="text-7xl md:text-9xl font-medium mb-8 text-center tracking-tight font-[Poppins]">
           Get In Touch
         </h1>

@@ -33,7 +33,7 @@ const ElixirCommunity = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-white to-gray-50" style={{ fontFamily: "'Poppins', sans-serif" }}>
+    <section className="py-20 px-4 bg-linear-to-b from-white to-gray-50" style={{ fontFamily: "'Poppins', sans-serif" }}>
       <div className="max-w-6xl mx-auto">
         
         <div className="text-center mb-12 md:mb-16 px-4">
