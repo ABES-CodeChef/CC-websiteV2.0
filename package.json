@@ -31,7 +31,6 @@
     "react-router-dom": "^7.9.5",
     "react-scroll": "^1.9.3",
     "react-toastify": "^11.0.5",
-    "react-scroll": "^1.9.3",
     "spline": "^0.0.0",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.17",

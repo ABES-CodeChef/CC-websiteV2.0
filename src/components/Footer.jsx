@@ -116,7 +116,7 @@ function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400">© 2025 Codechef. All rights reserved.</p>
           <p className="text-gray-400">
-            Made with <span className="text-red-500">❤</span> by Awesome People
+            Made with <span className="text-red-500">❤</span> by Bawarchi's
           </p>
         </div>
       </div>
