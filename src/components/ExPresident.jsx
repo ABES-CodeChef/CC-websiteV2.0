@@ -63,7 +63,7 @@ const ExPresident = () => {
     {
       id: 3,
       name: "Bhumika Arora",
-      skill: "Analyst, KPMG",
+      skill: "SDE , Amazon",
       role: "President 2022-2023",
       image: "/bhumika-didi.webp",
       profileImg: "/bhumika-didi.webp",
