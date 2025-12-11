@@ -14,7 +14,7 @@ import {
 
 const events = [
   {
-    title: "CodeClash 2024",
+    title: "Clash Of Coders 4.0",
     href: "/events/codeclash-2024",
     imageUrl: "https://codechefabesec.netlify.app/img/coc/1.webp",
     hoverImageUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWJjb3NqY21sYjY2aG1zZ3c3aGZ6Z3Z1c3NldWJrbjZ2eW54c3JqZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiGY/giphy.gif",
@@ -103,7 +103,7 @@ export default function EventsPage() {
         <GridScan
           sensitivity={0.55}
           lineThickness={1}
-          linesColor="#2a2a3a"
+          linesColor="#FF5F15"
           gridScale={0.09}
           scanColor="#FFA500"
           scanOpacity={0.2}
@@ -115,7 +115,7 @@ export default function EventsPage() {
         />
       </div>
       <div className="relative z-10 min-h-screen pt-24 pb-20 px-4 sm:px-6 md:px-10 flex flex-col items-center">
-        <h1 className="text-8xl font-bold text-center mb-12">
+        <h1 className="text-6xl md:text-8xl font-bold text-center mb-12">
           Our <span className="text-orange-500">Events</span>
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 place-items-center">
