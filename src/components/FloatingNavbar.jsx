@@ -1,44 +1,39 @@
 "use client";
-import React, { useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
-} from "motion/react";
+import React, { useState, useEffect } from "react";
+import { motion } from "motion/react";
 import { cn } from "../lib/utils";
+import logo_svg from "../assets/logo_svg.svg";
 
 export const FloatingNav = ({ navItems, className }) => {
-  const { scrollYProgress } = useScroll();
-  const [visible, setVisible] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  useMotionValueEvent(scrollYProgress, "change", (current) => {
-    if (typeof current === "number") {
-      const direction = current - scrollYProgress.getPrevious();
-      if (scrollYProgress.get() < 0.05) {
-        setVisible(false);
-      } else {
-        setVisible(direction < 0);
-      }
-    }
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 20;
+      setScrolled(isScrolled);
+    };
 
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        initial={{ opacity: 1, y: -100 }}
-        animate={{
-          y: visible ? 0 : -100,
-          opacity: visible ? 1 : 0,
-        }}
-        transition={{ duration: 0.2 }}
-        className={cn(
-          "flex max-w-fit fixed top-10 inset-x-0 mx-auto border border-transparent dark:border-white/20 " +
-            "rounded-3xl dark:bg-black bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] " +
-            "z-5000 px-8 py-3 items-center justify-center space-x-6",
+    
+    <motion.div
+      className={cn(
+          "flex w-full fixed top-0 inset-x-0 mx-auto border border-transparent dark:border-white/20 " +
+            "transition-all duration-300 ease-in-out " +
+            (scrolled 
+              ? "bg-transparent/20 backdrop-blur-md border-white/10" 
+              : "bg-black/80 backdrop-blur-sm border-white/20"
+            ) +
+            " z-5000 px-8 py-3 items-center justify-between",
           className
-        )}
-      >
+        )}    
+    >
+      <div className="flex items-center space-x-4">
+        <img src={logo_svg} alt="Logo" className="w-28 h-12 sm:w-20 md:w-24 lg:w-32 xl:w-40 object-contain" />
+      </div>
+      <div className="flex items-center space-x-6">
         {navItems.map((navItem, idx) => (
           <button
             key={`nav-${idx}`}
@@ -54,7 +49,7 @@ export const FloatingNav = ({ navItems, className }) => {
             <span className="hidden sm:block">{navItem.title}</span>
           </button>
         ))}
-      </motion.div>
-    </AnimatePresence>
+      </div>
+    </motion.div>
   );
 };

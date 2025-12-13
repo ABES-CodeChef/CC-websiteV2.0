@@ -11,14 +11,12 @@ import {
 import "../styles/Landing.css";
 import Squares from './Squares';
 
-import Galaxy from "../components/Galaxy";
 import { FloatingNav } from "./FloatingNavbar";
-import logo from "../../public/logo.png";
+import logo_svg from "../assets/logo_svg.svg";
 
 export default function Landing() {
   const navigate = useNavigate();
   const { scrollYProgress } = useScroll();
-  const galaxyOpacity = useTransform(scrollYProgress, [0.45, 0.55], [1, 0]);
 
   const scrollToSection = (href) => {
     const element = document.querySelector(href);
@@ -62,13 +60,7 @@ export default function Landing() {
   return (
     <div className="relative w-full bg-black text-white overflow-x-hidden">
    
-      <div className="fixed top-4 left-4 z-50">
-        <img
-          src={logo}
-          alt="CodeChef Logo"
-          className="w-20 sm:w-16 md:w-20 lg:w-24 xl:w-28 object-contain"
-        />
-      </div>
+  
 
       
       <FloatingNav navItems={navLinks} />
@@ -80,22 +72,6 @@ export default function Landing() {
         className="relative min-h-screen w-full flex flex-col lg:flex-row items-center justify-center lg:justify-between overflow-hidden px-4 sm:px-6 md:px-10"
       >
        
-        {/* <motion.div
-          style={{ opacity: galaxyOpacity }}
-          className="absolute inset-0 h-full w-full z-0"
-        >
-          <Galaxy
-            mouseRepulsion
-            mouseInteraction
-            density={0.3}
-            glowIntensity={0.4}
-            saturation={0.6}
-            hueShift={200}
-            speed={0.9}
-            twinkleIntensity={0.3}
-            rotationSpeed={0.05}
-          />
-        </motion.div> */}
 
 <motion.div className="absolute inset-0 h-full w-full z-0">
   <Squares 
