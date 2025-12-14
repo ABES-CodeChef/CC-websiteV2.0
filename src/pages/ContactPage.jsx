@@ -45,7 +45,7 @@ export default function ContactPage() {
       icon: (
         <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "#home",
+      href: "/",
       onClick: () => navigate("/"),
     },
     {
@@ -69,8 +69,8 @@ export default function ContactPage() {
       icon: (
         <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "#achievements",
-      onClick: () => scrollToSection("#achievements"),
+      href: "/achievements",
+      onClick: () => navigate("/achievements"),
     },
     {
       title: "Contact",
@@ -123,13 +123,13 @@ export default function ContactPage() {
     <div className="min-h-screen bg-white text-black overflow-x-hidden font-[Poppins]">
       <ToastContainer />
   <FloatingNav navItems={navLinks} />
-      <div className="fixed top-4 left-4 z-50">
+      {/* <div className="fixed top-4 left-4 z-50">
         <img
           src={logo}
           alt="Logo"
           className="w-20 sm:w-16 md:w-20 lg:w-24 xl:w-28 object-contain"
         />
-      </div>
+      </div> */}
 
       <div className="h-screen flex flex-col items-center justify-center relative px-4 bg-linear-to-br from-gray-50 to-gray-100">
         <h1 className="text-7xl md:text-9xl font-medium mb-8 text-center tracking-tight font-[Poppins]">

@@ -29,8 +29,8 @@ export default function Landing() {
       icon: (
         <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "#home",
-      onClick: () => navigate("/home"),
+      href: "/",
+      onClick: () => navigate("/"),
     },
     {
       title: "Events",
@@ -68,13 +68,13 @@ export default function Landing() {
   return (
     <div className="relative w-full bg-black text-white overflow-x-hidden">
    
-      <div className="fixed top-4 left-4 z-50">
+      {/* <div className="fixed top-4 left-4 z-50">
         <img
           src={logo}
           alt="CodeChef Logo"
           className="w-20 sm:w-16 md:w-20 lg:w-24 xl:w-28 object-contain"
         />
-      </div>
+      </div> */}
 
       
       <FloatingNav navItems={navLinks} />
