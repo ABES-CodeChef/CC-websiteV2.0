@@ -23,8 +23,8 @@ export const FloatingNav = ({ navItems, className }) => {
           "flex w-full fixed top-0 inset-x-0 mx-auto border border-transparent dark:border-white/20 " +
             "transition-all duration-300 ease-in-out " +
             (scrolled 
-              ? "bg-transparent/20 backdrop-blur-md border-white/10" 
-              : "bg-black/80 backdrop-blur-sm border-white/20"
+              ? "bg-black border-white/10" 
+              : "bg-black border-white/20"
             ) +
             " z-5000 px-8 py-3 items-center justify-between",
           className
