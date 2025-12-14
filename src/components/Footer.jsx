@@ -98,13 +98,13 @@ function Footer() {
             </a>
           </div>
           <div className="flex space-x-4">
-            <a href="#" className="text-gray-400 hover:text-pink-500">
+            <a href="https://www.instagram.com/abesec.codechef/" className="text-gray-400 hover:text-pink-500">
               <FaInstagram size={24} />
             </a>
-            <a href="#" className="text-gray-400 hover:text-blue-500">
+            <a href="https://www.linkedin.com/company/abesec-codechef/posts/?feedView=all" className="text-gray-400 hover:text-blue-500">
               <FaLinkedin size={24} />
             </a>
-            <a href="#" className="text-gray-400 hover:text-green-500">
+            <a href="https://discord.gg/6XG6jajX" className="text-gray-400 hover:text-green-500">
               <FaDiscord size={24} />
             </a>
           </div>
