@@ -13,7 +13,10 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 import { FloatingNav } from './FloatingNavbar';
+import { useNavigate } from 'react-router-dom';
 const AchievementsSection = () => {
+  const navigate = useNavigate();
+
   const containerRef = useRef(null);
   const cardsRef = useRef([]);
   const wrapperRef = useRef(null);
