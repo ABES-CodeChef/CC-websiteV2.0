@@ -75,7 +75,7 @@ const About = () => {
           disabled={false} 
           speed={3} 
           className='about-subtitle'
-          style={{ fontSize: '2.25rem', color: '#1c1919', fontWeight: 600, marginTop: '-0.5rem', lineHeight: '1.2' }}
+          style={{ fontSize: '2.25rem', color: '#1c1919', fontWeight: 300, marginTop: '-0.5rem', lineHeight: '1.2' }}
         />
         <div className="about-text" style={{ 
           color: '#444', 
