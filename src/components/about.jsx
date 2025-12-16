@@ -4,36 +4,85 @@ import ShinyText from './Shiny-Text';
 
 const About = () => {
   return (
-    <div  className="about-container" style={{
+    <div className="about-container" style={{
       display: 'flex',
+      flexDirection: 'column',
       minHeight: '100vh',
       backgroundColor: '#ffffff',
       padding: '2rem'
     }}>
-      {/* text ma effect add hoga yaha se left side m */}
+      <style>
+        {`
+          @media (min-width: 768px) {
+            .about-container {
+              flex-direction: row !important;
+            }
+            .about-content {
+              padding: 2rem !important;
+            }
+            .about-images {
+              padding: 2rem !important;
+            }
+          }
+          
+          @media (max-width: 767px) {
+            .about-container {
+              padding: 1rem !important;
+            }
+            .about-content {
+              padding: 1rem !important;
+              gap: 1rem !important;
+            }
+            .about-title {
+              font-size: 2.5rem !important;
+            }
+            .about-subtitle {
+              font-size: 1.75rem !important;
+            }
+            .about-text {
+              font-size: 1rem !important;
+            }
+            .about-images {
+              padding: 1rem !important;
+              margin-top: 2rem !important;
+            }
+            .about-image-transition {
+              width: 100% !important;
+              max-width: 400px !important;
+              height: 500px !important;
+            }
+          }
+        `}
+      </style>
+
       <div className="about-content" style={{
         flex: 1,
         padding: '2rem',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        gap: '2rem'
+        gap: '1rem'
       }}>
         <ShinyText 
           text="Discover" 
           disabled={false} 
           speed={3} 
           className='about-title'
-          style={{ fontSize: '3.5rem', color: '#1c1919', fontWeight: 700 }}
+          style={{ fontSize: '3.5rem', color: '#1c1919', fontWeight: 700, lineHeight: '1.2' }}
         />
         <ShinyText 
           text="Our Bawarchikhaana" 
           disabled={false} 
           speed={3} 
           className='about-subtitle'
-          style={{ fontSize: '2.25rem', color: '#1c1919', fontWeight: 600 }}
+          style={{ fontSize: '2.25rem', color: '#1c1919', fontWeight: 300, marginTop: '-0.5rem', lineHeight: '1.2' }}
         />
-        <div className="about-text" style={{ color: '#444', fontSize: '1.1rem', lineHeight: '1.8' }}>
+        <div className="about-text" style={{ 
+          color: '#444', 
+          fontSize: '1.1rem', 
+          lineHeight: '1.8',
+          marginTop: '1rem'
+        }}>
           <p><strong>CODECHEF ABESEC</strong> We are a group of programmers with a passion for coding and teamwork. 
           Hum to bas ek hi funda follow karte hain – 'Teamwork makes the dream work!' 😉 
           We develop a process for solving problems through collaboration.</p>
@@ -46,7 +95,6 @@ const About = () => {
         </div>
       </div>
 
-      {/*Images*/}
       <div className="about-images" style={{
         flex: 1,
         display: 'flex',
