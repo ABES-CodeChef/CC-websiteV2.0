@@ -12,7 +12,11 @@ const Offering = () => {
         <h2>Our <span>Initiatives</span></h2>
         <p className="text-slate-400 text-lg mt-2">
   Empowering students to code, collaborate, and create impactful tech solutions.
+  <br />
+  We are building a community where curiosity meets execution. Through hands-on programs, mentorship, and innovation-driven events, we help students transform ideas into real-world solutions
 </p>
+
+
     </div>
  {/* <div className="relative md:left-60 md:h-[40vh] md:w-[50vw]" style={{ width: "100vw", height: "62vh" }}>
 <Spline scene="https://prod.spline.design/AFxRpmT1cXG77p3F/scene.splinecode" />
@@ -40,7 +44,7 @@ const Offering = () => {
           </h3>
           <div className="text-base font-normal text-start leading-relaxed">
             <span className="text-slate-500 ">
-              We host coding workshops for hands-on practice and help participants upskill by applying these techniques in competitive environments.
+              We host coding workshops for hands-on practice for competitive programming.
 
             </span>
           </div>
