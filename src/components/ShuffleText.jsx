@@ -17,7 +17,6 @@ const getRandomHindiChar = () => {
 }
 
 const ShuffleText = ({ text, className }) => {
-  // initialize safely in case `text` is undefined
   const [displayText, setDisplayText] = useState(() => (text ? text.split('') : []))
   const timeoutsRef = useRef([])
 
@@ -26,7 +25,6 @@ const ShuffleText = ({ text, className }) => {
     timeoutsRef.current = []
   }
 
-  // keep displayText in sync if `text` prop changes and clear timeouts on unmount
   useEffect(() => {
     setDisplayText(text ? text.split('') : [])
     return () => {
@@ -37,13 +35,11 @@ const ShuffleText = ({ text, className }) => {
   const handleMouseEnter = () => {
     clearAllTimeouts()
 
-    // 1. Set initial "scrambled" state
     const scrambled = text.split('').map(ch =>
       ch !== ' ' ? getRandomHindiChar() : ' '
     )
     setDisplayText(scrambled)
 
-    // 2. Gradually reveal original characters
     for (let i = 0; i < text.length; i++) {
       const timeout = setTimeout(() => {
         setDisplayText(prev => {
@@ -51,7 +47,7 @@ const ShuffleText = ({ text, className }) => {
           newArr[i] = text[i]
           return newArr
         })
-      }, i * 100) // 100ms delay per character
+      }, i * 100) 
       timeoutsRef.current.push(timeout)
     }
   }
