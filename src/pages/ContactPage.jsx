@@ -83,34 +83,80 @@ export default function ContactPage() {
   ];
 
  
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const { name, email, subject, message } = formData;
 
-   
+    // Validate all fields are filled
     if (!name || !email || !subject || !message) {
       toast.error("Please fill all fields!", { position: "top-center" });
       return;
     }
 
+    // Validate email format
     if (!isValidEmail(email)) {
       toast.error("Please enter a valid email!", { position: "top-center" });
       return;
     }
 
-   
+    // Validate field lengths to match backend requirements
+    if (name.trim().length < 2 || name.trim().length > 100) {
+      toast.error("Name must be between 2 and 100 characters!", { position: "top-center" });
+      return;
+    }
+
+    if (subject.trim().length < 3 || subject.trim().length > 200) {
+      toast.error("Subject must be between 3 and 200 characters!", { position: "top-center" });
+      return;
+    }
+
+    if (message.trim().length < 10 || message.trim().length > 5000) {
+      toast.error("Message must be between 10 and 5000 characters!", { position: "top-center" });
+      return;
+    }
+
     setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
-      toast.success("Message sent successfully!", { position: "top-center" });
-
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
+    try {
+      const response = await fetch('http://localhost:3002/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          name: name.trim(), 
+          email: email.trim(), 
+          subject: subject.trim(), 
+          message: message.trim() 
+        }),
       });
-    }, 1500);
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toast.success(data.message || "Message sent successfully! We'll get back to you soon.", { 
+          position: "top-center",
+          autoClose: 5000,
+        });
+        // Clear form on success
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        toast.error(data.message || "Failed to send message. Please try again.", { 
+          position: "top-center" 
+        });
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast.error("Network error! Please make sure the server is running.", { 
+        position: "top-center" 
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const scrollToContact = () => {
@@ -205,6 +251,9 @@ export default function ContactPage() {
               className="w-full px-6 py-4 bg-white border-2 border-gray-300 rounded-xl 
               focus:outline-none focus:border-black transition-all duration-300 text-black resize-none font-medium"
             ></textarea>
+            <div className="text-sm text-gray-500 text-right">
+              {formData.message.length} / 5000 characters (minimum 10)
+            </div>
 
             <div className="flex justify-center">
               <button
