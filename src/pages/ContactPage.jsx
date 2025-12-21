@@ -262,7 +262,7 @@ export default function ContactPage() {
                 className="w-52 group relative px-8 py-4 rounded-xl font-bold text-lg overflow-hidden 
               transition-all duration-500 cursor-pointer font-[Montserrat]"
               >
-                <span className="absolute inset-0 bg-yellow-400 transition-all duration-500 ease-out"></span>
+                <span className="absolute inset-0 bg-yellow-500 transition-all duration-500 ease-out"></span>
                 <span className="absolute inset-0 bg-black transition-all duration-500 ease-out group-hover:translate-y-0 translate-y-full"></span>
 
                 <span className="relative z-10 text-white flex items-center gap-2 justify-center">

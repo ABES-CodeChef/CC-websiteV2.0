@@ -21,38 +21,52 @@ function Footer() {
           </p>
           <button
             onClick={() => navigate("/events")}
-            className="group relative px-5 py-3 bg-linear-to-r from-orange-500 to-orange-600 text-black font-semibold rounded-full overflow-visible transition-all duration-500 ease-out hover:pr-8 hover:pl-6 hover:shadow-[0_8px_40px_-12px_rgba(255,165,0,0.4)] hover:-translate-y-0.5"
+            className="group relative border-none px-5 py-3 rounded-full font-semibold overflow-hidden
+             cursor-pointer transition-all duration-500 ease-out
+             hover:-translate-y-0.5 hover:shadow-[0_8px_40px_-12px_rgba(0,0,0,0.4)]"
           >
-            <span className="relative z-10 flex items-center gap-2 transition-transform duration-500 ease-out group-hover:scale-[1.02]">
+            <span className="absolute inset-0 bg-yellow-600 transition-all duration-500 ease-out" />
+
+            <span
+              className="absolute inset-0 bg-black
+               translate-y-full group-hover:translate-y-0
+               transition-transform duration-500 ease-out"
+            />
+            <span className="relative z-10 flex items-center gap-2 text-white">
               Browse Events
               <FiArrowUpRight
-                className="inline-block transition-all duration-500 ease-out group-hover:rotate-45 group-hover:translate-x-1"
                 size={18}
                 strokeWidth={2.5}
+                className="transition-all duration-500 group-hover:rotate-45 group-hover:translate-x-1"
               />
             </span>
-            <div className="absolute inset-0 bg-linear-to-r from-orange-600 to-orange-700 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out rounded-full" />
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 ease-out bg-[radial-gradient(circle_at_50%_-20%,rgba(255,255,255,0.4),rgba(255,255,255,0))] rounded-full" />
           </button>
         </div>
-
-        {/* Quick Links */}
         <div className="col-span-1">
           <h3 className="font-audiowide text-xl mb-4">QUICK LINKS</h3>
           <ul className="space-y-2">
             <li>
-              <a href="/events" className="text-gray-400 hover:text-white cursor-pointer">
+              <a
+                href="/events"
+                className="text-gray-400 hover:text-white cursor-pointer"
+              >
                 Events
               </a>
             </li>
             <li>
-              <a href="/team" className="text-gray-400 hover:text-white cursor-pointer">
+              <a
+                href="/team"
+                className="text-gray-400 hover:text-white cursor-pointer"
+              >
                 Team
               </a>
             </li>
             <li>
               {/* Assuming you have or will have an achievements page/section */}
-              <a href="/#achievements" className="text-gray-400 hover:text-white cursor-pointer">
+              <a
+                href="/#achievements"
+                className="text-gray-400 hover:text-white cursor-pointer"
+              >
                 Achievements
               </a>
             </li>
@@ -98,13 +112,22 @@ function Footer() {
             </a>
           </div>
           <div className="flex space-x-4">
-            <a href="https://www.instagram.com/abesec.codechef/" className="text-gray-400 hover:text-pink-500">
+            <a
+              href="https://www.instagram.com/abesec.codechef/"
+              className="text-gray-400 hover:text-pink-500"
+            >
               <FaInstagram size={24} />
             </a>
-            <a href="https://www.linkedin.com/company/abesec-codechef/posts/?feedView=all" className="text-gray-400 hover:text-blue-500">
+            <a
+              href="https://www.linkedin.com/company/abesec-codechef/posts/?feedView=all"
+              className="text-gray-400 hover:text-blue-500"
+            >
               <FaLinkedin size={24} />
             </a>
-            <a href="https://discord.gg/6XG6jajX" className="text-gray-400 hover:text-green-500">
+            <a
+              href="https://discord.gg/6XG6jajX"
+              className="text-gray-400 hover:text-green-500"
+            >
               <FaDiscord size={24} />
             </a>
           </div>
