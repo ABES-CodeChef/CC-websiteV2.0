@@ -21,7 +21,7 @@ function Footer() {
           </p>
           <button
             onClick={() => navigate("/events")}
-            className="group relative border-none px-5 py-3 rounded-full font-semibold overflow-hidden
+            className="group relative border-none px-5 py-3 rounded-xl font-semibold overflow-hidden
              cursor-pointer transition-all duration-500 ease-out
              hover:-translate-y-0.5 hover:shadow-[0_8px_40px_-12px_rgba(0,0,0,0.4)]"
           >
