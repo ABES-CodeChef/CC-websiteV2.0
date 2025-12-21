@@ -20,8 +20,8 @@ export default function TeamGrid() {
  
 
   const teamMembers = [
-    { name: 'Vishesh Maurya', role: 'Advisory', img: 1, row: 0, col: 0, transformOrigin: 'right bottom',img:'1.webp', linkedin: 'https://linkedin.com/in/alexjohnson', tech: ['React', 'Node.js', 'AWS'] },
-    { name: 'Sai Aryan Goswami', role: 'Core Team', img: 2, row: 0, col: 2, transformOrigin: 'left bottom',img:'2.webp', linkedin: 'https://linkedin.com/in/sarahchen', tech: ['Python', 'Django', 'PostgreSQL'] },
+    { name: 'Vishesh Maurya', role: 'Advisory',  row: 0, col: 0, transformOrigin: 'right bottom',img:'1.webp', linkedin: 'https://linkedin.com/in/alexjohnson', tech: ['React', 'Node.js', 'AWS'] },
+    { name: 'Sai Aryan Goswami', role: 'Core Team',  row: 0, col: 2, transformOrigin: 'left bottom',img:'2.webp', linkedin: 'https://linkedin.com/in/sarahchen', tech: ['Python', 'Django', 'PostgreSQL'] },
     { name: 'Vidhi Gandhi', role: 'President', img: 3, row: 1, col: 1, transformOrigin: 'left bottom',img:'vidhi-didi.jpg', linkedin: 'https://linkedin.com/in/marcusrivera', tech: ['Figma', 'Adobe XD', 'Sketch'] },
     { name: 'Rohit Bhardwaj', role: 'Vice-president', img: 4, row: 2, col: 0, transformOrigin: 'right bottom',img:'rohit-bhaiya.jpg', linkedin: 'https://linkedin.com/in/emilywatson', tech: ['Jira', 'Agile', 'Scrum'] },
     { name: 'Lavish Aggarwal', role: 'Vice-president', img: 5, row: 2, col: 3, transformOrigin: 'left bottom', img:'lavish-bhaiya.jpg',  linkedin: 'https://linkedin.com/in/davidkim', tech: ['JavaScript', 'TypeScript', 'Vue.js'] },
@@ -29,7 +29,7 @@ export default function TeamGrid() {
     { name: 'Ramyak Jain', role: 'Event Lead', img: 7, row: 3, col: 2, transformOrigin: 'right bottom',  linkedin: 'https://linkedin.com/in/jameswilson', tech: ['User Research', 'Prototyping', 'Testing'] },
     { name: 'Utkarsh', role: 'Cp Lead', img: 8, row: 4, col: 0, transformOrigin: 'left bottom',img:'utkarsh-bhaiya.jpg', linkedin: 'https://linkedin.com/in/rachelgreen', tech: ['C++', 'Algorithms', 'DSA'] },
     { name: 'Deepanshu', role: 'Graphics Lead', img: 9, row: 4, col: 3, transformOrigin: 'left bottom', linkedin: 'https://linkedin.com/in/michaelbrown', tech: ['Photoshop', 'Illustrator', 'After Effects'] },
-    { name: 'Swati Mittal', role: 'Pr Lead', img: 10, row: 5, col: 2, transformOrigin: 'left bottom',img:'swati-didi.jpg', linkedin: 'https://linkedin.com/in/annadavis', tech: ['Social Media', 'Outreach', 'Networking'] },
+    { name: 'Swati Mittal', role: 'Pr Lead', img: 10, row: 5, col: 2, transformOrigin: 'left bottom',img:'swati-didi.HEIC', linkedin: 'https://linkedin.com/in/annadavis', tech: ['Social Media', 'Outreach', 'Networking'] },
     { name: 'Ananya', role: 'Content Lead', img: 11, row: 6, col: 1, transformOrigin: 'left bottom',img:'ananya-didi.jpg', linkedin: 'https://linkedin.com/in/tomanderson', tech: ['Copywriting', 'SEO', 'Content Strategy'] },
     { name: 'Sakhi Vishnoi', role: 'Graphics Lead', img: 12, row: 6, col: 3, transformOrigin: 'left bottom', linkedin: 'https://linkedin.com/in/sophielee', tech: ['Canva', 'Figma', 'Blender'] },
     { name: 'Anvesh ', role: 'Backend Developer', img: 13, row: 7, col: 0, transformOrigin: 'right bottom',img:'anvesh-bhaiya.jpg', linkedin: 'https://linkedin.com/in/christaylor', tech: ['Node.js', 'Express', 'MongoDB'] },
