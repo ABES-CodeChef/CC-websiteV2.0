@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 
-// Import page components
 import HomePage from './pages/HomePage';
 import EventPage from './pages/EventPage';
 import TeamPage from './pages/TeamPage';

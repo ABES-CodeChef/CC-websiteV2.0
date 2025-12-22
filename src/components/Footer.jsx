@@ -7,21 +7,21 @@ function Footer() {
   const navigate = useNavigate();
   return (
     <footer
-      className="bg-black text-white py-8 px-6 rounded-t-3xl z-10 relative"
+      className="bg-black text-white py-6 md:py-8 px-4 md:px-6 rounded-t-3xl z-10 relative"
       id="contactUs"
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 p-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 p-4 md:p-6">
         <div className="col-span-1 md:col-span-2">
-          <h3 className="font-sora text-[64px] font-bold mb-4 leading-tight">
+          <h3 className="font-sora text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-bold mb-3 md:mb-4 leading-tight">
             CodeChef ABESEC Chapter
           </h3>
-          <p className="text-gray-400 mb-4">
+          <p className="text-gray-400 text-sm md:text-base mb-3 md:mb-4">
             Join us for an exciting journey of coding, innovation, and
             creativity. Where innovation meets code and dreams become reality.
           </p>
           <button
             onClick={() => navigate("/events")}
-            className="group relative border-none px-5 py-3 rounded-xl font-inter text-sm font-semibold overflow-hidden
+            className="group relative border-none px-4 md:px-5 py-2.5 md:py-3 rounded-xl font-inter text-xs md:text-sm font-semibold overflow-hidden
              cursor-pointer transition-all duration-500 ease-out
              hover:-translate-y-0.5 hover:shadow-[0_8px_40px_-12px_rgba(0,0,0,0.4)]"
           >
@@ -35,20 +35,20 @@ function Footer() {
             <span className="relative z-10 flex items-center gap-2 text-white">
               Browse Events
               <FiArrowUpRight
-                size={18}
+                size={16}
                 strokeWidth={2.5}
-                className="transition-all duration-500 group-hover:rotate-45 group-hover:translate-x-1"
+                className="transition-all duration-500 group-hover:rotate-45 group-hover:translate-x-1 md:w-[18px] md:h-[18px]"
               />
             </span>
           </button>
         </div>
         <div className="col-span-1">
-          <h3 className="font-inter text-sm font-semibold mb-4">QUICK LINKS</h3>
-          <ul className="space-y-2">
+          <h3 className="font-inter text-xs md:text-sm font-semibold mb-3 md:mb-4">QUICK LINKS</h3>
+          <ul className="flex flex-row md:flex-col flex-wrap gap-x-4 gap-y-2 md:space-y-2 md:space-x-0">
             <li>
               <a
                 href="/events"
-                className="text-gray-400 hover:text-white cursor-pointer"
+                className="text-gray-400 hover:text-white cursor-pointer text-sm md:text-base"
               >
                 Events
               </a>
@@ -56,16 +56,15 @@ function Footer() {
             <li>
               <a
                 href="/team"
-                className="text-gray-400 hover:text-white cursor-pointer"
+                className="text-gray-400 hover:text-white cursor-pointer text-sm md:text-base"
               >
                 Team
               </a>
             </li>
             <li>
-              {/* Assuming you have or will have an achievements page/section */}
               <a
                 href="/#achievements"
-                className="text-gray-400 hover:text-white cursor-pointer"
+                className="text-gray-400 hover:text-white cursor-pointer text-sm md:text-base"
               >
                 Achievements
               </a>
@@ -75,7 +74,7 @@ function Footer() {
                 to="contactUs"
                 smooth={true}
                 duration={500}
-                className="text-gray-400 hover:text-white cursor-pointer"
+                className="text-gray-400 hover:text-white cursor-pointer text-sm md:text-base"
               >
                 Contact
               </ScrollLink>
@@ -83,30 +82,12 @@ function Footer() {
           </ul>
         </div>
 
-        {/* Contact Info */}
-        {/* <div className="col-span-1">
-          <h3 className="font-audiowide text-xl mb-4">CONTACT</h3>
-          <ul className="space-y-2">
-            <li className="text-gray-400">
-              <a
-                href="mailto:business.codegeeks@gmail.com"
-                className="hover:text-white"
-              >
-                
-              </a>
-            </li>
-            <li className="text-gray-400">+91 8279437447</li>
-            <li className="text-gray-400">Delhi, India</li>
-          </ul>
-        </div> */}
-
-        {/* Connect With Us */}
         <div className="col-span-1">
-          <h3 className="font-inter text-sm font-semibold mb-4">CONNECT WITH US</h3>
-          <div className="text-gray-400 mb-4">
+          <h3 className="font-inter text-xs md:text-sm font-semibold mb-3 md:mb-4">CONNECT WITH US</h3>
+          <div className="text-gray-400 mb-3 md:mb-4 text-sm md:text-base">
             <a
               href="mailto:abesec.codechef@gmail.com"
-              className="hover:text-white"
+              className="hover:text-white break-all"
             >
               abesec.codechef@gmail.com
             </a>
@@ -116,30 +97,29 @@ function Footer() {
               href="https://www.instagram.com/abesec.codechef/"
               className="text-gray-400 hover:text-pink-500"
             >
-              <FaInstagram size={24} />
+              <FaInstagram size={20} className="md:w-6 md:h-6" />
             </a>
             <a
               href="https://www.linkedin.com/company/abesec-codechef/posts/?feedView=all"
               className="text-gray-400 hover:text-blue-500"
             >
-              <FaLinkedin size={24} />
+              <FaLinkedin size={20} className="md:w-6 md:h-6" />
             </a>
             <a
               href="https://discord.gg/6XG6jajX"
               className="text-gray-400 hover:text-green-500"
             >
-              <FaDiscord size={24} />
+              <FaDiscord size={20} className="md:w-6 md:h-6" />
             </a>
           </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto mt-3 pt-2 border-t border-gray-800">
-        <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-2 text-xs md:text-sm">
           <p className="text-gray-400">© 2025 Codechef. All rights reserved.</p>
           <p className="text-gray-400">
-            Made with <span className="text-red-500">❤</span> by Bawarchi's
+            Made with <span className="text-red-500">❤</span> by Bawarchi
           </p>
         </div>
       </div>
