@@ -12,7 +12,7 @@ function Footer() {
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 p-6">
         <div className="col-span-1 md:col-span-2">
-          <h3 className="font-audiowide text-4xl mb-4">
+          <h3 className="font-sora text-[64px] font-bold mb-4 leading-tight">
             CodeChef ABESEC Chapter
           </h3>
           <p className="text-gray-400 mb-4">
@@ -21,7 +21,7 @@ function Footer() {
           </p>
           <button
             onClick={() => navigate("/events")}
-            className="group relative border-none px-5 py-3 rounded-xl font-semibold overflow-hidden
+            className="group relative border-none px-5 py-3 rounded-xl font-inter text-sm font-semibold overflow-hidden
              cursor-pointer transition-all duration-500 ease-out
              hover:-translate-y-0.5 hover:shadow-[0_8px_40px_-12px_rgba(0,0,0,0.4)]"
           >
@@ -43,7 +43,7 @@ function Footer() {
           </button>
         </div>
         <div className="col-span-1">
-          <h3 className="font-audiowide text-xl mb-4">QUICK LINKS</h3>
+          <h3 className="font-inter text-sm font-semibold mb-4">QUICK LINKS</h3>
           <ul className="space-y-2">
             <li>
               <a
@@ -102,7 +102,7 @@ function Footer() {
 
         {/* Connect With Us */}
         <div className="col-span-1">
-          <h3 className="font-audiowide text-xl mb-4">CONNECT WITH US</h3>
+          <h3 className="font-inter text-sm font-semibold mb-4">CONNECT WITH US</h3>
           <div className="text-gray-400 mb-4">
             <a
               href="mailto:abesec.codechef@gmail.com"

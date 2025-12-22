@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 // import Footer from "../components/Footer";
 import useLenis from "../hooks/useLenis";
 import { BackgroundOverlayCard } from "../components/BackgroundOverlayCard";
-import { GridScan } from "../components/GridScan";
+import Particles from "../components/particles";
 import { FloatingNav } from "../components/FloatingNavbar";
 import {
   IconHome,
@@ -99,18 +99,15 @@ export default function EventsPage() {
       <FloatingNav navItems={navLinks} />
 
       <div className="fixed inset-0 z-0">
-        <GridScan
-          sensitivity={0.55}
-          lineThickness={1}
-          linesColor="#FF5F15"
-          gridScale={0.09}
-          scanColor="#FFA500"
-          scanOpacity={0.2}
-          enablePost
-          bloomIntensity={0.3}
-          chromaticAberration={0.005}
-          noiseIntensity={0.045}
-          scanGlow={1}
+        <Particles
+          particleColors={['#ffffff', '#ffffff']}
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
         />
       </div>
       <div className="relative z-10 min-h-screen pt-24 pb-20 px-4 sm:px-6 md:px-10 flex flex-col items-center">

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import useLenis from '../hooks/useLenis';
 // import Footer from '../components/Footer';
-import { GridScan } from '../components/GridScan';
+import Particles from '../components/particles';
 import { FloatingNav } from "../components/FloatingNavbar";
 import {
   IconHome,
@@ -59,19 +59,16 @@ const RustEdPage = () => {
   return (
     <div className="w-full min-h-screen overflow-x-hidden bg-black text-white relative">
             <FloatingNav navItems={navLinks} />
-      <div className="absolute inset-0 z-0">
-        <GridScan
-          sensitivity={0.55}
-          lineThickness={1}
-          linesColor="#2a2a3a"
-          gridScale={0.09}
-          scanColor="#FFA500"
-          scanOpacity={0.2}
-          enablePost
-          bloomIntensity={0.3}
-          chromaticAberration={0.005}
-          noiseIntensity={0.045}
-          scanGlow={1}
+      <div className="fixed inset-0 z-0">
+        <Particles
+          particleColors={['#ffffff', '#ffffff']}
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
         />
       </div>
       <div className="relative z-10 min-h-screen pt-24 pb-20 px-4 sm:px-6 md:px-10 flex flex-col items-center">

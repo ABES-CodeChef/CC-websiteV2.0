@@ -47,8 +47,10 @@
 }
 
 .cube {
-  width: 200px;
-  height: 200px;
+  --size: 200px;
+  --offset: 100px;
+  width: var(--size);
+  height: var(--size);
 }
 
 @media (min-width: 768px) {
@@ -57,8 +59,8 @@
     text-align: left;
   }
   .cube {
-    width: 250px;
-    height: 250px;
+    --size: 250px;
+    --offset: 125px;
   }
 }
 
@@ -67,8 +69,8 @@
     font-size: 4.4rem; 
   }
   .cube {
-    width: 320px;
-    height: 320px;
+    --size: 320px;
+    --offset: 160px;
   }
 }
 
@@ -78,8 +80,8 @@
     font-size: 5.6rem; 
   }
   .cube {
-    width: 380px;
-    height: 380px;
+    --size: 380px;
+    --offset: 190px;
   }
 }
 
