@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 import useLenis from "../hooks/useLenis";
 import { BackgroundOverlayCard } from "../components/BackgroundOverlayCard";
 import Particles from "../components/particles";
@@ -52,7 +52,6 @@ const events = [
 ];
 
 export default function EventsPage() {
-  useLenis();
   const navigate = useNavigate();
 
   const scrollToSection = (selector) => {
@@ -132,7 +131,7 @@ export default function EventsPage() {
           ))}
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

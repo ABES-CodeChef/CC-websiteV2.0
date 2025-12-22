@@ -1,6 +1,6 @@
 import ElixirCommunity from "../components/ElixerCommunity";
 import ExPresident from "../components/ExPresident";
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 import Landing from "../components/Landing";
 import Offering from "../components/Offering";
 import About from "../components/about";
@@ -17,7 +17,7 @@ export default function HomePage() {
       <Offering/>
       <ExPresident />
       <ElixirCommunity />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

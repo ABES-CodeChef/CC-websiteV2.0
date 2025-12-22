@@ -1,8 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import useLenis from '../hooks/useLenis';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import Particles from '../components/particles';
+import { FloatingNav } from "../components/FloatingNavbar";
+import {
+  IconHome,
+  IconCalendar,
+  IconUsers,
+  IconMail,
+  IconTrophy,
+} from "@tabler/icons-react";
+import { useNavigate } from 'react-router-dom';
 
 const eventImages = [
   "/rust1.webp",
@@ -13,9 +22,43 @@ const eventImages = [
 
 const RustEdPage = () => {
   useLenis();
+    const navigate = useNavigate();
+    const navLinks = [
+      {
+        title: "Home",
+        icon: <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+        href: "/",
+        onClick: () => navigate("/"),
+      },
+      {
+        title: "Events",
+        icon: <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+        href: "/events",
+        onClick: () => navigate("/events"),
+      },
+      {
+        title: "Team",
+        icon: <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+        href: "/team",
+        onClick: () => navigate("/team"),
+      },
+      {
+        title: "Achievements",
+        icon: <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+        href: "/achievements",
+        onClick: () => navigate("/achievements"),
+      },
+      {
+        title: "Contact",
+        icon: <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+        href: "/contact",
+        onClick: () => navigate("/contact"),
+      },
+    ];
 
   return (
     <div className="w-full min-h-screen overflow-x-hidden bg-black text-white relative">
+            <FloatingNav navItems={navLinks} />
       <div className="fixed inset-0 z-0">
         <Particles
           particleColors={['#ffffff', '#ffffff']}
@@ -74,7 +117,7 @@ const RustEdPage = () => {
           ))}
         </motion.div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

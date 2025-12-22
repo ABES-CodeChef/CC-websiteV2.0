@@ -91,8 +91,8 @@ export default function TeamGrid() {
   {
     title: "Home",
     icon: <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-    href: "#home",
-    onClick: () => navigate("/home"),
+    href: "/",
+    onClick: () => navigate("/"),
   },
   {
     title: "Events",
@@ -109,8 +109,8 @@ export default function TeamGrid() {
   {
     title: "Achievements",
     icon: <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
-    href: "#achievements",
-    onClick: () => scrollToSection("#achievements"),
+    href: "/achievements",
+    onClick: () => navigate("/achievements"), 
   },
   {
     title: "Contact",
