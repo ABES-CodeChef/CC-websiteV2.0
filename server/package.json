@@ -1,0 +1,32 @@
+{
+    "name": "cc-website-server",
+    "version": "2.0.0",
+    "description": "Backend server for CC Website contact form",
+    "main": "src/server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node src/server.js",
+        "dev": "nodemon src/server.js",
+        "docker:build": "docker-compose up --build -d",
+        "docker:up": "docker-compose up -d",
+        "docker:down": "docker-compose down",
+        "docker:logs": "docker-compose logs -f"
+    },
+    "keywords": [
+        "express",
+        "nodemailer",
+        "smtp"
+    ],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "express-rate-limit": "^8.2.1",
+        "nodemailer": "^6.9.7"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.2"
+    }
+}
