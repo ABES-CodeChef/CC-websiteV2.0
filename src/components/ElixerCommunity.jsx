@@ -33,7 +33,7 @@ const ElixirCommunity = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-linear-to-b from-white to-gray-50" style={{ fontFamily: "'Poppins', sans-serif" }}>
+    <section className="py-20 px-4 bg-linear-to-b from-white to-gray-50">
       <div className="max-w-6xl mx-auto">
         
         <div className="text-center mb-12 md:mb-16 px-4">
@@ -121,7 +121,7 @@ const ElixirCommunity = () => {
       </div>
 
       <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
         
         @keyframes slide-left {
           from {

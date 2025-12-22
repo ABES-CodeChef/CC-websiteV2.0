@@ -1,8 +1,52 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;600;700&display=swap");
 @import "tailwindcss";
 
-
-
-body {
-  font-family: "Poppins", sans-serif;
+:root {
+  --font-sora: 'Sora', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --main-heading-size: 64px;
+  --subheading-size: 14px;
 }
+
+html, body {
+  font-family: var(--font-inter);
+  font-size: 16px;
+}
+
+/* Main headings */
+h1 {
+  font-family: var(--font-sora);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+/* Use this class on main hero headings when you want exactly 64px */
+.heading-main {
+  font-family: var(--font-sora);
+  font-weight: 700;
+  font-size: 64px;
+}
+
+/* Use Sora for other headings */
+h2,h3,h4,h5 {
+  font-family: var(--font-sora);
+  font-weight: 700;
+}
+
+/* Subheadings & buttons */
+button, .btn, .subheading, .subtitle {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Anchor button fallbacks */
+a.btn, a[role="button"], .link-btn {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Utility classes */
+.font-sora { font-family: var(--font-sora); }
+.font-inter { font-family: var(--font-inter); }

@@ -1,4 +1,5 @@
 import React from "react";
+import ShuffleText from './ShuffleText2';
 import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
@@ -108,13 +109,11 @@ export default function Landing() {
               className="font-bold leading-[1.1] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mx-auto lg:mx-0 text-center lg:text-left"
             >
               <div>
-                <span className="font-bold text-white">Cooking</span>{" "}
-                <span className="font-light text-white/80">code,</span>
-              </div>
-              <div className="mt-2 sm:mt-3">
-                <span className="font-bold text-white">Building</span>{" "}
-                <span className="font-light text-white/80">community</span>
-              </div>
+               <ShuffleText text="Coding Together" className='text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-bold'/>
+          <br />
+          <ShuffleText text="Growing Together" className='text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-bold mb-4'/>
+          <div className="h-16 mt-3"></div>
+          </div>
             </motion.h1>
           </div>
 

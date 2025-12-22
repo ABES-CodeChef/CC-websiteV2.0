@@ -130,7 +130,7 @@ const AchievementsSection = () => {
       
       <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-white">
         <div className="text-left max-w-8xl mx-auto">
-          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-8xl leading-tight text-gray-1000" style={{ fontFamily: 'Poppins, sans-serif' }}>
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-8xl leading-tight text-gray-1000">
             <span className="block mb-4">
               <span className="font-extrabold">Celebrating</span>{' '}
               <span className="font-extralight">Our</span>
@@ -210,7 +210,7 @@ const AchievementCard = ({ achievement }) => {
                 <div className="inline-block px-4 py-2 bg-gray-100 rounded-full mb-4 border border-gray-300">
                   <span className="text-sm font-semibold text-gray-800">{achievement.badge}</span>
                 </div>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3">
                   {achievement.name}
                 </h2>
               </div>

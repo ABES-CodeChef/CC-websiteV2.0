@@ -12,7 +12,7 @@ function Footer() {
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 p-6">
         <div className="col-span-1 md:col-span-2">
-          <h3 className="font-audiowide text-4xl mb-4">
+          <h3 className="font-sora text-[64px] font-bold mb-4 leading-tight">
             CodeChef ABESEC Chapter
           </h3>
           <p className="text-gray-400 mb-4">
@@ -21,7 +21,7 @@ function Footer() {
           </p>
           <button
             onClick={() => navigate("/events")}
-            className="group relative px-5 py-3 bg-linear-to-r from-orange-500 to-orange-600 text-black font-semibold rounded-full overflow-visible transition-all duration-500 ease-out hover:pr-8 hover:pl-6 hover:shadow-[0_8px_40px_-12px_rgba(255,165,0,0.4)] hover:-translate-y-0.5"
+            className="group relative px-5 py-3 bg-linear-to-r from-orange-500 to-orange-600 text-black font-inter text-sm font-semibold rounded-full overflow-visible transition-all duration-500 ease-out hover:pr-8 hover:pl-6 hover:shadow-[0_8px_40px_-12px_rgba(255,165,0,0.4)] hover:-translate-y-0.5"
           >
             <span className="relative z-10 flex items-center gap-2 transition-transform duration-500 ease-out group-hover:scale-[1.02]">
               Browse Events
@@ -38,7 +38,7 @@ function Footer() {
 
         {/* Quick Links */}
         <div className="col-span-1">
-          <h3 className="font-audiowide text-xl mb-4">QUICK LINKS</h3>
+          <h3 className="font-inter text-sm font-semibold mb-4">QUICK LINKS</h3>
           <ul className="space-y-2">
             <li>
               <a href="/events" className="text-gray-400 hover:text-white cursor-pointer">
@@ -88,7 +88,7 @@ function Footer() {
 
         {/* Connect With Us */}
         <div className="col-span-1">
-          <h3 className="font-audiowide text-xl mb-4">CONNECT WITH US</h3>
+          <h3 className="font-inter text-sm font-semibold mb-4">CONNECT WITH US</h3>
           <div className="text-gray-400 mb-4">
             <a
               href="mailto:abesec.codechef@gmail.com"
