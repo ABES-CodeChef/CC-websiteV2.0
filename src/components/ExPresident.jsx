@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Linkedin } from 'lucide-react';
+import React, { useState, useEffect, useRef } from "react";
+import { Linkedin } from "lucide-react";
 
 const ExPresident = () => {
   const row1Ref = useRef(null);
@@ -12,16 +12,16 @@ const ExPresident = () => {
   useEffect(() => {
     const calculateScale = (element) => {
       if (!element) return 1;
-      
+
       const rect = element.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const elementMiddle = rect.top + rect.height / 2;
       const viewportMiddle = windowHeight / 2;
-      
+
       // Calculate distance from viewport center
       const distance = Math.abs(elementMiddle - viewportMiddle);
       const maxDistance = windowHeight;
-      
+
       // Scale from 0.7 to 1 based on distance
       const scale = Math.max(0.7, 1 - (distance / maxDistance) * 0.3);
       return scale;
@@ -33,10 +33,10 @@ const ExPresident = () => {
       setRow3Scale(calculateScale(row3Ref.current));
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     handleScroll();
-    
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const presidents = [
@@ -48,7 +48,7 @@ const ExPresident = () => {
       image: "/tanishq-bhaiya.webp",
       profileImg: "/tanishq-bhaiya.webp",
       username: "@tanishq ",
-      linkedin: "https://www.linkedin.com/in/tannatsri/"
+      linkedin: "https://www.linkedin.com/in/tannatsri/",
     },
     {
       id: 2,
@@ -58,7 +58,7 @@ const ExPresident = () => {
       image: "/tanveer-bhaiya.jpg",
       profileImg: "/tanveer-bhaiya.jpg",
       username: "@tanveer",
-      linkedin: "https://www.linkedin.com/in/atamakahere/"
+      linkedin: "https://www.linkedin.com/in/atamakahere/",
     },
     {
       id: 3,
@@ -68,7 +68,7 @@ const ExPresident = () => {
       image: "/bhumika-didi.webp",
       profileImg: "/bhumika-didi.webp",
       username: "@bhumika",
-      linkedin: "https://www.linkedin.com/in/thebhumikaarora/"
+      linkedin: "https://www.linkedin.com/in/thebhumikaarora/",
     },
     {
       id: 4,
@@ -78,7 +78,7 @@ const ExPresident = () => {
       image: "/abhinav-bhaiya.webp",
       profileImg: "/abhinav-bhaiya.webp",
       username: "@Abhinav",
-      linkedin: "https://www.linkedin.com/in/abhijha301/"
+      linkedin: "https://www.linkedin.com/in/abhijha301/",
     },
     {
       id: 5,
@@ -88,8 +88,8 @@ const ExPresident = () => {
       image: "/sai-bhaiya.jpg",
       profileImg: "/sai-bhaiya.jpg",
       username: "saiaryan",
-      linkedin: "https://www.linkedin.com/in/saiaryangoswami"
-    }
+      linkedin: "https://www.linkedin.com/in/saiaryangoswami",
+    },
   ];
 
   const PresidentCard = ({ president }) => {
@@ -101,13 +101,13 @@ const ExPresident = () => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
+
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      
+
       const rotateX = ((y - centerY) / centerY) * -20;
       const rotateY = ((x - centerX) / centerX) * 20;
-      
+
       setRotation({ x: rotateX, y: rotateY });
     };
 
@@ -130,8 +130,12 @@ const ExPresident = () => {
         <div
           className="relative w-full h-full transition-all duration-500 ease-out"
           style={{
-            transform: `perspective(1500px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) scale3d(${isHovered ? 1.08 : 1}, ${isHovered ? 1.08 : 1}, ${isHovered ? 1.08 : 1})`,
-            transformStyle: 'preserve-3d'
+            transform: `perspective(1500px) rotateX(${rotation.x}deg) rotateY(${
+              rotation.y
+            }deg) scale3d(${isHovered ? 1.08 : 1}, ${isHovered ? 1.08 : 1}, ${
+              isHovered ? 1.08 : 1
+            })`,
+            transformStyle: "preserve-3d",
           }}
         >
           <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
@@ -140,11 +144,17 @@ const ExPresident = () => {
               alt={president.name}
               className="w-full h-full object-cover"
             />
-            
+
             <div className="absolute top-0 left-0 right-0 p-4 md:p-6 bg-linear-to-b from-black/70 via-black/40 to-transparent z-10">
-              <h3 className="text-white text-xl md:text-2xl font-bold mb-1 md:mb-2">{president.name}</h3>
-              <p className="text-blue-300 text-xs md:text-sm font-medium mb-1">{president.skill}</p>
-              <p className="text-gray-200 text-xs md:text-sm">{president.role}</p>
+              <h3 className="text-white text-xl md:text-2xl font-bold mb-1 md:mb-2">
+                {president.name}
+              </h3>
+              <p className="text-blue-300 text-xs md:text-sm font-medium mb-1">
+                {president.skill}
+              </p>
+              <p className="text-gray-200 text-xs md:text-sm">
+                {president.role}
+              </p>
             </div>
 
             <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 bg-white/20 backdrop-blur-md z-20">
@@ -156,8 +166,12 @@ const ExPresident = () => {
                     className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-white shadow-lg object-cover"
                   />
                   <div>
-                    <p className="text-white font-semibold text-xs md:text-sm">{president.username}</p>
-                    <p className="text-gray-200 text-[10px] md:text-xs">Online</p>
+                    <p className="text-white font-semibold text-xs md:text-sm">
+                      {president.username}
+                    </p>
+                    <p className="text-gray-200 text-[10px] md:text-xs">
+                      Online
+                    </p>
                   </div>
                 </div>
 
@@ -183,60 +197,82 @@ const ExPresident = () => {
         <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-start">
           <div className="lg:sticky lg:top-24 max-w-full lg:max-w-sm lg:mt-48">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5 md:mb-7 leading-[1.1]">
-              Meet Our<br /> Kitchen Crew
+              Meet Our
+              <br /> Kitchen Crew
             </h1>
-            
+
             <p className="text-sm md:text-base text-gray-500 font-light mb-4 md:mb-6 leading-relaxed">
-              We are a Team of passionate coders dedicated to advancing programming skills and creating opportunities for growth. With a mix of diverse talents, we collaborate to organize events, challenges, and workshops for our coding community.
-            </p>
-            
-            <p className="text-sm md:text-base text-gray-500 font-light mb-6 md:mb-10 leading-relaxed">
-              Together, we're cooking up a collaborative coding culture that fuels learning, pushes boundaries, and serves up a hearty helping of innovation—with a side of creativity.
+              We are a Team of passionate coders dedicated to advancing
+              programming skills and creating opportunities for growth. With a
+              mix of diverse talents, we collaborate to organize events,
+              challenges, and workshops for our coding community.
             </p>
 
-            <a 
+            <p className="text-sm md:text-base text-gray-500 font-light mb-6 md:mb-10 leading-relaxed">
+              Together, we're cooking up a collaborative coding culture that
+              fuels learning, pushes boundaries, and serves up a hearty helping
+              of innovation—with a side of creativity.
+            </p>
+
+            <a
               href="/team"
-              className="inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 md:px-8 py-3 md:py-3.5 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 mb-6 md:mb-8 text-xs md:text-sm uppercase tracking-wide"
+              className="group relative inline-block overflow-hidden rounded-xl
+             px-6 md:px-4 py-3 md:py-3.5
+             font-semibold text-xs md:text-sm uppercase tracking-wide
+             cursor-pointer
+             transition-all duration-500 ease-out
+              hover:shadow-xl mb-6 md:mb-8"
             >
-              Explore Our Kitchen
+              <span className="absolute inset-0 bg-yellow-500 transition-all duration-500 ease-out" />
+              <span
+                className="absolute inset-0 bg-black
+               translate-y-full group-hover:translate-y-0
+               transition-transform duration-500 ease-out"
+              />
+              <span className="relative z-10 text-white">
+                Explore Our Kitchen
+              </span>
             </a>
 
             <p className="text-2xl md:text-3xl text-gray-900 leading-snug mt-4 md:mt-5">
-              <span className='font-light text-black/80'>Our Secret ingredient?</span><br />
+              <span className="font-light text-black/80">
+                Our Secret ingredient?
+              </span>
+              <br />
               <span className="font-bold text-black"> Perfect code.</span>
             </p>
           </div>
-           
+
           <div>
-            <div 
+            <div
               ref={row1Ref}
               className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 transition-all duration-700 ease-out"
               style={{
                 transform: `scale(${row1Scale})`,
-                opacity: row1Scale
+                opacity: row1Scale,
               }}
             >
               <PresidentCard president={presidents[0]} />
               <PresidentCard president={presidents[1]} />
             </div>
-            
-            <div 
+
+            <div
               ref={row2Ref}
               className="max-w-full md:max-w-sm mx-auto mb-6 transition-all duration-700 ease-out"
               style={{
                 transform: `scale(${row2Scale})`,
-                opacity: row2Scale
+                opacity: row2Scale,
               }}
             >
               <PresidentCard president={presidents[2]} />
             </div>
-      
-            <div 
+
+            <div
               ref={row3Ref}
               className="grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-700 ease-out"
               style={{
                 transform: `scale(${row3Scale})`,
-                opacity: row3Scale
+                opacity: row3Scale,
               }}
             >
               <PresidentCard president={presidents[3]} />
