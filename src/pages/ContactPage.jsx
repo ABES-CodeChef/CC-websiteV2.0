@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 import logo from "../../public/logo.png";
 import { FloatingNav } from "../components/FloatingNavbar";
 import {
@@ -278,7 +278,7 @@ export default function ContactPage() {
         </div>
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

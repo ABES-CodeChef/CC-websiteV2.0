@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import useLenis from '../hooks/useLenis';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import { GridScan } from '../components/GridScan';
 import { FloatingNav } from "../components/FloatingNavbar";
 import {
@@ -111,7 +111,7 @@ const HeadNodePage = () => {
           ))}
         </motion.div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
