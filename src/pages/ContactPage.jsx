@@ -166,7 +166,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black overflow-x-hidden font-[Poppins]">
+    <div className="min-h-screen bg-white text-black overflow-x-hidden">
       <ToastContainer />
   <FloatingNav navItems={navLinks} />
       {/* <div className="fixed top-4 left-4 z-50">
@@ -178,13 +178,13 @@ export default function ContactPage() {
       </div> */}
 
       <div className="h-screen flex flex-col items-center justify-center relative px-4 bg-linear-to-br from-gray-50 to-gray-100">
-        <h1 className="text-7xl md:text-9xl font-medium mb-8 text-center tracking-tight font-[Poppins]">
+        <h1 className="text-7xl md:text-9xl font-medium mb-8 text-center tracking-tight">
           Get In Touch
         </h1>
 
         <button
           onClick={scrollToContact}
-          className="group relative mt-48 px-10 py-4 cursor-pointer text-black font-light text-lg transition-all duration-300 transform hover:scale-105 font-[Inter]"
+          className="group relative mt-48 px-10 py-4 cursor-pointer text-black font-light text-lg transition-all duration-300 transform hover:scale-105"
         >
           Send Message
         </button>
@@ -201,11 +201,11 @@ export default function ContactPage() {
 
       <div
         id="contact-section"
-        className="min-h-screen flex flex-col items-center justify-center px-4 py-20 bg-white font-[Inter]"
+        className="min-h-screen flex flex-col items-center justify-center px-4 py-20 bg-white"
       >
         <h2 className="text-5xl md:text-6xl mb-12 text-black text-center tracking-tight">
-          <span className="font-[Poppins] font-bold">Let&apos;s</span>{" "}
-          <span className="font-[Poppins] font-extralight">Talk</span>
+          <span className="font-bold">Let&apos;s</span>{" "}
+          <span className="font-extralight">Talk</span>
         </h2>
 
         <div className="w-full max-w-4xl bg-gray-50 rounded-3xl p-10 md:p-14">
@@ -260,7 +260,7 @@ export default function ContactPage() {
                 onClick={handleSubmit}
                 disabled={loading}
                 className="w-52 group relative px-8 py-4 rounded-xl font-bold text-lg overflow-hidden 
-              transition-all duration-500 cursor-pointer font-[Montserrat]"
+              transition-all duration-500 cursor-pointer"
               >
                 <span className="absolute inset-0 bg-yellow-400 transition-all duration-500 ease-out"></span>
                 <span className="absolute inset-0 bg-black transition-all duration-500 ease-out group-hover:translate-y-0 translate-y-full"></span>
