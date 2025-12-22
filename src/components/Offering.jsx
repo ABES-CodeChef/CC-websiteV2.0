@@ -18,21 +18,8 @@ const Offering = () => {
 
 
     </div>
- {/* <div className="relative md:left-60 md:h-[40vh] md:w-[50vw]" style={{ width: "100vw", height: "62vh" }}>
-<Spline scene="https://prod.spline.design/AFxRpmT1cXG77p3F/scene.splinecode" />
-   <div
-    style={{
-      position: "absolute",
-      bottom: 20,
-      right: 20,
-      width: "300px",
-      height: "50px",
-      background: "black",
-    }}
-  />
-</div>
-</div>
-    <div className="cards-container flex md:flex-row flex-col justify-center "> */}
+
+  
     <div className="cards-container flex flex-col md:flex-row justify-center items-center md:items-stretch md:gap-10 gap-20 ">
       <PinContainer
         title=" Coding WorkSpaces & Upskill"
