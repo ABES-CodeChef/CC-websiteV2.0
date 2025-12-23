@@ -80,7 +80,7 @@ const ByondCodePage = () => {
           className="text-center mb-16"
         >
           <h1 className="text-6xl md:text-8xl font-bold mb-4">
-            Byond<span className="text-orange-500"> Code</span>
+            Beyond<span className="text-orange-500"> Code</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-300 italic">
             Expert Guidance for Complex Problems.
