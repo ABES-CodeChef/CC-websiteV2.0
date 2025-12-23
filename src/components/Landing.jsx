@@ -121,7 +121,7 @@ export default function Landing() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="flex flex-wrap justify-center lg:justify-start gap-4 mt-12"
+            className="flex flex-wrap justify-center lg:justify-start gap-4 -mt-10"
           >
             <button className="group landing-btn-primary cursor-pointer">
               <span className="relative z-10">Get Started</span>
