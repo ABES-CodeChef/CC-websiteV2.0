@@ -11,11 +11,20 @@ export const FloatingNav = ({ navItems, className }) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  // Get active index based on current route
   const getActiveIndex = () => {
     const currentPath = location.pathname;
-    const index = navItems.findIndex(item => item.href === currentPath);
-    return index !== -1 ? index : 0;
+    
+    // Check for exact match first
+    const exactIndex = navItems.findIndex(item => item.href === currentPath);
+    if (exactIndex !== -1) return exactIndex;
+    
+    // Check for sub-routes (e.g., /events/sub-event should highlight Events)
+    const parentIndex = navItems.findIndex(item => {
+      if (item.href === '/') return false; // Don't match home for sub-routes
+      return currentPath.startsWith(item.href);
+    });
+    
+    return parentIndex !== -1 ? parentIndex : 0;
   };
 
   const activeIndex = getActiveIndex();
@@ -38,7 +47,6 @@ export const FloatingNav = ({ navItems, className }) => {
 
   return (
     <>
-      {/* NAVBAR - Removed bounce animation */}
       <motion.div
         initial={{ y: 0, opacity: 1 }}
         className={cn(
@@ -49,14 +57,12 @@ export const FloatingNav = ({ navItems, className }) => {
           className
         )}
       >
-        {/* LOGO */}
         <img
           src={logo_svg}
           alt="Logo"
           className="w-24 sm:w-28 md:w-32 object-contain"
         />
 
-        {/* DESKTOP NAV */}
         <div className="hidden md:flex items-center space-x-8">
           {navItems.map((item, idx) => {
             const isActive = idx === activeIndex;
@@ -65,7 +71,7 @@ export const FloatingNav = ({ navItems, className }) => {
                 key={idx}
                 onClick={() => handleNavClick(item.onClick)}
                 className={cn(
-                  "relative cursor-pointer text-base font-medium transition-colors",
+                  "relative text-base font-medium transition-colors",
                   isActive
                     ? "text-orange-500"
                     : "text-white hover:text-neutral-300"
@@ -73,7 +79,6 @@ export const FloatingNav = ({ navItems, className }) => {
               >
                 {item.title}
 
-                {/* Active underline */}
                 {isActive && (
                   <motion.span
                     layoutId="active-underline"
@@ -86,7 +91,6 @@ export const FloatingNav = ({ navItems, className }) => {
           })}
         </div>
 
-        {/* HAMBURGER */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden text-white relative z-50"
@@ -118,7 +122,6 @@ export const FloatingNav = ({ navItems, className }) => {
         </button>
       </motion.div>
 
-      {/* MOBILE MENU */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -133,10 +136,10 @@ export const FloatingNav = ({ navItems, className }) => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 180, damping: 22 }}
-              className="absolute right-0 top-0 h-full w-3/4 p-8 pt-24 bg-black border-l border-white/10"
+              className="absolute right-0 top-0 w-3/4 max-w-xs p-6 pt-20 bg-black border-l border-white/10 rounded-l-2xl shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <nav className="flex flex-col space-y-8">
+              <nav className="flex flex-col space-y-6">
                 {navItems.map((item, idx) => {
                   const isActive = idx === activeIndex;
                   return (
@@ -147,7 +150,7 @@ export const FloatingNav = ({ navItems, className }) => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.08 }}
                       className={cn(
-                        "flex items-center justify-between text-2xl font-medium transition-colors",
+                        "flex items-center justify-between text-xl font-medium transition-colors py-2",
                         isActive
                           ? "text-orange-500"
                           : "text-white hover:text-neutral-300"
@@ -155,7 +158,6 @@ export const FloatingNav = ({ navItems, className }) => {
                     >
                       {item.title}
 
-                      {/* Active dot */}
                       {isActive && (
                         <motion.span
                           layoutId="active-dot"

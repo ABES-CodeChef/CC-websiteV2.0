@@ -7,14 +7,20 @@ function Footer() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Helper function to check if link is active
   const isActive = (path) => {
-    return location.pathname === path;
+    const currentPath = location.pathname;
+    
+    if (currentPath === path) return true;
+    
+    if (path !== '/' && currentPath.startsWith(path)) return true;
+    
+    return false;
   };
 
   return (
+    <>
     <footer
-      className="bg-black text-white py-6 md:py-8 px-4 md:px-6  z-10 relative"
+      className="bg-black text-white py-6 md:py-8 px-4 md:px-6 z-10 relative"
       id="contactUs"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 p-4 md:p-6">
@@ -166,6 +172,7 @@ function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }
 
