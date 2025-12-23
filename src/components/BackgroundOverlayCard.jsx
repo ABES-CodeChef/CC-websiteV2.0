@@ -14,7 +14,7 @@ export const BackgroundOverlayCard = ({
   };
 
   return (
-    <div className={cn("max-w-xs w-full", className)}>
+    <div className={cn("w-full", className)}>
       <div
         style={cardStyle}
         className={cn(

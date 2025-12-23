@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-// import Footer from "../components/Footer";
+
 import useLenis from "../hooks/useLenis";
 import { BackgroundOverlayCard } from "../components/BackgroundOverlayCard";
 import Particles from "../components/particles";
@@ -38,7 +38,7 @@ const events = [
     hoverImageUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWJjb3NqY21sYjY2aG1zZ3c3aGZ6Z3Z1c3NldWJrbjZ2eW54c3JqZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiGY/giphy.gif",
   },
   {
-    title: "Byond Code",
+    title: "Beyond Code",
     href: "/events/byond-code",
     imageUrl: "https://codechefabesec.netlify.app/img/beyond_code/1.webp",
     hoverImageUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWJjb3NqY21sYjY2aG1zZ3c3aGZ6Z3Z1c3NldWJrbjZ2eW54c3JqZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiGY/giphy.gif",
@@ -120,7 +120,7 @@ export default function EventsPage() {
               key={index}
               href={event.href}
               rel="noopener noreferrer"
-              className="w-full"
+              className="w-full max-w-sm md:max-w-xs mx-auto"
             >
               <BackgroundOverlayCard
                 title={event.title}
