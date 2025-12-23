@@ -83,35 +83,48 @@ const OnceUponACrimePage = () => {
           </p>
         </motion.header>
 
-        <motion.main 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="max-w-4xl w-full text-left mb-16 space-y-6"
-        >
-          <p className="text-lg text-gray-200 leading-relaxed">
-            Case closed! A Murder Mystery pitted logic & code against a cunning culprit. Participants unraveled puzzles, cracked quizzes, & honed teamwork in a thrilling 2-day event.
-          </p>
-          <div>
-            <h3 className="text-2xl font-bold text-orange-400 mb-2">Round 1: Whodunnit?</h3>
-            <p className="text-lg text-gray-200 leading-relaxed">With their detective hats firmly in place, individuals following the mystery faced a quiz with questions covering various domains.</p>
-          </div>
-          <div>
-            <h3 className="text-2xl font-bold text-orange-400 mb-2">Round 2: Once Upon a Crime</h3>
-            <p className="text-lg text-gray-200 leading-relaxed">Following the thrilling whodunnit reveal, the stakes were raised with a high-energy treasure hunt. Armed with cryptic clues and hints in the campus, teams embarked on a thrilling adventure, racing against time to uncover the hidden killer.</p>
-          </div>
-        </motion.main>
+        <div className="w-full max-w-6xl space-y-24">
+       
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
+          >
+            <div className="w-full md:w-1/2">
+              <img src={eventImages[0]} alt="Once Upon A Crime event 1" className="w-full h-auto object-cover rounded-lg shadow-lg shadow-orange-500/20" />
+            </div>
+            <div className="w-full md:w-1/2 text-left space-y-6">
+              <p className="text-lg text-gray-200 leading-relaxed">
+                Case closed! A Murder Mystery pitted logic & code against a cunning culprit. Participants unraveled puzzles, cracked quizzes, & honed teamwork in a thrilling 2-day event.
+              </p>
+              <div>
+                <h3 className="text-2xl font-bold text-orange-400 mb-2">Round 1: Whodunnit?</h3>
+                <p className="text-lg text-gray-200 leading-relaxed">With their detective hats firmly in place, individuals following the mystery faced a quiz with questions covering various domains.</p>
+              </div>
+            </div>
+          </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6"
-        >
-          {eventImages.map((src, index) => (
-            <img key={index} src={src} alt={`Once Upon A Crime event ${index + 1}`} className="w-full h-auto object-cover rounded-lg shadow-lg shadow-orange-500/20" />
-          ))}
-        </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12"
+          >
+            <div className="w-full md:w-1/2">
+              <img src={eventImages[1]} alt="Once Upon A Crime event 2" className="w-full h-auto object-cover rounded-lg shadow-lg shadow-orange-500/20" />
+            </div>
+            <div className="w-full md:w-1/2 text-left">
+              <div>
+                <h3 className="text-2xl font-bold text-orange-400 mb-2">Round 2: Once Upon a Crime</h3>
+                <p className="text-lg text-gray-200 leading-relaxed">Following the thrilling whodunnit reveal, the stakes were raised with a high-energy treasure hunt. Armed with cryptic clues and hints in the campus, teams embarked on a thrilling adventure, racing against time to uncover the hidden killer.</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
       {/* <Footer /> */}
     </div>

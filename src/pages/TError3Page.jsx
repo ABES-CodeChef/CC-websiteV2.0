@@ -17,7 +17,7 @@ const eventImages = [
   "/TERROR1.webp",
   "/TERROR2.webp",
   "/TERROR3.webp",
-  "/TERROR4.webp",
+  
 ];
 
 const TError3Page = () => {
@@ -86,30 +86,55 @@ const TError3Page = () => {
           </p>
         </motion.header>
 
-        <motion.main 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="max-w-4xl w-full text-center md:text-left mb-16"
-        >
-          <p className="text-lg text-gray-200 leading-relaxed">
-            T-Error 3.0 was a thrilling debugging competition where participants raced against the clock to find and fix critical bugs in complex codebases. It was a true test of analytical skills, patience, and deep programming knowledge.
-          </p>
-          <p className="text-lg text-gray-200 leading-relaxed mt-4">
-            This event challenged developers to think like detectives, meticulously tracing errors and implementing elegant solutions under pressure. T-Error 3.0 celebrated the unsung heroes of software development—the master debuggers.
-          </p>
-        </motion.main>
+        <div className="w-full max-w-6xl space-y-24">
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
+          >
+            <div className="w-full md:w-1/2">
+              <img src={eventImages[0]} alt="T-Error 3.0 event 1" className="w-full h-auto object-cover rounded-lg shadow-lg shadow-orange-500/20" />
+            </div>
+            <div className="w-full md:w-1/2 text-center md:text-left">
+              <p className="text-lg text-gray-200 leading-relaxed">
+                T-Error 3.0 was a thrilling debugging competition where participants raced against the clock to find and fix critical bugs in complex codebases. It was a true test of analytical skills, patience, and deep programming knowledge.
+              </p>
+            </div>
+          </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6"
-        >
-          {eventImages.map((src, index) => (
-            <img key={index} src={src} alt={`T-Error 3.0 event ${index + 1}`} className="w-full h-auto object-cover rounded-lg shadow-lg shadow-orange-500/20" />
-          ))}
-        </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12"
+          >
+            <div className="w-full md:w-1/2">
+              <img src={eventImages[1]} alt="T-Error 3.0 event 2" className="w-full h-auto object-cover rounded-lg shadow-lg shadow-orange-500/20" />
+            </div>
+            <div className="w-full md:w-1/2 text-center md:text-left">
+              <p className="text-lg text-gray-200 leading-relaxed">
+                This event challenged developers to think like detectives, meticulously tracing errors and implementing elegant solutions under pressure. T-Error 3.0 celebrated the unsung heroes of software development—the master debuggers.
+              </p>
+            </div>
+          </motion.div>
+
+  
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6"
+          >
+            {eventImages.slice(2).map((src, index) => (
+              <img key={index} src={src} alt={`T-Error 3.0 event ${index + 3}`} className="w-full h-auto object-cover rounded-lg shadow-lg shadow-orange-500/20" />
+            ))}
+          </motion.div>
+        </div>
       </div>
       {/* <Footer /> */}
     </div>

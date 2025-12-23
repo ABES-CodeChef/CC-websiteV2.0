@@ -1,5 +1,4 @@
 "use client";
-"use client";
 import { cn } from "../lib/utils";
 
 export const BackgroundOverlayCard = ({
@@ -19,7 +18,7 @@ export const BackgroundOverlayCard = ({
       <div
         style={cardStyle}
         className={cn(
-          "group w-full cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end p-4 border-2 border-white/20",
+          "group w-full cursor-pointer overflow-hidden relative card aspect-[5/6] rounded-md shadow-xl shadow-orange-500 mx-auto flex flex-col justify-end p-4 border-2 border-white/20",
           "bg-cover bg-center bg-[image:var(--bg-image)] hover:bg-[image:var(--bg-image-hover)]",
           "hover:after:content-[''] hover:after:absolute hover:after:inset-0 hover:after:bg-black hover:after:opacity-30",
           "transition-all duration-500"
