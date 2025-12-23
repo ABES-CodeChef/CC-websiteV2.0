@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Linkedin, Award, Code, Users, TrendingUp } from "lucide-react";
 
-// CountUp Animation Component
 const CountUp = ({ end, duration = 2000, suffix = "" }) => {
   const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
   const countRef = useRef(null);
+  const hasAnimatedRef = useRef(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
+        if (entries[0].isIntersecting && !hasAnimatedRef.current) {
+          hasAnimatedRef.current = true;
           
           const startTime = Date.now();
           const startValue = 0;
@@ -22,7 +21,6 @@ const CountUp = ({ end, duration = 2000, suffix = "" }) => {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
 
-            // Easing function for smooth animation
             const easeOutQuart = 1 - Math.pow(1 - progress, 4);
             const currentCount = Math.floor(startValue + (endValue - startValue) * easeOutQuart);
 
@@ -36,6 +34,8 @@ const CountUp = ({ end, duration = 2000, suffix = "" }) => {
           };
 
           animate();
+          
+          observer.disconnect();
         }
       },
       { threshold: 0.5 }
@@ -46,11 +46,9 @@ const CountUp = ({ end, duration = 2000, suffix = "" }) => {
     }
 
     return () => {
-      if (countRef.current) {
-        observer.unobserve(countRef.current);
-      }
+      observer.disconnect();
     };
-  }, [end, duration, hasAnimated]);
+  }, [end, duration]);
 
   return (
     <span ref={countRef}>
@@ -150,9 +148,9 @@ const ExPresident = () => {
   ];
 
   const stats = [
-    { icon: Award, value: 15, suffix: "+", label: "Events", duration: 2000 },
     { icon: Users, value: 1500, suffix: "+", label: "Community Members", duration: 2500 },
     { icon: Code, value: 50, suffix: "+", label: "Team Members", duration: 2000 },
+    { icon: Award, value: 15, suffix: "+", label: "Events", duration: 2000 },
     { icon: TrendingUp, value: 5, suffix: "+", label: "Years Old Community", duration: 1500 },
   ];
 
@@ -259,7 +257,6 @@ const ExPresident = () => {
     <div className="min-h-screen py-12 md:py-20 px-4 md:px-6 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-start">
-          {/* Left Content Section */}
           <div className="lg:sticky lg:top-24 space-y-6 md:space-y-8">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5 md:mb-7 leading-[1.1]">
@@ -309,7 +306,6 @@ const ExPresident = () => {
               </p>
             </div>
 
-            {/* Stats Section with CountUp Animation */}
             <div className="grid grid-cols-2 gap-4 md:gap-6 pt-6 md:pt-8 border-t border-gray-200">
               {stats.map((stat, index) => (
                 <div
@@ -332,7 +328,6 @@ const ExPresident = () => {
             </div>
           </div>
 
-          {/* Right Cards Section */}
           <div>
             <div
               ref={row1Ref}
