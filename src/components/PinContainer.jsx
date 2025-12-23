@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { cn } from "../lib/utils";
 
@@ -10,20 +10,52 @@ export const PinContainer = ({
   className,
   containerClassName,
 }) => {
-  const [transform, setTransform] = useState("translate(-50%,-50%) rotateX(25deg) scale(0.72)");
+  // 1. Add state to track mobile view
+  const [isMobile, setIsMobile] = useState(false);
+  const [transform, setTransform] = useState(
+    "translate(-50%,-50%) rotateX(25deg) scale(0.72)"
+  );
+
+  // 2. Check screen size on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      const isTouch = window.innerWidth < 768; // Tailwind 'md' breakpoint
+      setIsMobile(isTouch);
+      
+      // Force the correct initial transform based on screen size
+      if (isTouch) {
+        setTransform("translate(-50%,-50%) rotateX(0deg) scale(1)");
+      } else {
+        setTransform("translate(-50%,-50%) rotateX(25deg) scale(0.72)");
+      }
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const onMouseEnter = () => {
-    setTransform("translate(-50%,-50%) rotateX(0deg) scale(0.9)");
+    // Only apply the 3D hover effect on Desktop
+    if (!isMobile) {
+      setTransform("translate(-50%,-50%) rotateX(0deg) scale(0.9)");
+    }
   };
+
   const onMouseLeave = () => {
-    setTransform("translate(-50%,-50%) rotateX(25deg) scale(0.72)");
+    // Reset to appropriate resting state based on device
+    if (!isMobile) {
+      setTransform("translate(-50%,-50%) rotateX(25deg) scale(0.72)");
+    } else {
+      setTransform("translate(-50%,-50%) rotateX(0deg) scale(1)");
+    }
   };
 
   return (
     <a
       className={cn(
-        "relative group/pin z-50  cursor-pointer",
-        containerClassName,
+        "relative group/pin z-50 cursor-pointer",
+        containerClassName
       )}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -32,7 +64,10 @@ export const PinContainer = ({
       <div
         style={{
           perspective: "1000px",
-          transform: "rotateX(70deg) translateZ(0deg)",
+          // 3. Conditional Transform: Remove the "floor" tilt on mobile
+          transform: isMobile 
+            ? "none" 
+            : "rotateX(70deg) translateZ(0deg)",
         }}
         className="absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2"
       >
@@ -40,7 +75,7 @@ export const PinContainer = ({
           style={{
             transform: transform,
           }}
-          className="absolute left-1/2 p-4 top-1/2  flex justify-start items-start  rounded-2xl  shadow-[0_8px_16px_rgb(0_0_0/0.4)] bg-black  group-hover/pin:border-white/[0.2] transition duration-700 overflow-hidden"
+          className="absolute left-1/2 p-4 top-1/2 flex justify-start items-start rounded-2xl shadow-[0_8px_16px_rgb(0_0_0/0.4)] bg-black group-hover/pin:border-white/[0.2] transition duration-700 overflow-hidden"
         >
           <div className={cn(" relative z-50 ", className)}>{children}</div>
         </div>
@@ -53,12 +88,12 @@ export const PinContainer = ({
 export const PinPerspective = ({ title, href }) => {
   return (
     <motion.div className="pointer-events-none w-full md:w-96 h-120 flex items-center justify-center opacity-0 group-hover/pin:opacity-100 z-[60] transition duration-500">
-      <div className=" w-full h-full -mt-7 flex-none  inset-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-60  rounded-full backdrop-blur-md bg-white/5 shadow-[0_0_15px_rgba(255,255,255,0.1)] flex justify-center">
+      <div className=" w-full h-full -mt-7 flex-none inset-0">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-60 rounded-full backdrop-blur-md bg-white/5 shadow-[0_0_15px_rgba(255,255,255,0.1)] flex justify-center">
           <a
             href={href}
             target={"_blank"}
-            className="relative flex space-x-2 items-center z-10 rounded-full  bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 "
+            className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 "
           >
             <span className="relative z-20 text-white text-xs font-bold inline-block py-0.5">
               {title}
@@ -94,7 +129,7 @@ export const PinPerspective = ({ title, href }) => {
                 repeat: Infinity,
                 delay: 0,
               }}
-              className="absolute left-1/2 top-1/2  h-[11.25rem] w-[11.25rem] rounded-[50%] bg-sky-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
+              className="absolute left-1/2 top-1/2 h-[11.25rem] w-[11.25rem] rounded-[50%] bg-sky-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
             ></motion.div>
             <motion.div
               initial={{
@@ -114,7 +149,7 @@ export const PinPerspective = ({ title, href }) => {
                 repeat: Infinity,
                 delay: 2,
               }}
-              className="absolute left-1/2 top-1/2  h-[11.25rem] w-[11.25rem] rounded-[50%] bg-sky-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
+              className="absolute left-1/2 top-1/2 h-[11.25rem] w-[11.25rem] rounded-[50%] bg-sky-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
             ></motion.div>
             <motion.div
               initial={{
@@ -134,14 +169,14 @@ export const PinPerspective = ({ title, href }) => {
                 repeat: Infinity,
                 delay: 4,
               }}
-              className="absolute left-1/2 top-1/2  h-[11.25rem] w-[11.25rem] rounded-[50%] bg-sky-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
+              className="absolute left-1/2 top-1/2 h-[11.25rem] w-[11.25rem] rounded-[50%] bg-sky-500/[0.08] shadow-[0_8px_16px_rgb(0_0_0/0.4)]"
             ></motion.div>
           </>
         </div>
 
         <>
           <motion.div className="absolute right-1/2 bottom-1/2 bg-gradient-to-b from-transparent to-cyan-500 translate-y-[14px] w-px h-20 group-hover/pin:h-40 blur-[2px]" />
-          <motion.div className="absolute right-1/2 bottom-1/2 bg-gradient-to-b from-transparent to-cyan-500 translate-y-[14px] w-px h-20 group-hover/pin:h-40  " />
+          <motion.div className="absolute right-1/2 bottom-1/2 bg-gradient-to-b from-transparent to-cyan-500 translate-y-[14px] w-px h-20 group-hover/pin:h-40 " />
           <motion.div className="absolute right-1/2 translate-x-[1.5px] bottom-1/2 bg-cyan-600 translate-y-[14px] w-[4px] h-[4px] rounded-full z-40 blur-[3px]" />
           <motion.div className="absolute right-1/2 translate-x-[0.5px] bottom-1/2 bg-cyan-300 translate-y-[14px] w-[2px] h-[2px] rounded-full z-40 " />
         </>

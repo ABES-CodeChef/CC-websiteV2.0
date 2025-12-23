@@ -16,7 +16,7 @@ const TeamPage = () => {
       <div className="w-full max-w-[1600px]">
         <TeamGrid />
       </div>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }
