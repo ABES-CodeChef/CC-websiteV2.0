@@ -1,5 +1,64 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Linkedin } from "lucide-react";
+import { Linkedin, Award, Code, Users, TrendingUp } from "lucide-react";
+
+// CountUp Animation Component
+const CountUp = ({ end, duration = 2000, suffix = "" }) => {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const countRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          
+          const startTime = Date.now();
+          const startValue = 0;
+          const endValue = parseInt(end);
+
+          const animate = () => {
+            const currentTime = Date.now();
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Easing function for smooth animation
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            const currentCount = Math.floor(startValue + (endValue - startValue) * easeOutQuart);
+
+            setCount(currentCount);
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              setCount(endValue);
+            }
+          };
+
+          animate();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (countRef.current) {
+      observer.observe(countRef.current);
+    }
+
+    return () => {
+      if (countRef.current) {
+        observer.unobserve(countRef.current);
+      }
+    };
+  }, [end, duration, hasAnimated]);
+
+  return (
+    <span ref={countRef}>
+      {count}
+      {suffix}
+    </span>
+  );
+};
 
 const ExPresident = () => {
   const row1Ref = useRef(null);
@@ -18,11 +77,9 @@ const ExPresident = () => {
       const elementMiddle = rect.top + rect.height / 2;
       const viewportMiddle = windowHeight / 2;
 
-      // Calculate distance from viewport center
       const distance = Math.abs(elementMiddle - viewportMiddle);
       const maxDistance = windowHeight;
 
-      // Scale from 0.7 to 1 based on distance
       const scale = Math.max(0.7, 1 - (distance / maxDistance) * 0.3);
       return scale;
     };
@@ -92,6 +149,13 @@ const ExPresident = () => {
     },
   ];
 
+  const stats = [
+    { icon: Award, value: 15, suffix: "+", label: "Events", duration: 2000 },
+    { icon: Users, value: 1500, suffix: "+", label: "Community Members", duration: 2500 },
+    { icon: Code, value: 50, suffix: "+", label: "Team Members", duration: 2000 },
+    { icon: TrendingUp, value: 5, suffix: "+", label: "Years Old Community", duration: 1500 },
+  ];
+
   const PresidentCard = ({ president }) => {
     const [rotation, setRotation] = useState({ x: 0, y: 0 });
     const [isHovered, setIsHovered] = useState(false);
@@ -122,7 +186,7 @@ const ExPresident = () => {
 
     return (
       <div
-        className="relative w-full h-80 perspective-1000"
+        className="relative w-full h-72 perspective-1000"
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -145,7 +209,7 @@ const ExPresident = () => {
               className="w-full h-full object-cover"
             />
 
-            <div className="absolute top-0 left-0 right-0 p-4 md:p-6 bg-linear-to-b from-black/70 via-black/40 to-transparent z-10">
+            <div className="absolute top-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-b from-black/70 via-black/40 to-transparent z-10">
               <h3 className="text-white text-xl md:text-2xl font-bold mb-1 md:mb-2">
                 {president.name}
               </h3>
@@ -192,57 +256,83 @@ const ExPresident = () => {
   };
 
   return (
-    <div className="min-h-screen py-12 md:py-20 px-4 md:px-6">
+    <div className="min-h-screen py-12 md:py-20 px-4 md:px-6 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-start">
-          <div className="lg:sticky lg:top-24 max-w-full lg:max-w-sm lg:mt-48">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5 md:mb-7 leading-[1.1]">
-              Meet Our
-              <br /> Kitchen Crew
-            </h1>
+          {/* Left Content Section */}
+          <div className="lg:sticky lg:top-24 space-y-6 md:space-y-8">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5 md:mb-7 leading-[1.1]">
+                Meet Our
+                <br /> Kitchen Crew
+              </h1>
 
-            <p className="text-sm md:text-base text-gray-500 font-light mb-4 md:mb-6 leading-relaxed">
-              We are a Team of passionate coders dedicated to advancing
-              programming skills and creating opportunities for growth. With a
-              mix of diverse talents, we collaborate to organize events,
-              challenges, and workshops for our coding community.
-            </p>
+              <p className="text-sm md:text-base text-gray-600 font-light mb-4 md:mb-6 leading-relaxed">
+                We are a Team of passionate coders dedicated to advancing
+                programming skills and creating opportunities for growth. With a
+                mix of diverse talents, we collaborate to organize events,
+                challenges, and workshops for our coding community.
+              </p>
 
-            <p className="text-sm md:text-base text-gray-500 font-light mb-6 md:mb-10 leading-relaxed">
-              Together, we're cooking up a collaborative coding culture that
-              fuels learning, pushes boundaries, and serves up a hearty helping
-              of innovation—with a side of creativity.
-            </p>
+              <p className="text-sm md:text-base text-gray-600 font-light mb-6 md:mb-8 leading-relaxed">
+                Together, we're cooking up a collaborative coding culture that
+                fuels learning, pushes boundaries, and serves up a hearty helping
+                of innovation—with a side of creativity.
+              </p>
 
-            <a
-              href="/team"
-              className="group relative inline-block overflow-hidden rounded-xl
-             px-6 md:px-4 py-3 md:py-3.5
-             font-semibold text-xs md:text-sm uppercase tracking-wide
-             cursor-pointer
-             transition-all duration-500 ease-out
-              hover:shadow-xl mb-6 md:mb-8"
-            >
-              <span className="absolute inset-0 bg-yellow-500 transition-all duration-500 ease-out" />
-              <span
-                className="absolute inset-0 bg-black
-               translate-y-full group-hover:translate-y-0
-               transition-transform duration-500 ease-out"
-              />
-              <span className="relative z-10 text-white">
-                Explore Our Kitchen
-              </span>
-            </a>
+              <a
+                href="/team"
+                className="group relative inline-block overflow-hidden rounded-xl
+               px-6 md:px-8 py-3 md:py-3.5
+               font-semibold text-xs md:text-sm uppercase tracking-wide
+               cursor-pointer
+               transition-all duration-500 ease-out
+                hover:shadow-xl mb-6 md:mb-8"
+              >
+                <span className="absolute inset-0 bg-yellow-500 transition-all duration-500 ease-out" />
+                <span
+                  className="absolute inset-0 bg-black
+                 translate-y-full group-hover:translate-y-0
+                 transition-transform duration-500 ease-out"
+                />
+                <span className="relative z-10 text-white">
+                  Explore Our Kitchen
+                </span>
+              </a>
 
-            <p className="text-2xl md:text-3xl text-gray-900 leading-snug mt-4 md:mt-5">
-              <span className="font-light text-black/80">
-                Our Secret ingredient?
-              </span>
-              <br />
-              <span className="font-bold text-black"> Perfect code.</span>
-            </p>
+              <p className="text-2xl md:text-3xl text-gray-900 leading-snug">
+                <span className="font-light text-black/80">
+                  Our Secret ingredient?
+                </span>
+                <br />
+                <span className="font-bold text-black"> Perfect code.</span>
+              </p>
+            </div>
+
+            {/* Stats Section with CountUp Animation */}
+            <div className="grid grid-cols-2 gap-4 md:gap-6 pt-6 md:pt-8 border-t border-gray-200">
+              {stats.map((stat, index) => (
+                <div
+                  key={index}
+                  className="group bg-white rounded-xl p-4 md:p-5 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
+                >
+                  <div className="flex flex-col gap-2 mb-2">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-yellow-500/10 rounded-lg flex items-center justify-center group-hover:bg-yellow-500/20 transition-colors">
+                      <stat.icon className="w-5 h-5 md:w-6 md:h-6 text-yellow-600" />
+                    </div>
+                    <p className="text-2xl md:text-3xl font-bold text-gray-900 tabular-nums">
+                      <CountUp end={stat.value} duration={stat.duration} suffix={stat.suffix} />
+                    </p>
+                  </div>
+                  <p className="text-xs md:text-sm text-gray-600 font-medium">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
+          {/* Right Cards Section */}
           <div>
             <div
               ref={row1Ref}

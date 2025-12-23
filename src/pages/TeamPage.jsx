@@ -1,6 +1,5 @@
 import React from 'react'
 import TeamGrid from '../components/TeamGrid'
-import Footer from '../components/Footer'
 
 const TeamPage = () => {
   return (
@@ -16,7 +15,6 @@ const TeamPage = () => {
       <div className="w-full max-w-[1600px]">
         <TeamGrid />
       </div>
-      <Footer/>
     </div>
   )
 }

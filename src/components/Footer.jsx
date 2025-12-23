@@ -1,13 +1,20 @@
 import { FaInstagram, FaLinkedin, FaDiscord } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Link as ScrollLink } from "react-scroll";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Footer() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Helper function to check if link is active
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
   return (
     <footer
-      className="bg-black text-white py-6 md:py-8 px-4 md:px-6 rounded-t-3xl z-10 relative"
+      className="bg-black text-white py-6 md:py-8 px-4 md:px-6  z-10 relative"
       id="contactUs"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 p-4 md:p-6">
@@ -42,13 +49,32 @@ function Footer() {
             </span>
           </button>
         </div>
+
         <div className="col-span-1">
-          <h3 className="font-inter text-xs md:text-sm font-semibold mb-3 md:mb-4">QUICK LINKS</h3>
+          <h3 className="font-inter text-xs md:text-sm font-semibold mb-3 md:mb-4">
+            QUICK LINKS
+          </h3>
           <ul className="flex flex-row md:flex-col flex-wrap gap-x-4 gap-y-2 md:space-y-2 md:space-x-0">
             <li>
               <a
+                href="/"
+                className={`cursor-pointer text-sm md:text-base transition-colors ${
+                  isActive("/")
+                    ? "text-orange-500 font-semibold"
+                    : "text-gray-400 hover:text-white"
+                }`}
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a
                 href="/events"
-                className="text-gray-400 hover:text-white cursor-pointer text-sm md:text-base"
+                className={`cursor-pointer text-sm md:text-base transition-colors ${
+                  isActive("/events")
+                    ? "text-orange-500 font-semibold"
+                    : "text-gray-400 hover:text-white"
+                }`}
               >
                 Events
               </a>
@@ -56,15 +82,23 @@ function Footer() {
             <li>
               <a
                 href="/team"
-                className="text-gray-400 hover:text-white cursor-pointer text-sm md:text-base"
+                className={`cursor-pointer text-sm md:text-base transition-colors ${
+                  isActive("/team")
+                    ? "text-orange-500 font-semibold"
+                    : "text-gray-400 hover:text-white"
+                }`}
               >
                 Team
               </a>
             </li>
             <li>
               <a
-                href="/#achievements"
-                className="text-gray-400 hover:text-white cursor-pointer text-sm md:text-base"
+                href="/achievements"
+                className={`cursor-pointer text-sm md:text-base transition-colors ${
+                  isActive("/achievements")
+                    ? "text-orange-500 font-semibold"
+                    : "text-gray-400 hover:text-white"
+                }`}
               >
                 Achievements
               </a>
@@ -74,7 +108,7 @@ function Footer() {
                 to="contactUs"
                 smooth={true}
                 duration={500}
-                className="text-gray-400 hover:text-white cursor-pointer text-sm md:text-base"
+                className="text-gray-400 hover:text-white cursor-pointer text-sm md:text-base transition-colors"
               >
                 Contact
               </ScrollLink>
@@ -83,7 +117,9 @@ function Footer() {
         </div>
 
         <div className="col-span-1">
-          <h3 className="font-inter text-xs md:text-sm font-semibold mb-3 md:mb-4">CONNECT WITH US</h3>
+          <h3 className="font-inter text-xs md:text-sm font-semibold mb-3 md:mb-4">
+            CONNECT WITH US
+          </h3>
           <div className="text-gray-400 mb-3 md:mb-4 text-sm md:text-base">
             <a
               href="mailto:abesec.codechef@gmail.com"
@@ -95,19 +131,25 @@ function Footer() {
           <div className="flex space-x-4">
             <a
               href="https://www.instagram.com/abesec.codechef/"
-              className="text-gray-400 hover:text-pink-500"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-pink-500 transition-colors"
             >
               <FaInstagram size={20} className="md:w-6 md:h-6" />
             </a>
             <a
               href="https://www.linkedin.com/company/abesec-codechef/posts/?feedView=all"
-              className="text-gray-400 hover:text-blue-500"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-blue-500 transition-colors"
             >
               <FaLinkedin size={20} className="md:w-6 md:h-6" />
             </a>
             <a
               href="https://discord.gg/6XG6jajX"
-              className="text-gray-400 hover:text-green-500"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-green-500 transition-colors"
             >
               <FaDiscord size={20} className="md:w-6 md:h-6" />
             </a>

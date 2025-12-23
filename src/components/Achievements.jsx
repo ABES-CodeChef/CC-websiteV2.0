@@ -14,6 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 import { FloatingNav } from './FloatingNavbar';
 import { useNavigate } from 'react-router-dom';
+
 const AchievementsSection = () => {
   const navigate = useNavigate();
 
@@ -51,48 +52,48 @@ const AchievementsSection = () => {
 
   }, []);
 
-     const navLinks = [
-     {
-       title: "Home",
-       icon: (
-         <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-       ),
-       href: "/",
-       onClick: () => navigate("/"),
-     },
-     {
-       title: "Events",
-       icon: (
-         <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-       ),
-       href: "/events",
-       onClick: () => navigate("/events"),
-     },
-     {
-       title: "Team",
-       icon: (
-         <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-       ),
-       href: "/team",
-       onClick: () => navigate("/team"),
-     },
-     {
-       title: "Achievements",
-       icon: (
-         <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-       ),
-       href: "/achievements",
-       onClick: () => navigate("/achievements"),
-     },
-     {
-       title: "Contact",
-       icon: (
-         <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-       ),
-       href: "/contact",
-       onClick: () => navigate("/contact"),
-     },
-   ];
+  const navLinks = [
+    {
+      title: "Home",
+      icon: (
+        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/",
+      onClick: () => navigate("/"),
+    },
+    {
+      title: "Events",
+      icon: (
+        <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/events",
+      onClick: () => navigate("/events"),
+    },
+    {
+      title: "Team",
+      icon: (
+        <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/team",
+      onClick: () => navigate("/team"),
+    },
+    {
+      title: "Achievements",
+      icon: (
+        <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/achievements",
+      onClick: () => navigate("/achievements"),
+    },
+    {
+      title: "Contact",
+      icon: (
+        <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/contact",
+      onClick: () => navigate("/contact"),
+    },
+  ];
 
   const achievements = [
     {
@@ -128,10 +129,11 @@ const AchievementsSection = () => {
     <div className="w-full bg-white">
       <FloatingNav navItems={navLinks} />
       
-      <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="text-left max-w-8xl mx-auto">
-          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-8xl leading-tight text-gray-1000">
-            <span className="block mb-4">
+      {/* Responsive Hero Section */}
+      <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 font-[poppins] lg:px-8 bg-white pt-20 md:pt-0">
+        <div className="text-center md:text-left max-w-8xl mx-auto w-full">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-8xl leading-tight text-black">
+            <span className="block mb-2 sm:mb-4">
               <span className="font-extrabold">Celebrating</span>{' '}
               <span className="font-extralight">Our</span>
             </span>
@@ -188,8 +190,8 @@ const AchievementCard = ({ achievement }) => {
   return (
     <div className="h-full flex items-center justify-center px-4 sm:px-6 lg:px-12 bg-white">
       <div className="w-full max-w-7xl mx-auto">
-        <div className="border-2 border-gray-300 rounded-2xl p-6 sm:p-8 lg:p-12 shadow-xl bg-white">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div className="border-2 border-gray-300 rounded-2xl p-4 sm:p-6 md:p-8 lg:p-12 shadow-xl bg-white">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center">
             <div 
               className="relative order-1 lg:order-1"
               onMouseEnter={handleMouseEnter}
@@ -200,44 +202,44 @@ const AchievementCard = ({ achievement }) => {
                   ref={imageRef}
                   src={achievement.image}
                   alt={achievement.name}
-                  className="w-full h-[350px] sm:h-[400px] md:h-[450px] object-cover transition-all duration-400"
+                  className="w-full h-64 sm:h-80 md:h-96 lg:h-[450px] object-cover transition-all duration-400"
                 />
               </div>
             </div>
 
-            <div className="order-2 lg:order-2 space-y-6 text-left">
+            <div className="order-2 lg:order-2 space-y-4 sm:space-y-6 text-left">
               <div>
-                <div className="inline-block px-4 py-2 bg-gray-100 rounded-full mb-4 border border-gray-300">
-                  <span className="text-sm font-semibold text-gray-800">{achievement.badge}</span>
+                <div className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-100 rounded-full mb-3 sm:mb-4 border border-gray-300">
+                  <span className="text-xs sm:text-sm font-semibold text-gray-800">{achievement.badge}</span>
                 </div>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">
                   {achievement.name}
                 </h2>
               </div>
 
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+              <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
                 {achievement.description}
               </p>
 
-              <div className="flex gap-4 pt-6">
+              <div className="flex gap-3 sm:gap-4 pt-4 sm:pt-6">
                 <a
                   href={achievement.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 hover:scale-110"
+                  className="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 hover:scale-110"
                   title="LinkedIn"
                 >
-                  <Linkedin className="w-5 h-5" />
+                  <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
                 
                 <a
                   href={achievement.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-center w-12 h-12 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all duration-300 hover:scale-110"
+                  className="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all duration-300 hover:scale-110"
                   title="GitHub"
                 >
-                  <Github className="w-5 h-5" />
+                  <Github className="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
               </div>
             </div>
