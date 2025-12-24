@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import Footer from "../components/Footer";
-import logo from "../../public/logo.png";
 import { FloatingNav } from "../components/FloatingNavbar";
 import {
   IconHome,
@@ -13,8 +11,6 @@ import {
 } from "@tabler/icons-react"; 
 import { useNavigate } from "react-router-dom";
 
-
-
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -22,9 +18,7 @@ export default function ContactPage() {
     subject: "",
     message: "",
   });
-   const navigate = useNavigate();
-
-
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -34,12 +28,12 @@ export default function ContactPage() {
     });
   };
 
-
   const isValidEmail = (email) => {
     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return pattern.test(email);
   };
-    const navLinks = [
+
+  const navLinks = [
     {
       title: "Home",
       icon: (
@@ -82,23 +76,19 @@ export default function ContactPage() {
     },
   ];
 
- 
   const handleSubmit = async () => {
     const { name, email, subject, message } = formData;
 
-    // Validate all fields are filled
     if (!name || !email || !subject || !message) {
       toast.error("Please fill all fields!", { position: "top-center" });
       return;
     }
 
-    // Validate email format
     if (!isValidEmail(email)) {
       toast.error("Please enter a valid email!", { position: "top-center" });
       return;
     }
 
-    // Validate field lengths to match backend requirements
     if (name.trim().length < 2 || name.trim().length > 100) {
       toast.error("Name must be between 2 and 100 characters!", { position: "top-center" });
       return;
@@ -137,7 +127,6 @@ export default function ContactPage() {
           position: "top-center",
           autoClose: 5000,
         });
-        // Clear form on success
         setFormData({
           name: "",
           email: "",
@@ -168,16 +157,9 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white text-black overflow-x-hidden">
       <ToastContainer />
-  <FloatingNav navItems={navLinks} />
-      {/* <div className="fixed top-4 left-4 z-50">
-        <img
-          src={logo}
-          alt="Logo"
-          className="w-20 sm:w-16 md:w-20 lg:w-24 xl:w-28 object-contain"
-        />
-      </div> */}
+      <FloatingNav navItems={navLinks} />
 
-      <div className="h-screen flex flex-col items-center justify-center relative px-4 bg-linear-to-br from-gray-50 to-gray-100">
+      <div className="hidden lg:flex h-screen flex-col items-center justify-center relative px-4 bg-gradient-to-br from-gray-50 to-gray-100">
         <h1 className="text-7xl md:text-9xl font-medium mb-8 text-center tracking-tight">
           Get In Touch
         </h1>
@@ -188,37 +170,32 @@ export default function ContactPage() {
         >
           Send Message
         </button>
-
-        <div
-          className="absolute bottom-14 animate-bounce cursor-pointer"
-          onClick={scrollToContact}
-        >
-          <div className="w-8 h-14 border-3 border-black rounded-full flex justify-center pt-2 shadow-md">
-            <div className="w-1 h-3 bg-black rounded-full animate-pulse"></div>
-          </div>
-        </div>
       </div>
 
       <div
         id="contact-section"
-        className="min-h-screen flex flex-col items-center justify-center px-4 py-20 bg-white"
+        className="min-h-screen flex flex-col items-center justify-center px-4 py-20 lg:py-20 pt-24 lg:pt-20 bg-white"
       >
-        <h2 className="text-5xl md:text-6xl mb-12 text-black text-center tracking-tight">
+        <h1 className="lg:hidden text-5xl sm:text-6xl font-medium mb-8 text-center tracking-tight">
+          Get In Touch
+        </h1>
+
+        <h2 className="hidden lg:block text-5xl md:text-6xl mb-12 text-black text-center tracking-tight">
           <span className="font-bold">Let&apos;s</span>{" "}
           <span className="font-extralight">Talk</span>
         </h2>
 
-        <div className="w-full max-w-4xl bg-gray-50 rounded-3xl p-10 md:p-14">
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="w-full max-w-4xl bg-gray-50 rounded-3xl p-6 sm:p-8 md:p-10 lg:p-14">
+          <div className="space-y-5 sm:space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your Name"
-                className="w-full px-6 py-4 bg-white border-2 border-gray-300 rounded-xl 
-                focus:outline-none focus:border-black transition-all duration-300 text-black font-medium"
+                className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white border-2 border-gray-300 rounded-xl 
+                focus:outline-none focus:border-black transition-all duration-300 text-black font-medium text-sm sm:text-base"
               />
 
               <input
@@ -227,8 +204,8 @@ export default function ContactPage() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Your Email"
-                className="w-full px-6 py-4 bg-white border-2 border-gray-300 rounded-xl 
-                focus:outline-none focus:border-black transition-all duration-300 text-black font-medium"
+                className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white border-2 border-gray-300 rounded-xl 
+                focus:outline-none focus:border-black transition-all duration-300 text-black font-medium text-sm sm:text-base"
               />
             </div>
 
@@ -238,8 +215,8 @@ export default function ContactPage() {
               value={formData.subject}
               onChange={handleChange}
               placeholder="Subject"
-              className="w-full px-6 py-4 bg-white border-2 border-gray-300 rounded-xl 
-              focus:outline-none focus:border-black transition-all duration-300 text-black font-medium"
+              className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white border-2 border-gray-300 rounded-xl 
+              focus:outline-none focus:border-black transition-all duration-300 text-black font-medium text-sm sm:text-base"
             />
 
             <textarea
@@ -248,19 +225,19 @@ export default function ContactPage() {
               onChange={handleChange}
               placeholder="Write your message here..."
               rows="6"
-              className="w-full px-6 py-4 bg-white border-2 border-gray-300 rounded-xl 
-              focus:outline-none focus:border-black transition-all duration-300 text-black resize-none font-medium"
+              className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white border-2 border-gray-300 rounded-xl 
+              focus:outline-none focus:border-black transition-all duration-300 text-black resize-none font-medium text-sm sm:text-base"
             ></textarea>
-            <div className="text-sm text-gray-500 text-right">
+            <div className="text-xs sm:text-sm text-gray-500 text-right">
               {formData.message.length} / 5000 characters (minimum 10)
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center pt-2">
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="w-52 group relative px-8 py-4 rounded-xl font-bold text-lg overflow-hidden 
-              transition-all duration-500 cursor-pointer"
+                className="w-full sm:w-52 group relative px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg overflow-hidden 
+              transition-all duration-500 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span className="absolute inset-0 bg-yellow-500 transition-all duration-500 ease-out"></span>
                 <span className="absolute inset-0 bg-black transition-all duration-500 ease-out group-hover:translate-y-0 translate-y-full"></span>
@@ -277,8 +254,6 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-
-      {/* <Footer /> */}
     </div>
   );
 }
