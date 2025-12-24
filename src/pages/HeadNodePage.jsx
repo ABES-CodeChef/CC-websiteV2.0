@@ -86,27 +86,37 @@ const HeadNodePage = () => {
           </p>
         </motion.header>
 
-        <motion.main 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="max-w-4xl w-full text-center md:text-left mb-16"
-        >
-          <p className="text-lg text-gray-200 leading-relaxed">
-            A dynamic exchange of knowledge and experience as seasoned seniors shared insights, answered queries, and guided juniors for a collaborative learning experience.
-          </p>
-        </motion.main>
-
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6"
-        >
-          {eventImages.map((src, index) => (
-            <img key={index} src={src} alt={`Head Node event ${index + 1}`} className="w-full h-auto object-cover rounded-lg shadow-lg shadow-orange-500/20" />
-          ))}
-        </motion.div>
+        <div className="w-full max-w-6xl space-y-24">
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
+          >
+            <div className="w-full md:w-1/2">
+              <img src={eventImages[0]} alt="Head Node event 1" className="w-full h-auto object-cover rounded-lg shadow-lg shadow-orange-500/20" />
+            </div>
+            <div className="w-full md:w-1/2 text-center md:text-left">
+              <p className="text-lg text-gray-200 leading-relaxed">
+                A dynamic exchange of knowledge and experience as seasoned seniors shared insights, answered queries, and guided juniors for a collaborative learning experience.
+              </p>
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6"
+          >
+            {eventImages.slice(1).map((src, index) => (
+              <img key={index} src={src} alt={`Head Node event ${index + 2}`} className="w-full h-auto object-cover rounded-lg shadow-lg shadow-orange-500/20" />
+            ))}
+          </motion.div>
+        </div>
       </div>
       {/* <Footer /> */}
     </div>

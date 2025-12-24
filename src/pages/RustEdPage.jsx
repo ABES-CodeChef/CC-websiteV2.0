@@ -86,36 +86,56 @@ const RustEdPage = () => {
           </p>
         </motion.header>
 
-        <motion.main 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="max-w-4xl w-full text-center md:text-left mb-16"
-        >
-          <p className="text-lg text-gray-200 leading-relaxed">
-            Rust-Ed was an exciting gathering dedicated to the Rust programming language, bringing together a vibrant community of developers, enthusiasts, where experts came to share knowledge, best practices, and innovative techniques that showcase Rust's unique strengths in creating reliable and efficient software.
-          </p>
-          <p className="text-lg text-gray-200 leading-relaxed mt-4">
-            Overall, Rust-Ed was a milestone event, reinforcing the importance of Rust in modern programming while equipping attendees with the tools and insights necessary for their coding journeys.
-          </p>
-        </motion.main>
-        <motion.img 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-  src="/rust4.webp" 
-  alt="main event" 
-  className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 m-16"/>
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6"
-        >
-          {eventImages.map((src, index) => (
-            <img key={index} src={src} alt={`Rust-Ed event ${index + 1}`} className="w-full h-auto object-cover rounded-lg shadow-lg shadow-orange-500/20" />
-          ))}
-        </motion.div>
+        <div className="w-full max-w-6xl space-y-24">
+          {/* Section 1: Image Left, Text Right */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
+          >
+            <div className="w-full md:w-1/2">
+              <img src="/rust4.webp" alt="Rust-Ed main event" className="w-full h-auto object-cover rounded-lg shadow-lg shadow-orange-500/20" />
+            </div>
+            <div className="w-full md:w-1/2 text-center md:text-left">
+              <p className="text-lg text-gray-200 leading-relaxed">
+                Rust-Ed was an exciting gathering dedicated to the Rust programming language, bringing together a vibrant community of developers, enthusiasts, where experts came to share knowledge, best practices, and innovative techniques that showcase Rust's unique strengths in creating reliable and efficient software.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Section 2: Text Left, Image Right */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12"
+          >
+            <div className="w-full md:w-1/2">
+              <img src={eventImages[0]} alt="Rust-Ed event 1" className="w-full h-auto object-cover rounded-lg shadow-lg shadow-orange-500/20" />
+            </div>
+            <div className="w-full md:w-1/2 text-center md:text-left">
+              <p className="text-lg text-gray-200 leading-relaxed">
+                Overall, Rust-Ed was a milestone event, reinforcing the importance of Rust in modern programming while equipping attendees with the tools and insights necessary for their coding journeys.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Remaining Images Grid */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6"
+          >
+            {eventImages.slice(1).map((src, index) => (
+              <img key={index} src={src} alt={`Rust-Ed event ${index + 2}`} className="w-full h-auto object-cover rounded-lg shadow-lg shadow-orange-500/20" />
+            ))}
+          </motion.div>
+        </div>
       </div>
       {/* <Footer /> */}
     </div>

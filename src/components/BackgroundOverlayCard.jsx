@@ -1,5 +1,4 @@
 "use client";
-"use client";
 import { cn } from "../lib/utils";
 
 export const BackgroundOverlayCard = ({
@@ -9,24 +8,27 @@ export const BackgroundOverlayCard = ({
   hoverImageUrl,
   className,
 }) => {
-  const cardStyle = {
-    '--bg-image': `url(${imageUrl})`,
-    '--bg-image-hover': `url(${hoverImageUrl})`,
-  };
-
   return (
-    <div className={cn("max-w-xs w-full", className)}>
+    <div className={cn("w-full", className)}>
       <div
-        style={cardStyle}
         className={cn(
-          "group w-full cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl mx-auto flex flex-col justify-end p-4 border-2 border-white/20",
-          "bg-cover bg-center bg-[image:var(--bg-image)] hover:bg-[image:var(--bg-image-hover)]",
-          "hover:after:content-[''] hover:after:absolute hover:after:inset-0 hover:after:bg-black hover:after:opacity-30",
+          "group w-full cursor-pointer overflow-hidden relative card rounded-md shadow-xl shadow-orange-500 mx-auto border-2 border-white/20",
           "transition-all duration-500"
         )}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10" />
-        <div className="text relative z-50">
+        <img 
+          src={imageUrl} 
+          alt={title} 
+          className="w-full h-auto object-cover transition-opacity duration-500 group-hover:opacity-0"
+        />
+        <img 
+          src={hoverImageUrl} 
+          alt={title} 
+          className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        />
+        <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-500 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-20 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 p-4 z-30">
           <h1 className="font-bold text-xl md:text-3xl text-gray-50 relative [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]">
             {title}
           </h1>

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-// import Footer from "../components/Footer";
+
 import useLenis from "../hooks/useLenis";
 import { BackgroundOverlayCard } from "../components/BackgroundOverlayCard";
 import Particles from "../components/particles";
@@ -120,7 +120,7 @@ export default function EventsPage() {
               key={index}
               href={event.href}
               rel="noopener noreferrer"
-              className="w-full"
+              className="w-full max-w-sm md:max-w-xs mx-auto"
             >
               <BackgroundOverlayCard
                 title={event.title}
