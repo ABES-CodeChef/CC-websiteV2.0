@@ -16,7 +16,7 @@ const Offering = () => {
   <p className="text-slate-400 text-lg mt-4 max-w-3xl leading-loose tracking-wide">
     Empowering students to code, collaborate, and create impactful tech solutions.
     <br className="hidden md:block" />
-    We are building a community where curiosity meets execution. Through hands-on programs, mentorship, and innovation-driven events, we help students transform ideas into real-world solutions.
+    We are building a community where curiosity meets execution. Through hands on programs, mentorship, and innovation driven events, we help students transform ideas into real world solutions.
   </p>
 </div>
 
@@ -36,7 +36,7 @@ const Offering = () => {
   
       <div className="text-base font-normal text-start leading-relaxed h-[4rem]">
         <span className="text-slate-500">
-          We host coding workshops for hands-on practice for competitive programming.
+          We host coding workshops for hands on practice for competitive programming.
         </span>
       </div>
       

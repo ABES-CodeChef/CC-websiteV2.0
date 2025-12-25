@@ -112,6 +112,8 @@ export default function Landing() {
                <ShuffleText text="Coding Together" className='text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-bold'/>
           <br />
           <ShuffleText text="Growing Together" className='text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-bold mb-4'/>
+          <br />
+          <ShuffleText text="Code Collab Conquer" className='text-xl sm:text-2xl md:text-4xl lg:text-4xl font-bold'/>
           <div className="h-16 mt-3"></div>
           </div>
             </motion.h1>
