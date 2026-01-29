@@ -1,90 +1,132 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ShuffleText from './ShuffleText2';
 import { useNavigate } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import axios from 'axios';
 import {
   IconHome,
   IconCalendar,
   IconUsers,
   IconMail,
   IconTrophy,
+  IconLogout,
+  IconDashboard,
 } from "@tabler/icons-react";
 import "../styles/Landing.css";
 import Squares from "./Squares";
-
 import { FloatingNav } from "./FloatingNavbar";
-import logo_svg from "../assets/logo_svg.svg";
+
+const API_URL = 'http://localhost:5000/api';
 
 export default function Landing() {
   const navigate = useNavigate();
-  const { scrollYProgress } = useScroll();
+  const [user, setUser] = useState(null);
+  const [latestEvent, setLatestEvent] = useState(null);
 
-  const scrollToSection = (href) => {
-    const element = document.querySelector(href);
-    if (element) element.scrollIntoView({ behavior: "smooth" });
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const userData = localStorage.getItem('user');
+    if (token && userData) {
+      setUser(JSON.parse(userData));
+    }
+
+    // Fetch latest event
+    fetchLatestEvent();
+  }, []);
+
+  const fetchLatestEvent = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/events`);
+      if (response.data.events && response.data.events.length > 0) {
+        // Get the most recent event (first one since they're ordered by created_at DESC)
+        setLatestEvent(response.data.events[0]);
+      }
+    } catch (error) {
+      console.error('Failed to fetch events:', error);
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setUser(null);
+    navigate('/');
+  };
+
+  const handleRegisterClick = () => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+
+    if (!latestEvent) {
+      alert('No events available for registration at the moment');
+      return;
+    }
+
+    // Navigate to event registration page with the latest event ID
+    navigate(`/event-registration/${latestEvent.id}`);
   };
 
   const navLinks = [
     {
       title: "Home",
-      icon: (
-        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/",
       onClick: () => navigate("/"),
     },
     {
       title: "Events",
-      icon: (
-        <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/events",
       onClick: () => navigate("/events"),
     },
     {
       title: "Team",
-      icon: (
-        <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/team",
       onClick: () => navigate("/team"),
     },
     {
       title: "Achievements",
-      icon: (
-        <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/achievements",
-      onClick: () => navigate("/achievements"),},
+      onClick: () => navigate("/achievements"),
+    },
     {
       title: "Contact",
-      icon: (
-        <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/contact",
       onClick: () => navigate("/contact"),
     },
   ];
 
+  if (user) {
+    if (user.role === 'admin') {
+      navLinks.push({
+        title: "Admin Dashboard",
+        icon: <IconDashboard className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+        href: "/admin",
+        onClick: () => navigate("/admin"),
+      });
+    }
+    
+    navLinks.push({
+      title: "Logout",
+      icon: <IconLogout className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "#",
+      onClick: handleLogout,
+    });
+  }
+
   return (
     <div className="relative w-full bg-black text-white overflow-x-hidden">
-   
-      {/* <div className="fixed top-4 left-4 z-50">
-        <img
-          src={logo}
-          alt="CodeChef Logo"
-          className="w-20 sm:w-16 md:w-20 lg:w-24 xl:w-28 object-contain"
-        />
-      </div> */}
-
-      
       <FloatingNav navItems={navLinks} />
 
       <section
         id="home"
         className="relative min-h-screen w-full flex flex-col lg:flex-row items-center justify-center lg:justify-between overflow-hidden px-4 sm:px-6 md:px-10"
       >
-
         <motion.div className="absolute inset-0 h-full w-full z-0">
           <Squares
             speed={0.5}
@@ -109,13 +151,13 @@ export default function Landing() {
               className="font-bold leading-[1.1] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mx-auto lg:mx-0 text-center lg:text-left"
             >
               <div>
-               <ShuffleText text="Coding Together" className='text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-bold'/>
-          <br />
-          <ShuffleText text="Growing Together" className='text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-bold mb-4'/>
-          <br />
-          <ShuffleText text="Code Collab Conquer" className='text-xl sm:text-2xl md:text-4xl lg:text-4xl font-bold'/>
-          <div className="h-16 mt-3"></div>
-          </div>
+                <ShuffleText text="Coding Together" className='text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-bold'/>
+                <br />
+                <ShuffleText text="Growing Together" className='text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-bold mb-4'/>
+                <br />
+                <ShuffleText text="Code Collab Conquer" className='text-xl sm:text-2xl md:text-4xl lg:text-4xl font-bold'/>
+                <div className="h-16 mt-3"></div>
+              </div>
             </motion.h1>
           </div>
 
@@ -125,12 +167,20 @@ export default function Landing() {
             transition={{ delay: 0.5, duration: 0.6 }}
             className="flex flex-wrap justify-center lg:justify-start gap-4 -mt-10"
           >
-            <button className="group landing-btn-primary cursor-pointer">
-              <span className="relative z-10">Get Started</span>
+            <button 
+              onClick={handleRegisterClick}
+              className="group landing-btn-primary cursor-pointer"
+            >
+              <span className="relative z-10">
+                {user ? 'Register for Event' : 'Get Started'}
+              </span>
               <div className="absolute inset-0 bg-linear-to-r from-blue-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
             </button>
 
-            <button className="group landing-btn-secondary cursor-pointer">
+            <button 
+              onClick={() => navigate('/events')}
+              className="group landing-btn-secondary cursor-pointer"
+            >
               <span className="relative z-10">Learn More</span>
               <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
             </button>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FloatingNav } from "../components/FloatingNavbar";
@@ -8,6 +8,8 @@ import {
   IconUsers,
   IconMail,
   IconTrophy,
+  IconLogout,
+  IconDashboard,
 } from "@tabler/icons-react"; 
 import { useNavigate } from "react-router-dom";
 
@@ -20,12 +22,28 @@ export default function ContactPage() {
   });
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const userData = localStorage.getItem('user');
+    if (token && userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setUser(null);
+    navigate('/');
   };
 
   const isValidEmail = (email) => {
@@ -36,45 +54,54 @@ export default function ContactPage() {
   const navLinks = [
     {
       title: "Home",
-      icon: (
-        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/",
       onClick: () => navigate("/"),
     },
     {
       title: "Events",
-      icon: (
-        <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/events",
       onClick: () => navigate("/events"),
     },
     {
       title: "Team",
-      icon: (
-        <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/team",
       onClick: () => navigate("/team"),
     },
     {
       title: "Achievements",
-      icon: (
-        <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/achievements",
       onClick: () => navigate("/achievements"),
     },
     {
       title: "Contact",
-      icon: (
-        <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/contact",
       onClick: () => navigate("/contact"),
     },
   ];
+
+  // Add admin dashboard and logout button if user is logged in
+  if (user) {
+    if (user.role === 'admin') {
+      navLinks.push({
+        title: "Admin Dashboard",
+        icon: <IconDashboard className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+        href: "/admin",
+        onClick: () => navigate("/admin"),
+      });
+    }
+    
+    navLinks.push({
+      title: "Logout",
+      icon: <IconLogout className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "#",
+      onClick: handleLogout,
+    });
+  }
 
   const handleSubmit = async () => {
     const { name, email, subject, message } = formData;
