@@ -1,15 +1,17 @@
-import { pool } from '../config/db.js';
+import { prisma } from "../config/db.js";
 const getAllEvents = async (req, res) => {
   try {
-    const result = await pool.query(`
-      SELECT e.*, u.email as created_by_email 
-      FROM events e 
-      LEFT JOIN users u ON e.created_by = u.id 
-      WHERE e.status = 'active'
-      ORDER BY e.created_at DESC
-    `);
-    
-    res.json({ events: result.rows });
+    const events = await prisma.event.findMany({
+      where: { status: 'active' },
+      orderBy: { createdAt: 'desc' },
+      include: {
+        createdBy: {
+          select: { email: true }
+        }
+      }
+    });
+          
+    res.json({ events: events });
   } catch (error) {
     console.error('Get events error:', error);
     res.status(500).json({ message: 'Failed to fetch events' });
@@ -19,18 +21,20 @@ const getEventById = async (req, res) => {
   try {
     const { id } = req.params;
     
-    const result = await pool.query(`
-      SELECT e.*, u.email as created_by_email 
-      FROM events e 
-      LEFT JOIN users u ON e.created_by = u.id 
-      WHERE e.id = $1
-    `, [id]);
+    const event = await prisma.event.findUnique({
+      where: { id: Number(id) },
+      include: {
+        createdBy: {
+          select: { email: true }
+        }
+      }
+    });
     
-    if (result.rows.length === 0) {
+    if (!event) {
       return res.status(404).json({ message: 'Event not found' });
     }
 
-    res.json({ event: result.rows[0] });
+    res.json({ event: event });
   } catch (error) {
     console.error('Get event error:', error);
     res.status(500).json({ message: 'Failed to fetch event' });
@@ -47,15 +51,22 @@ const createEvent = async (req, res) => {
       return res.status(400).json({ message: 'Title, description, and date are required' });
     }
 
-    const result = await pool.query(
-      `INSERT INTO events (title, description, date, max_team_size, registration_fee, qr_code_image, created_by)
-       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-      [title, description, date, maxTeamSize || 1, registrationFee || 0, qrCodeImage, req.user.id]
+    const event = await prisma.event.create({
+      data: {
+        title,
+        description,
+        date:date ? new Date(date) : null,
+         max_team_size : maxTeamSize || 1,
+        registration_fee: registrationFee || 0,
+        qr_code_image: qrCodeImage,
+        createdBy: { connect: { id: req.user.id } }
+      } 
+    }
     );
 
     res.status(201).json({ 
       message: 'Event created successfully', 
-      event: result.rows[0] 
+      event: event 
     });
   } catch (error) {
     console.error('Create event error:', error);
@@ -68,21 +79,26 @@ const updateEvent = async (req, res) => {
     const { title, description, date, maxTeamSize, registrationFee, status } = req.body;
         const qrCodeImage = req.file ? req.file.path : req.body.existingQrCode;
 
-    const result = await pool.query(
-      `UPDATE events 
-       SET title = $1, description = $2, date = $3, max_team_size = $4, 
-           registration_fee = $5, qr_code_image = $6, status = $7
-       WHERE id = $8 RETURNING *`,
-      [title, description, date, maxTeamSize, registrationFee, qrCodeImage, status || 'active', id]
-    );
+        const result = await prisma.event.update({
+      where: { id: Number(id) },
+      data: {
+        title,
+        description,
+        date,
+        maxTeamSize,
+        registrationFee,
+        qrCodeImage,
+        status: status || 'active'
+      }
+        })
 
-    if (result.rows.length === 0) {
+    if (!result) {
       return res.status(404).json({ message: 'Event not found' });
     }
 
     res.json({ 
       message: 'Event updated successfully', 
-      event: result.rows[0] 
+      event: result
     });
   } catch (error) {
     console.error('Update event error:', error);
@@ -93,9 +109,11 @@ const deleteEvent = async (req, res) => {
   try {
     const { id } = req.params;
     
-    const result = await pool.query('DELETE FROM events WHERE id = $1 RETURNING *', [id]);
+    const result = await prisma.event.delete({
+      where: { id: Number(id) }
+    });
     
-    if (result.rows.length === 0) {
+    if (!result) {
       return res.status(404).json({ message: 'Event not found' });
     }
 
