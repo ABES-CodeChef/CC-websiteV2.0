@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-
-import useLenis from "../hooks/useLenis";
+import { useEffect, useState } from "react";
 import { BackgroundOverlayCard } from "../components/BackgroundOverlayCard";
 import Particles from "../components/particles";
 import { FloatingNav } from "../components/FloatingNavbar";
@@ -10,6 +9,8 @@ import {
   IconUsers,
   IconMail,
   IconTrophy,
+  IconLogout,
+  IconDashboard,
 } from "@tabler/icons-react";
 
 const events = [
@@ -53,12 +54,21 @@ const events = [
 
 export default function EventsPage() {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
-  const scrollToSection = (selector) => {
-    const element = document.querySelector(selector);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const userData = localStorage.getItem('user');
+    if (token && userData) {
+      setUser(JSON.parse(userData));
     }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setUser(null);
+    navigate('/');
   };
 
   const navLinks = [
@@ -93,6 +103,25 @@ export default function EventsPage() {
       onClick: () => navigate("/contact"),
     },
   ];
+
+  // Add admin dashboard and logout button if user is logged in
+  if (user) {
+    if (user.role === 'admin') {
+      navLinks.push({
+        title: "Admin Dashboard",
+        icon: <IconDashboard className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+        href: "/admin",
+        onClick: () => navigate("/admin"),
+      });
+    }
+    
+    navLinks.push({
+      title: "Logout",
+      icon: <IconLogout className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "#",
+      onClick: handleLogout,
+    });
+  }
 
   return (
     <div className="w-full min-h-screen overflow-x-hidden bg-black text-white relative">
@@ -131,7 +160,6 @@ export default function EventsPage() {
           ))}
         </div>
       </div>
-      {/* <Footer /> */}
     </div>
   );
 }

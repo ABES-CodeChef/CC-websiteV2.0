@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Linkedin, Github } from 'lucide-react';
@@ -8,19 +8,30 @@ import {
   IconUsers,
   IconMail,
   IconTrophy,
+  IconLogout,
+  IconDashboard,
 } from "@tabler/icons-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-import { FloatingNav } from './FloatingNavbar';
+import { FloatingNav } from '../components/FloatingNavbar';
 import { useNavigate } from 'react-router-dom';
 
 const AchievementsSection = () => {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
   const containerRef = useRef(null);
   const cardsRef = useRef([]);
   const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const userData = localStorage.getItem('user');
+    if (token && userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, []);
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
@@ -52,48 +63,64 @@ const AchievementsSection = () => {
 
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setUser(null);
+    navigate('/');
+  };
+
   const navLinks = [
     {
       title: "Home",
-      icon: (
-        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/",
       onClick: () => navigate("/"),
     },
     {
       title: "Events",
-      icon: (
-        <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/events",
       onClick: () => navigate("/events"),
     },
     {
       title: "Team",
-      icon: (
-        <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/team",
       onClick: () => navigate("/team"),
     },
     {
       title: "Achievements",
-      icon: (
-        <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/achievements",
       onClick: () => navigate("/achievements"),
     },
     {
       title: "Contact",
-      icon: (
-        <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/contact",
       onClick: () => navigate("/contact"),
     },
   ];
+
+  // Add admin dashboard and logout button if user is logged in
+  if (user) {
+    if (user.role === 'admin') {
+      navLinks.push({
+        title: "Admin Dashboard",
+        icon: <IconDashboard className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+        href: "/admin",
+        onClick: () => navigate("/admin"),
+      });
+    }
+    
+    navLinks.push({
+      title: "Logout",
+      icon: <IconLogout className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "#",
+      onClick: handleLogout,
+    });
+  }
 
   const achievements = [
     {

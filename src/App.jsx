@@ -15,9 +15,36 @@ import TError3Page from './pages/TError3Page';
 import ByondCodePage from './pages/ByondCodePage';
 import HeadNodePage from './pages/HeadNodePage';
 
+import Login from './pages/Login';
+import Register from './pages/Register';
+import EventRegistration from './pages/EventRegistration';
+import AdminDashboard from './pages/AdminDashboard';
+import ProtectedRoute from './components/ProtectedRoute';
+
 function App() {
   return (
-     <Routes>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      
+      <Route 
+        path="/event-registration/:eventId" 
+        element={
+          <ProtectedRoute>
+            <EventRegistration />
+          </ProtectedRoute>
+        } 
+      />
+      
+      <Route 
+        path="/admin" 
+        element={
+          <ProtectedRoute adminOnly>
+            <AdminDashboard />
+          </ProtectedRoute>
+        } 
+      />
+
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/events" element={<EventPage />} />

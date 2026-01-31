@@ -1,5 +1,4 @@
-import { useScroll } from "@react-three/drei";
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   IconHome,
@@ -7,13 +6,14 @@ import {
   IconUsers,
   IconMail,
   IconTrophy,
+  IconLogout,
+  IconDashboard,
 } from "@tabler/icons-react";
-
-import { FloatingNav } from "./FloatingNavbar";
-
+import { FloatingNav } from "../components/FloatingNavbar";
 export default function TeamGrid() {
   const [scales, setScales] = useState({});
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [user, setUser] = useState(null);
   const itemRefs = useRef([]);
   const navigate = useNavigate();
 
@@ -36,6 +36,14 @@ export default function TeamGrid() {
     { name: 'Dhruv Khare', role: 'Design Systems', row: 9, col: 0, transformOrigin: 'right bottom',img:'dhruv-bhaiya.jpg', linkedin: 'https://linkedin.com/in/dhruvkhare-softwaredev', tech: ['RestAPI', 'MonogoDB', 'Express.js'] },
     { name: 'Amit Gupta', role: 'Product Analyst', row: 9, col: 3, transformOrigin: 'left bottom', img:'amit bhaiya.png', linkedin: 'linkedin.com/in/amitguptadev', tech: ['Node.js', 'AI/ML', 'Typescript'] }
   ];
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const userData = localStorage.getItem('user');
+    if (token && userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,6 +75,13 @@ export default function TeamGrid() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setUser(null);
+    navigate('/');
+  };
+
   const createGrid = () => {
     const grid = Array(10)
       .fill(null)
@@ -81,53 +96,57 @@ export default function TeamGrid() {
 
   const grid = createGrid();
 
-  const scrollToSection = (href) => {
-    const element = document.querySelector(href);
-    if (element) element.scrollIntoView({ behavior: "smooth" });
-  };
-
   const navLinks = [
     {
       title: "Home",
-      icon: (
-        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/",
       onClick: () => navigate("/"),
     },
     {
       title: "Events",
-      icon: (
-        <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconCalendar className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/events",
       onClick: () => navigate("/events"),
     },
     {
       title: "Team",
-      icon: (
-        <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconUsers className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/team",
       onClick: () => navigate("/team"),
     },
     {
       title: "Achievements",
-      icon: (
-        <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconTrophy className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/achievements",
       onClick: () => navigate("/achievements"),
     },
     {
       title: "Contact",
-      icon: (
-        <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "/contact",
       onClick: () => navigate("/contact"),
     },
   ];
+
+  // Add admin dashboard and logout button if user is logged in
+  if (user) {
+    if (user.role === 'admin') {
+      navLinks.push({
+        title: "Admin Dashboard",
+        icon: <IconDashboard className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+        href: "/admin",
+        onClick: () => navigate("/admin"),
+      });
+    }
+    
+    navLinks.push({
+      title: "Logout",
+      icon: <IconLogout className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "#",
+      onClick: handleLogout,
+    });
+  }
 
   return (
     <div className="relative w-full bg-black text-white overflow-x-hidden">
