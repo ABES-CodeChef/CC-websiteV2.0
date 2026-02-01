@@ -12,6 +12,7 @@ import {
   IconLogout,
   IconDashboard,
 } from "@tabler/icons-react";
+import { toast } from 'react-hot-toast';
 import "../styles/Landing.css";
 import Squares from "./Squares";
 import { FloatingNav } from "./FloatingNavbar";
@@ -60,7 +61,7 @@ export default function Landing() {
     }
 
     if (!latestEvent) {
-      alert('No events available for registration at the moment');
+      toast.error('No events available for registration at the moment');
       return;
     }
 

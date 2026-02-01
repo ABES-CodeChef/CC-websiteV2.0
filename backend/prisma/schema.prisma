@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+
+
+model User{
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  password   String
+  role       Role     @default(user)
+  events     Event[]
+  registrations Registration[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+
+enum Role {
+  user
+  admin
+}
+
+model Event{
+  id               Int      @id @default(autoincrement())
+  title            String   
+  description      String? 
+  date             DateTime? @db.Date
+  max_team_size    String     @default("1")
+  registration_fee String? 
+  qr_code_image    String?  
+  status           String   @default("active") 
+  registrations    Registration[]
+  createdAt       DateTime @default(now()) @db.Timestamp(6)
+  updatedAt       DateTime @updatedAt @db.Timestamp(6)
+  createdById      Int?
+  createdBy        User?    @relation(fields: [createdById], references: [id])
+} 
+
+
+model Registration {
+  id                   Int      @id @default(autoincrement())
+  event_id             Int
+  user_id              Int?
+  team_size            String
+  team_leader_name     String   @db.VarChar(255)
+  team_leader_email    String   @db.VarChar(255)
+  team_leader_contact  String   @db.VarChar(20)
+  team_members         Json?    @db.JsonB
+  payment_screenshot   String?  @db.VarChar(255)
+  transaction_id       String?  @db.VarChar(255)
+  status               String   @default("pending") @db.VarChar(50)
+  createdAt           DateTime @default(now()) @db.Timestamp(6)
+  event                Event    @relation(fields: [event_id], references: [id], onDelete: Cascade)
+  user                 User?    @relation(fields: [user_id], references: [id])
+
+}

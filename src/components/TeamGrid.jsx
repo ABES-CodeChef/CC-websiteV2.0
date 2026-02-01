@@ -163,7 +163,7 @@ export default function TeamGrid() {
           <h2 className="text-9xl font-semibold tracking-tighter">Teams</h2>
         </div>
 
-        <div className="relative z-0 mb-[50vh] mt-[50vh]">
+        <div className="relative z-0 mt-[65vh]">
           {grid.map((row, rowIndex) => (
             <div key={rowIndex} className="flex w-full">
               {row.map((member, colIndex) => (

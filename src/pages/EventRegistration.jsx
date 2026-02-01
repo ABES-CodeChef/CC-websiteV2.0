@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 const API_URL = 'http://localhost:5000/api';
 
@@ -164,7 +165,7 @@ export default function EventRegistration() {
         }
       });
 
-      alert('Registration submitted successfully! Await admin approval.');
+      toast.success('Registration submitted successfully! Await admin approval.');
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed. Please try again.');
