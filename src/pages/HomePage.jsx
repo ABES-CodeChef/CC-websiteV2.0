@@ -4,6 +4,8 @@ import ExPresident from "../components/ExPresident";
 import Landing from "../components/Landing";
 import Offering from "../components/Offering";
 import About from "../components/about";
+import EventsGalary from "../components/eventsGalary";
+import { InfiniteMovingCardsDemo } from "../components/testimonial";
 import useLenis from "../hooks/useLenis";
 
 
@@ -16,6 +18,9 @@ export default function HomePage() {
       <About />
       <Offering/>
       <ExPresident />
+      <InfiniteMovingCardsDemo />
+      <EventsGalary />
+    
       {/* <ElixirCommunity /> */}
       {/* <Footer /> */}
     </div>
