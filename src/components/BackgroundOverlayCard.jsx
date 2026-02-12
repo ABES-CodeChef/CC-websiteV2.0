@@ -12,7 +12,7 @@ export const BackgroundOverlayCard = ({
     <div className={cn("w-full", className)}>
       <div
         className={cn(
-          "group w-full cursor-pointer overflow-hidden relative card rounded-md shadow-xl shadow-orange-500 mx-auto border-2 border-white/20",
+          "group w-full cursor-pointer overflow-hidden relative card rounded-md shadow-xl/40 shadow-orange-400 mx-auto border-2 border-white/20",
           "transition-all duration-500"
         )}
       >
