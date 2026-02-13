@@ -200,14 +200,16 @@ const ExPresident = () => {
             transformStyle: "preserve-3d",
           }}
         >
-          <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
+          <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl group">
             <img
               src={president.image}
               alt={president.name}
               className="w-full h-full object-cover"
             />
 
-            <div className="absolute top-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-b from-black/70 via-black/40 to-transparent z-10">
+            <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-black/70 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+
+            <div className="absolute top-0 left-0 right-0 p-4 md:p-6 z-20 transform translate-y-[-100%] group-hover:translate-y-0 transition-transform duration-300 ease-out">
               <h3 className="text-white text-xl md:text-2xl font-bold mb-1 md:mb-2">
                 {president.name}
               </h3>

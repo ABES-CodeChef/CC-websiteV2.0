@@ -175,44 +175,26 @@ export default function ContactPage() {
     }
   };
 
-  const scrollToContact = () => {
-    document.getElementById("contact-section").scrollIntoView({
-      behavior: "smooth",
-    });
-  };
-
   return (
-    <div className="min-h-screen bg-white text-black overflow-x-hidden">
-      <ToastContainer />
+    <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
+      <ToastContainer theme="dark" />
       <FloatingNav navItems={navLinks} />
 
-      <div className="hidden lg:flex h-screen flex-col items-center justify-center relative px-4 bg-gradient-to-br from-gray-50 to-gray-100">
-        <h1 className="text-7xl md:text-9xl font-medium mb-8 text-center tracking-tight">
+      {/* Single Scrollable Contact Section */}
+      <div className="min-h-screen flex flex-col items-center justify-start px-4 py-32 md:py-40 bg-[#0a0a0a]">
+        
+        {/* Heading */}
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-medium mb-6 md:mb-8 text-center tracking-tight">
           Get In Touch
         </h1>
+        
+        {/* Subheading */}
+        <p className="text-lg sm:text-xl md:text-2xl text-gray-400 mb-12 md:mb-16 max-w-3xl mx-auto text-center px-4">
+          Have a question or want to work together? We'd love to hear from you.
+        </p>
 
-        <button
-          onClick={scrollToContact}
-          className="group relative mt-48 px-10 py-4 cursor-pointer text-black font-light text-lg transition-all duration-300 transform hover:scale-105"
-        >
-          Send Message
-        </button>
-      </div>
-
-      <div
-        id="contact-section"
-        className="min-h-screen flex flex-col items-center justify-center px-4 py-20 lg:py-20 pt-24 lg:pt-20 bg-white"
-      >
-        <h1 className="lg:hidden text-5xl sm:text-6xl font-medium mb-8 text-center tracking-tight">
-          Get In Touch
-        </h1>
-
-        <h2 className="hidden lg:block text-5xl md:text-6xl mb-12 text-black text-center tracking-tight">
-          <span className="font-bold">Let&apos;s</span>{" "}
-          <span className="font-extralight">Talk</span>
-        </h2>
-
-        <div className="w-full max-w-4xl bg-gray-50 rounded-3xl p-6 sm:p-8 md:p-10 lg:p-14">
+        {/* Contact Form */}
+        <div className="w-full max-w-4xl bg-[#111111] rounded-3xl p-6 sm:p-8 md:p-10 lg:p-14 border border-gray-800">
           <div className="space-y-5 sm:space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
               <input
@@ -221,8 +203,8 @@ export default function ContactPage() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your Name"
-                className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white border-2 border-gray-300 rounded-xl 
-                focus:outline-none focus:border-black transition-all duration-300 text-black font-medium text-sm sm:text-base"
+                className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-[#1a1a1a] border-2 border-gray-700 rounded-xl 
+                focus:outline-none focus:border-gray-500 transition-all duration-300 text-white placeholder-gray-500 font-medium text-sm sm:text-base"
               />
 
               <input
@@ -231,8 +213,8 @@ export default function ContactPage() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Your Email"
-                className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white border-2 border-gray-300 rounded-xl 
-                focus:outline-none focus:border-black transition-all duration-300 text-black font-medium text-sm sm:text-base"
+                className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-[#1a1a1a] border-2 border-gray-700 rounded-xl 
+                focus:outline-none focus:border-gray-500 transition-all duration-300 text-white placeholder-gray-500 font-medium text-sm sm:text-base"
               />
             </div>
 
@@ -242,8 +224,8 @@ export default function ContactPage() {
               value={formData.subject}
               onChange={handleChange}
               placeholder="Subject"
-              className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white border-2 border-gray-300 rounded-xl 
-              focus:outline-none focus:border-black transition-all duration-300 text-black font-medium text-sm sm:text-base"
+              className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-[#1a1a1a] border-2 border-gray-700 rounded-xl 
+              focus:outline-none focus:border-gray-500 transition-all duration-300 text-white placeholder-gray-500 font-medium text-sm sm:text-base"
             />
 
             <textarea
@@ -252,8 +234,8 @@ export default function ContactPage() {
               onChange={handleChange}
               placeholder="Write your message here..."
               rows="6"
-              className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white border-2 border-gray-300 rounded-xl 
-              focus:outline-none focus:border-black transition-all duration-300 text-black resize-none font-medium text-sm sm:text-base"
+              className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-[#1a1a1a] border-2 border-gray-700 rounded-xl 
+              focus:outline-none focus:border-gray-500 transition-all duration-300 text-white placeholder-gray-500 resize-none font-medium text-sm sm:text-base"
             ></textarea>
             <div className="text-xs sm:text-sm text-gray-500 text-right">
               {formData.message.length} / 5000 characters (minimum 10)
@@ -266,12 +248,12 @@ export default function ContactPage() {
                 className="w-full sm:w-52 group relative px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg overflow-hidden 
               transition-all duration-500 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <span className="absolute inset-0 bg-yellow-500 transition-all duration-500 ease-out"></span>
-                <span className="absolute inset-0 bg-black transition-all duration-500 ease-out group-hover:translate-y-0 translate-y-full"></span>
+                <span className="absolute inset-0 bg-white transition-all duration-500 ease-out"></span>
+                <span className="absolute inset-0 bg-gray-700 transition-all duration-500 ease-out group-hover:translate-y-0 translate-y-full"></span>
 
-                <span className="relative z-10 text-white flex items-center gap-2 justify-center">
+                <span className="relative z-10 text-black group-hover:text-white flex items-center gap-2 justify-center transition-colors duration-500">
                   {loading ? (
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
                   ) : (
                     "Send Message"
                   )}
