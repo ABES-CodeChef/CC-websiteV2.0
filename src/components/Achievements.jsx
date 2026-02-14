@@ -153,26 +153,92 @@ const AchievementsSection = () => {
   ];
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-[#0a0a0a]">
       <FloatingNav navItems={navLinks} />
       
-      {/* Responsive Hero Section */}
-      <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 font-[poppins] lg:px-8 bg-white pt-20 md:pt-0">
-        <div className="text-center md:text-left max-w-8xl mx-auto w-full">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-8xl leading-tight text-black">
-            <span className="block mb-2 sm:mb-4">
-              <span className="font-extrabold">Celebrating</span>{' '}
-              <span className="font-extralight">Our</span>
-            </span>
-            <span className="block">
-              <span className="font-extrabold">Remarkable</span>{' '}
-              <span className="font-extralight">Achievements</span>
-            </span>
-          </h1>
+      {/* Hero Section */}
+      <div className="min-h-screen flex flex-col justify-center px-4 sm:px-6 font-[poppins] lg:px-8 bg-[#0a0a0a] pt-28 pb-12 md:pt-20 md:pb-16 relative overflow-hidden">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div 
+            className="w-full h-full"
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '60px 60px',
+            }}
+          />
+        </div>
+
+        <div className="max-w-8xl mx-auto w-full relative z-10 space-y-12 md:space-y-16">
+          {/* Heading */}
+          <div className="text-center">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight text-white">
+              <span className="block mb-2 sm:mb-4">
+                <span className="font-extrabold">Remarkable</span>{' '}
+                <span className="font-extralight">Achievements</span>
+              </span>
+              <span className="block">
+                <span className="font-extrabold">Celebrating</span>{' '}
+                <span className="font-extralight">Excellence</span>
+              </span>
+            </h1>
+          </div>
+
+          {/* Achievement Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {/* Card 1 - Trophy */}
+            <div className="bg-[#111111] border border-gray-800 rounded-2xl p-6 sm:p-8 hover:border-yellow-500/30 transition-all duration-300">
+              <div className="flex items-start gap-4 sm:gap-6">
+                <div className="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 bg-yellow-500/10 rounded-xl flex items-center justify-center">
+                  <IconTrophy className="w-8 h-8 sm:w-10 sm:h-10 text-yellow-500" strokeWidth={1.5} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+                    Excellence in Innovation
+                  </h3>
+                  <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
+                    Recognizing outstanding contributions to technology and creative problem-solving
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2 - Medal (Hidden on mobile) */}
+            <div className="hidden md:block bg-[#111111] border border-gray-800 rounded-2xl p-6 sm:p-8 hover:border-blue-500/30 transition-all duration-300">
+              <div className="flex items-start gap-4 sm:gap-6">
+                <div className="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 bg-blue-500/10 rounded-xl flex items-center justify-center">
+                  <svg 
+                    className="w-8 h-8 sm:w-10 sm:h-10 text-blue-500" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" 
+                    />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+                    Team Excellence
+                  </h3>
+                  <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
+                    Celebrating collaborative success and collective achievements
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div ref={wrapperRef} className="relative">
+      <div ref={wrapperRef} className="relative ">
         <div ref={containerRef} className="relative h-screen overflow-hidden">
           {achievements.map((achievement, index) => (
             <div
@@ -215,36 +281,36 @@ const AchievementCard = ({ achievement }) => {
   };
 
   return (
-    <div className="h-full flex items-center justify-center px-4 sm:px-6 lg:px-12 bg-white">
-      <div className="w-full max-w-7xl mx-auto">
-        <div className="border-2 border-gray-300 rounded-2xl p-4 sm:p-6 md:p-8 lg:p-12 shadow-xl bg-white">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center">
+    <div className="h-full flex items-start justify-center px-4 sm:px-6 lg:px-12 bg-[#0a0a0a] pt-16 md:pt-24">
+      <div className="w-full max-w-6xl mx-auto">
+        <div className="border-2 border-gray-700 rounded-2xl p-4 sm:p-6 md:p-8 lg:p-12 shadow-2xl bg-[#111111]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
             <div 
               className="relative order-1 lg:order-1"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="relative overflow-hidden rounded-2xl border-2 border-gray-200">
+              <div className="relative overflow-hidden rounded-2xl border-2 border-gray-700">
                 <img
                   ref={imageRef}
                   src={achievement.image}
                   alt={achievement.name}
-                  className="w-full h-64 sm:h-80 md:h-96 lg:h-[450px] object-cover transition-all duration-400"
+                  className="w-full h-64 sm:h-80 md:h-96 lg:h-[400px] object-cover transition-all duration-400"
                 />
               </div>
             </div>
 
             <div className="order-2 lg:order-2 space-y-4 sm:space-y-6 text-left">
               <div>
-                <div className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-100 rounded-full mb-3 sm:mb-4 border border-gray-300">
-                  <span className="text-xs sm:text-sm font-semibold text-gray-800">{achievement.badge}</span>
+                <div className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-[#1a1a1a] rounded-full mb-3 sm:mb-4 border border-gray-700">
+                  <span className="text-xs sm:text-sm font-semibold text-gray-300">{achievement.badge}</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-3">
                   {achievement.name}
                 </h2>
               </div>
 
-              <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
+              <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">
                 {achievement.description}
               </p>
 
@@ -263,7 +329,7 @@ const AchievementCard = ({ achievement }) => {
                   href={achievement.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all duration-300 hover:scale-110"
+                  className="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-all duration-300 hover:scale-110"
                   title="GitHub"
                 >
                   <Github className="w-4 h-4 sm:w-5 sm:h-5" />
