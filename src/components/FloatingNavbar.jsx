@@ -13,17 +13,17 @@ export const FloatingNav = ({ navItems, className }) => {
 
   const getActiveIndex = () => {
     const currentPath = location.pathname;
-    
+
     // Check for exact match first
     const exactIndex = navItems.findIndex(item => item.href === currentPath);
     if (exactIndex !== -1) return exactIndex;
-    
+
     // Check for sub-routes (e.g., /events/sub-event should highlight Events)
     const parentIndex = navItems.findIndex(item => {
       if (item.href === '/') return false; // Don't match home for sub-routes
       return currentPath.startsWith(item.href);
     });
-    
+
     return parentIndex !== -1 ? parentIndex : 0;
   };
 
@@ -50,7 +50,7 @@ export const FloatingNav = ({ navItems, className }) => {
       <motion.div
         initial={{ y: 0, opacity: 1 }}
         className={cn(
-          "fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 sm:px-8 py-3 transition-all duration-300",
+          "fixed top-0 inset-x-0 z-50000 flex items-center justify-between px-6 sm:px-8 py-3 transition-all duration-300",
           scrolled
             ? "bg-black/90 backdrop-blur border-b border-white/10"
             : "bg-black border-b border-white/20",
@@ -128,7 +128,7 @@ export const FloatingNav = ({ navItems, className }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-black/95 md:hidden"
+            className="fixed inset-0 z-40000 bg-black/95 md:hidden"
             onClick={() => setIsOpen(false)}
           >
             <motion.div
