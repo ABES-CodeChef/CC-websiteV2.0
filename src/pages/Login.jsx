@@ -6,7 +6,6 @@ const API_URL = 'http://localhost:5000/api';
 
 export default function Login() {
   const navigate = useNavigate();
-  const [loginType, setLoginType] = useState('user');
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -29,19 +28,6 @@ export default function Login() {
 
     try {
       const response = await axios.post(`${API_URL}/auth/login`, formData);
-      
-      // Check if role matches selected login type
-      if (loginType === 'admin' && response.data.user.role !== 'admin') {
-        setError('You are not authorized to login as admin');
-        setLoading(false);
-        return;
-      }
-
-      if (loginType === 'user' && response.data.user.role === 'admin') {
-        setError('Admin accounts must use admin login');
-        setLoading(false);
-        return;
-      }
       
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
@@ -77,37 +63,6 @@ export default function Login() {
             <p className="text-gray-600">Login to CodeChef ABESEC</p>
           </div>
 
-          {/* Login Type Selection */}
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-3">
-              Login As
-            </label>
-            <div className="flex gap-6">
-              <label className="flex items-center cursor-pointer">
-                <input
-                  type="radio"
-                  name="loginType"
-                  value="user"
-                  checked={loginType === 'user'}
-                  onChange={(e) => setLoginType(e.target.value)}
-                  className="w-4 h-4 text-blue-600 focus:ring-blue-500"
-                />
-                <span className="ml-2 text-gray-700">User</span>
-              </label>
-              <label className="flex items-center cursor-pointer">
-                <input
-                  type="radio"
-                  name="loginType"
-                  value="admin"
-                  checked={loginType === 'admin'}
-                  onChange={(e) => setLoginType(e.target.value)}
-                  className="w-4 h-4 text-blue-600 focus:ring-blue-500"
-                />
-                <span className="ml-2 text-gray-700">Admin</span>
-              </label>
-            </div>
-          </div>
-
           {error && (
             <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
               <p className="text-red-600 text-sm">{error}</p>
@@ -126,10 +81,10 @@ export default function Login() {
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900"
-                placeholder={loginType === 'admin' ? 'admin@abes.ac.in' : 'your.email@abes.ac.in'}
+                placeholder="your.email@abes.ac.in"
               />
               <p className="mt-1 text-xs text-gray-500">
-                {loginType === 'admin' ? 'Admin email required' : 'Only @abes.ac.in emails are allowed'}
+                Use your @abes.ac.in email address
               </p>
             </div>
 
@@ -153,20 +108,18 @@ export default function Login() {
               disabled={loading}
               className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? 'Logging in...' : `Login as ${loginType === 'admin' ? 'Admin' : 'User'}`}
+              {loading ? 'Logging in...' : 'Login'}
             </button>
           </form>
 
-          {loginType === 'user' && (
-            <div className="mt-6 text-center">
-              <p className="text-gray-600">
-                Don't have an account?{' '}
-                <Link to="/register" className="text-blue-600 font-semibold hover:text-blue-700">
-                  Register here
-                </Link>
-              </p>
-            </div>
-          )}
+          <div className="mt-6 text-center">
+            <p className="text-gray-600">
+              Don't have an account?{' '}
+              <Link to="/register" className="text-blue-600 font-semibold hover:text-blue-700">
+                Register here
+              </Link>
+            </p>
+          </div>
 
           <div className="mt-4 text-center">
             <Link to="/" className="text-sm text-gray-500 hover:text-gray-700">

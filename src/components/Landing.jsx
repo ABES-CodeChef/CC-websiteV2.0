@@ -121,7 +121,7 @@ export default function Landing() {
   }
 
   return (
-    <div className="relative w-full bg-black text-white overflow-x-hidden">
+    <div className="relative w-full bg-black text-white overflow-x-hidden z-10000">
       <FloatingNav navItems={navLinks} />
 
       <section
