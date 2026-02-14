@@ -18,7 +18,7 @@ export default function HomePage() {
       <About />
       <Offering/>
       <ExPresident />
-      <InfiniteMovingCardsDemo />
+     
       <EventsGalary />
     
       {/* <ElixirCommunity /> */}
