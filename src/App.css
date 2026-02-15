@@ -4,76 +4,24 @@
   font-weight: 100 900;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Technor";
   src: url("./assets/fonts/Technor-Variable.ttf") format("truetype");
   font-weight: 100 900;
   font-display: swap;
 }
-.offering-container{
- 
-  background: #000000;
-  overflow-x: hidden;
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.offering-main{
-  padding-top: 1rem;
-}
-.offering-main h2{
-  font-size: 4rem;
-  text-align: center;
-font-family: 'Panchang', sans-serif;
-  
-}
-.offering-main p{
-  font-size: 1.2rem;
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.offering-main span{
-text-transform: uppercase;
- font-weight: 800;
-
-}
-
-.cards-container{
-  width: 20rem;
-  padding-bottom: 2rem;
-  padding: 1rem;
-}
-.cards{
-  background: transparent !important;
-  padding: 3rem ;
-border: 1px solid rgba(255, 255, 255, 0.2); 
-  border-radius: 1rem;
-  backdrop-filter: blur(10px); 
-}
-.cards h3{
-  font-family: 'Technor',sans-serif;
-  font-size: 1.2rem;
-}
-.cards span{
-  font-size: 0.8rem;
-}
-@media (max-width:480px) {
-  .cards-container{
-    padding: 5rem;
-    gap: 3rem;
-  }
-  .cards{
-   padding: 2rem;
-   gap: 1rem;
-  }
-  .offering-main{
-    padding-top: 5rem;
-    padding: 1.8rem;
-  }
-  .offering-main h2{
-    font-size: 2.3rem;
-  }
-  .offering-main p{
-    font-size: 1rem;
-    margin-top: 1rem; 
-  }
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
 }
