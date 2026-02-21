@@ -7,6 +7,7 @@ import About from "../components/about";
 import EventsGalary from "../components/eventsGalary";
 import { InfiniteMovingCardsDemo } from "../components/testimonial";
 import useLenis from "../hooks/useLenis";
+import CompilationBar from "../components/requestAnimationFrame";
 
 
 
@@ -23,6 +24,7 @@ export default function HomePage() {
     
       {/* <ElixirCommunity /> */}
       {/* <Footer /> */}
+      <CompilationBar />
     </div>
   );
 }

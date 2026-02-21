@@ -14,7 +14,7 @@ import {
 } from "@tabler/icons-react";
 import "../styles/Landing.css";
 import { FloatingNav } from "./FloatingNavbar";
-import LightRays from "./LightRays";
+import Galaxy from "./Galaxy";
 
 const API_URL = 'http://localhost:5000/api';
 
@@ -122,20 +122,23 @@ export default function Landing() {
   return (
     <div className="relative w-full bg-black text-white overflow-x-hidden">
       <div className="absolute inset-0 z-0">
-        <LightRays
-          raysOrigin="top-center"
-          raysColor="#ffffff"
-          raysSpeed={1}
-          lightSpread={0.5}
-          rayLength={3}
-          followMouse={true}
-          mouseInfluence={0.1}
-          noiseAmount={0}
-          distortion={0}
-          className="custom-rays"
-          pulsating={false}
-          fadeDistance={1}
-          saturation={1}
+        <Galaxy
+          focal={[0.5, 0.5]}
+          rotation={[1.0, 0.0]}
+          starSpeed={0.5}
+          density={1.5}
+          hueShift={140}
+          disableAnimation={false}
+          speed={1.0}
+          mouseInteraction={true}
+          glowIntensity={0.3}
+          saturation={0.0}
+          mouseRepulsion={true}
+          repulsionStrength={2}
+          twinkleIntensity={0.3}
+          rotationSpeed={0.1}
+          autoCenterRepulsion={0}
+          transparent={true}
         />
       </div>
       <FloatingNav navItems={navLinks} />
