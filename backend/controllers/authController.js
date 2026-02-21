@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { pool } from '../config/db.js';
+import { prisma } from '../config/db.js';
 
 const register = async (req, res) => {
   try {
@@ -18,23 +18,23 @@ const register = async (req, res) => {
       return res.status(400).json({ message: 'Password must be at least 6 characters long' });
     }
 
-    const userExists = await pool.query(
-      'SELECT * FROM users WHERE email = $1',
-      [email]
-    );
+   const UserExist=await prisma.user.findUnique({
+      where:{email:email}
+   });
 
-    if (userExists.rows.length > 0) {
+    if (UserExist) {
       return res.status(400).json({ message: 'User already exists with this email' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const result = await pool.query(
-      'INSERT INTO users (email, password, role) VALUES ($1, $2, $3) RETURNING id, email, role, created_at',
-      [email, hashedPassword, 'user']
-    );
-
-    const user = result.rows[0];
+    const user = await prisma.user.create({
+      data: {
+        email,
+        password: hashedPassword,
+        role: 'user'
+      }
+    });
 
     const token = jwt.sign(
       { id: user.id, email: user.email, role: user.role },
@@ -66,15 +66,13 @@ const login = async (req, res) => {
       return res.status(400).json({ message: 'Email and password are required' });
     }
 
-    const result = await pool.query(
-      'SELECT * FROM users WHERE email = $1',
-      [email]
-    );
+    const user = await prisma.user.findUnique({
+      where: { email: email }
+    });
 
-    if (result.rows.length === 0) {
+    if (!user) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
-    const user = result.rows[0];
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
       return res.status(401).json({ message: 'Invalid email or password' });
@@ -102,16 +100,15 @@ const login = async (req, res) => {
 
 const getCurrentUser = async (req, res) => {
   try {
-    const result = await pool.query(
-      'SELECT id, email, role, created_at FROM users WHERE id = $1',
-      [req.user.id]
-    );
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.id }
+    });
 
-    if (result.rows.length === 0) {
+    if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    res.json({ user: result.rows[0] });
+    res.json({ user: user });
   } catch (error) {
     console.error('Get current user error:', error);
     res.status(500).json({ message: 'Server error' });

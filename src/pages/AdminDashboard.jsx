@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 import { FloatingNav } from '../components/FloatingNavbar';
 import {
   IconHome,
@@ -116,7 +117,7 @@ export default function AdminDashboard() {
       await axios.delete(`${API_URL}/admin/users/${id}`, getAuthHeader());
       fetchData();
     } catch (error) {
-      alert(error.response?.data?.message || 'Failed to delete user');
+      toast.error(error.response?.data?.message || 'Failed to delete user');
     }
   };
 
@@ -127,7 +128,7 @@ export default function AdminDashboard() {
       await axios.delete(`${API_URL}/events/${id}`, getAuthHeader());
       fetchData();
     } catch (error) {
-      alert('Failed to delete event');
+      toast.error('Failed to delete event');
     }
   };
 
@@ -136,7 +137,7 @@ export default function AdminDashboard() {
       await axios.put(`${API_URL}/admin/registrations/${id}/status`, { status }, getAuthHeader());
       fetchData();
     } catch (error) {
-      alert('Failed to update status');
+      toast.error('Failed to update status');
     }
   };
 
@@ -147,7 +148,7 @@ export default function AdminDashboard() {
       await axios.delete(`${API_URL}/admin/registrations/${id}`, getAuthHeader());
       fetchData();
     } catch (error) {
-      alert('Failed to delete registration');
+      toast.error('Failed to delete registration');
     }
   };
 
@@ -421,7 +422,7 @@ function CreateEventModal({ onClose }) {
           'Content-Type': 'multipart/form-data'
         }
       });
-      alert('Event created successfully!');
+      toast.success('Event created successfully!');
       onClose();
     } catch (error) {
       setError(error.response?.data?.message || 'Failed to create event');

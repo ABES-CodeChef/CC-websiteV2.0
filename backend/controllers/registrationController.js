@@ -1,4 +1,4 @@
-import { pool } from '../config/db.js';
+import { prisma } from "../config/db.js";
 const createRegistration = async (req, res) => {
   try {
     const { 
@@ -34,13 +34,15 @@ const createRegistration = async (req, res) => {
         }
       }
     }
-    const eventCheck = await pool.query('SELECT * FROM events WHERE id = $1', [eventId]);
-    if (eventCheck.rows.length === 0) {
+    const eventCheck = await prisma.event.findUnique({
+      where: { id: Number(eventId) }
+    });
+    if (!eventCheck) {
       return res.status(404).json({ message: 'Event not found' });
     }
 
-    const event = eventCheck.rows[0];
-    if (event.registration_fee > 0) {
+    const event = eventCheck;
+    if (event.registrationFee > 0) {
       if (!paymentScreenshot) {
         return res.status(400).json({ message: 'Payment screenshot is required for this event' });
       }
@@ -48,36 +50,35 @@ const createRegistration = async (req, res) => {
         return res.status(400).json({ message: 'Transaction ID is required' });
       }
     }
-    const existingReg = await pool.query(
-      'SELECT * FROM registrations WHERE event_id = $1 AND user_id = $2',
-      [eventId, req.user.id]
-    );
+    const existingReg = await prisma.registration.findFirst({
+      where: {
+        event_id: Number(eventId),
+        user_id: req.user.id
+      }
+    });
 
-    if (existingReg.rows.length > 0) {
+    if (existingReg) {
       return res.status(400).json({ message: 'You have already registered for this event' });
     }
-    const result = await pool.query(
-      `INSERT INTO registrations 
-       (event_id, user_id, team_size, team_leader_name, team_leader_email, 
-        team_leader_contact, team_members, payment_screenshot, transaction_id, status)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
-      [
-        eventId, 
-        req.user.id, 
-        teamSize, 
-        teamLeaderName, 
-        teamLeaderEmail, 
-        teamLeaderContact,
-        teamMembers || null,
-        paymentScreenshot,
-        transactionId || null,
-        'pending'
-      ]
-    );
+    const result = await prisma.registration.create({
+      data: {
+        event_id: Number(eventId),
+        user_id: req.user.id,
+         team_size: teamSize,
+        team_leader_name: teamLeaderName,
+        team_leader_email: teamLeaderEmail,
+        team_leader_contact: teamLeaderContact,
+        team_members: teamMembers || null,
+        payment_screenshot: paymentScreenshot,
+        transaction_id: transactionId || null,
+        status: 'pending'
+      }
+    });
+        
 
     res.status(201).json({
       message: 'Registration submitted successfully! Await admin approval.',
-      registration: result.rows[0]
+      registration: result
     });
   } catch (error) {
     console.error('Create registration error:', error);
@@ -86,16 +87,17 @@ const createRegistration = async (req, res) => {
 };
 const getUserRegistrations = async (req, res) => {
   try {
-    const result = await pool.query(
-      `SELECT r.*, e.title as event_title, e.date as event_date
-       FROM registrations r
-       JOIN events e ON r.event_id = e.id
-       WHERE r.user_id = $1
-       ORDER BY r.created_at DESC`,
-      [req.user.id]
-    );
+    const result = await prisma.registration.findMany({
+      where: { user_id: req.user.id },
+      orderBy: { createdAt: 'desc' },
+      include: {
+        event: {
+          select: { title: true, date: true }
+        }
+      }
+    });
 
-    res.json({ registrations: result.rows });
+    res.json({ registrations: result });
   } catch (error) {
     console.error('Get user registrations error:', error);
     res.status(500).json({ message: 'Failed to fetch registrations' });
@@ -104,24 +106,26 @@ const getUserRegistrations = async (req, res) => {
 const getRegistrationById = async (req, res) => {
   try {
     const { id } = req.params;
-    
-    const result = await pool.query(
-      `SELECT r.*, e.title as event_title, e.date as event_date, u.email as user_email
-       FROM registrations r
-       JOIN events e ON r.event_id = e.id
-       JOIN users u ON r.user_id = u.id
-       WHERE r.id = $1`,
-      [id]
-    );
+    const result = await prisma.registration.findUnique({
+      where: { id: Number(id) },
+      include: {
+        event: {
+          select: { title: true, date: true }
+        },
+        user: {
+          select: { email: true }
+        }
+      }
+    });
 
-    if (result.rows.length === 0) {
+    if (!result) {
       return res.status(404).json({ message: 'Registration not found' });
     }
-    if (result.rows[0].user_id !== req.user.id && req.user.role !== 'admin') {
+    if (result.user_id !== req.user.id && req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Access denied' });
     }
 
-    res.json({ registration: result.rows[0] });
+    res.json({ registration: result });
   } catch (error) {
     console.error('Get registration error:', error);
     res.status(500).json({ message: 'Failed to fetch registration' });

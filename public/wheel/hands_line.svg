@@ -1,0 +1,16 @@
+<svg width="800" height="50" viewBox="0 0 800 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Horizontal Line -->
+  <line x1="0" y1="25" x2="800" y2="25" stroke="white" stroke-width="1" stroke-opacity="0.5"/>
+  
+  <!-- Ticks -->
+  <g stroke="white" stroke-width="1" stroke-opacity="0.5">
+    <path d="M0 20 V30 M20 20 V30 M40 20 V30 M60 20 V30 M80 20 V30 M100 15 V35" />
+    <path d="M120 20 V30 M140 20 V30 M160 20 V30 M180 20 V30 M200 15 V35" />
+    <path d="M220 20 V30 M240 20 V30 M260 20 V30 M280 20 V30 M300 15 V35" />
+    <path d="M320 20 V30 M340 20 V30 M360 20 V30 M380 20 V30 M400 10 V40" /> <!-- Center/Major Tick -->
+    <path d="M420 20 V30 M440 20 V30 M460 20 V30 M480 20 V30 M500 15 V35" />
+    <path d="M520 20 V30 M540 20 V30 M560 20 V30 M580 20 V30 M600 15 V35" />
+    <path d="M620 20 V30 M640 20 V30 M660 20 V30 M680 20 V30 M700 15 V35" />
+    <path d="M720 20 V30 M740 20 V30 M760 20 V30 M780 20 V30 M800 15 V35" />
+  </g>
+</svg>
