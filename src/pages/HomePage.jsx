@@ -7,7 +7,7 @@ import About from "../components/about";
 import EventsGalary from "../components/eventsGalary";
 import AnimatedTestimonialsDemo from "../components/testimonial";
 import useLenis from "../hooks/useLenis";
-import CompilationBar from "../components/CompilationBar";
+import CompilationBar from "../components/requestAnimationFrame";
 
 
 
@@ -19,7 +19,7 @@ export default function HomePage() {
       <About />
       <Offering/>
       <ExPresident />
-      <AnimatedTestimonialsDemo />
+     
       <EventsGalary />
     
       {/* <ElixirCommunity /> */}

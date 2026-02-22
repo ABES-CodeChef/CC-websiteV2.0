@@ -91,7 +91,8 @@ const ShuffleText2 = ({ text, className }) => {
             opacity: 1,
             y: 0,
             transition: {
-              duration: 0.3
+              duration: 0.5,
+              ease: "easeOut"
             }
           }}
           style={{ display: 'inline-block', whiteSpace: 'pre' }}
