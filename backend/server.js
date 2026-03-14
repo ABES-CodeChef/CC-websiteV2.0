@@ -7,11 +7,12 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-import { pool, initDB } from './config/db.js';
+
 import authRoutes from './routes/authRoutes.js';
 import eventRoutes from './routes/eventRoutes.js';
 import registrationRoutes from './routes/registrationRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+import { prisma } from './config/db.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -44,21 +45,22 @@ app.use((err, req, res, next) => {
 
 const initializeApp = async () => {
   try {
-    await initDB();
 
-    const adminExists = await pool.query(
-      'SELECT * FROM users WHERE email = $1',
-      [process.env.ADMIN_EMAIL || 'abesec.codechef@gmail.com']
-    );
+    const adminExists = await prisma.user.findUnique({
+      where: { email: process.env.ADMIN_EMAIL || 'abesec.codechef@gmail.com' }
+    });
 
-    if (adminExists.rows.length === 0) {
+    if (!adminExists) {
       const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, 10);
-      await pool.query(
-        'INSERT INTO users (email, password, role) VALUES ($1, $2, $3)',
-        [process.env.ADMIN_EMAIL || 'abesec.codechef@gmail.com', hashedPassword, 'admin']
-      );
+      await prisma.user.create({
+        data: {
+          email: process.env.ADMIN_EMAIL || 'abesec.codechef@gmail.com',
+          password: hashedPassword,
+          role: 'admin'
+        }
+      });
       console.log('   Default admin user created');
-      console.log('   Email:', process.env.ADMIN_EMAIL);
+      console.log('   Email:', process.env.ADMIN_EMAIL || 'abesec.codechef@gmail.com');
       console.log('   Password:', process.env.ADMIN_PASSWORD);
     }
     app.listen(PORT, () => {

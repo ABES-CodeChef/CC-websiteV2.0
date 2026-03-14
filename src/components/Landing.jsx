@@ -12,9 +12,10 @@ import {
   IconLogout,
   IconDashboard,
 } from "@tabler/icons-react";
+import { toast } from 'react-hot-toast';
 import "../styles/Landing.css";
-import Squares from "./Squares";
 import { FloatingNav } from "./FloatingNavbar";
+import Galaxy from "./Galaxy";
 
 const API_URL = 'http://localhost:5000/api';
 
@@ -60,7 +61,7 @@ export default function Landing() {
     }
 
     if (!latestEvent) {
-      alert('No events available for registration at the moment');
+      toast.error('No events available for registration at the moment');
       return;
     }
 
@@ -121,41 +122,53 @@ export default function Landing() {
 
   return (
     <div className="relative w-full bg-black text-white overflow-x-hidden">
+      <div className="absolute inset-0 z-0">
+        <Galaxy
+          focal={[0.5, 0.5]}
+          rotation={[1.0, 0.0]}
+          starSpeed={0.5}
+          density={1.5}
+          hueShift={140}
+          disableAnimation={false}
+          speed={1.0}
+          mouseInteraction={true}
+          glowIntensity={0.3}
+          saturation={0.0}
+          mouseRepulsion={true}
+          repulsionStrength={2}
+          twinkleIntensity={0.3}
+          rotationSpeed={0.1}
+          autoCenterRepulsion={0}
+          transparent={true}
+        />
+      </div>
       <FloatingNav navItems={navLinks} />
 
       <section
         id="home"
-        className="relative min-h-screen w-full flex flex-col lg:flex-row items-center justify-center lg:justify-between overflow-hidden px-4 sm:px-6 md:px-10"
+        className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 md:px-10"
       >
-        <motion.div className="absolute inset-0 h-full w-full z-0">
-          <Squares
-            speed={0.5}
-            squareSize={40}
-            direction="diagonal"
-            borderColor="#111111"
-            hoverFillColor="#222222"
-          />
-        </motion.div>
-
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="z-10 text-center lg:text-left space-y-10 w-full lg:w-1/2 landing-text"
+          className="z-10 text-center space-y-10 w-full max-w-5xl landing-text"
         >
           <div className="space-y-4">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="font-bold leading-[1.1] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mx-auto lg:mx-0 text-center lg:text-left"
+              className="font-bold leading-[1.1] text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl mx-auto text-center"
             >
-              <div>
-                <ShuffleText text="Coding Together" className='text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-bold'/>
-                <br />
-                <ShuffleText text="Growing Together" className='text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-bold mb-4'/>
-                <br />
-                <ShuffleText text="Code Collab Conquer" className='text-xl sm:text-2xl md:text-4xl lg:text-4xl font-bold'/>
+              <div className="flex flex-col items-center gap-2">
+                <span className="text-5xl sm:text-7xl md:text-8xl lg:text-8xl font-bold">
+                  <ShuffleText text="Coding" /> <ShuffleText text="Together" className="text-orange-500" />
+                </span>
+                <span className="text-5xl sm:text-7xl md:text-8xl lg:text-8xl font-bold mb-4">
+                  <ShuffleText text="Growing" /> <ShuffleText text="Together" className="text-orange-500" />
+                </span>
+                <ShuffleText text="Code Collab Conquer" className='text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold'/>
                 <div className="h-16 mt-3"></div>
               </div>
             </motion.h1>
@@ -165,7 +178,7 @@ export default function Landing() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="flex flex-wrap justify-center lg:justify-start gap-4 -mt-10"
+            className="flex flex-wrap justify-center gap-4 -mt-10"
           >
             <button 
               onClick={handleRegisterClick}
@@ -185,46 +198,6 @@ export default function Landing() {
               <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
             </button>
           </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-          className="relative z-10 flex items-center justify-center lg:justify-end h-96 w-full lg:w-1/2 cube-container"
-        >
-          <div
-            className="relative w-64 h-64 cube"
-            style={{ perspective: "1000px" }}
-          >
-            <motion.div
-              animate={{
-                rotateX: 360,
-                rotateY: 360,
-              }}
-              transition={{
-                rotateX: { duration: 20, repeat: Infinity, ease: "linear" },
-                rotateY: { duration: 26, repeat: Infinity, ease: "linear" },
-              }}
-              className="absolute inset-0"
-              style={{ transformStyle: "preserve-3d" }}
-            >
-              {[
-                "translateZ(128px)",
-                "rotateY(90deg) translateZ(128px)",
-                "rotateY(180deg) translateZ(128px)",
-                "rotateY(-90deg) translateZ(128px)",
-                "rotateX(90deg) translateZ(128px)",
-                "rotateX(-90deg) translateZ(128px)",
-              ].map((t, i) => (
-                <div
-                  key={i}
-                  className="absolute w-64 h-64 rounded-xl border border-[rgba(221,160,221,0.3)]"
-                  style={{ transform: t }}
-                />
-              ))}
-            </motion.div>
-          </div>
         </motion.div>
       </section>
     </div>

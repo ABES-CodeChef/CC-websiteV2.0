@@ -18,37 +18,37 @@ const events = [
     title: "Clash Of Coders 4.0",
     href: "/events/codeclash-2024",
     imageUrl: "https://codechefabesec.netlify.app/img/coc/1.webp",
-    hoverImageUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWJjb3NqY21sYjY2aG1zZ3c3aGZ6Z3Z1c3NldWJrbjZ2eW54c3JqZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiGY/giphy.gif",
+    hoverImageUrl: "/COC1.JPG",
   },
   {
     title: "Rust - Ed",
     href: "/events/rust-ed",
     imageUrl: "https://codechefabesec.netlify.app/img/works/4/Rusted.webp",
-    hoverImageUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWJjb3NqY21sYjY2aG1zZ3c3aGZ6Z3Z1c3NldWJrbjZ2eW54c3JqZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiGY/giphy.gif",
+    hoverImageUrl: "/rust1.webp",
   },
   {
     title: "Once Upon A Crime",
     href: "/events/once-upon-a-crime",
     imageUrl: "https://codechefabesec.netlify.app/img/converted/crime.webp",
-    hoverImageUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWJjb3NqY21sYjY2aG1zZ3c3aGZ6Z3Z1c3NldWJrbjZ2eW54c3JqZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiGY/giphy.gif",
+    hoverImageUrl: "/OUAC1.webp",
   },
   {
     title: "T-Error 3.0",
     href: "/events/t-error-3",
     imageUrl: "https://codechefabesec.netlify.app/img/t_error/1.webp",
-    hoverImageUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWJjb3NqY21sYjY2aG1zZ3c3aGZ6Z3Z1c3NldWJrbjZ2eW54c3JqZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiGY/giphy.gif",
+    hoverImageUrl: "/TERROR1.webp",
   },
   {
     title: "Beyond Code",
     href: "/events/byond-code",
     imageUrl: "https://codechefabesec.netlify.app/img/beyond_code/1.webp",
-    hoverImageUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWJjb3NqY21sYjY2aG1zZ3c3aGZ6Z3Z1c3NldWJrbjZ2eW54c3JqZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiGY/giphy.gif",
+    hoverImageUrl: "/bc1.webp",
   },
   {
     title: "Head Node",
     href: "/events/head-node",
     imageUrl: "https://codechefabesec.netlify.app/img/converted/headnode.webp",
-    hoverImageUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWJjb3NqY21sYjY2aG1zZ3c3aGZ6Z3Z1c3NldWJrbjZ2eW54c3JqZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiGY/giphy.gif",
+    hoverImageUrl: "/hn4.webp",
   },
 ];
 

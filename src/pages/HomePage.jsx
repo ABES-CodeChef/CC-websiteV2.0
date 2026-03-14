@@ -4,7 +4,10 @@ import ExPresident from "../components/ExPresident";
 import Landing from "../components/Landing";
 import Offering from "../components/Offering";
 import About from "../components/about";
+import EventsGalary from "../components/eventsGalary";
+import AnimatedTestimonialsDemo from "../components/testimonial";
 import useLenis from "../hooks/useLenis";
+import CompilationBar from "../components/requestAnimationFrame";
 
 
 
@@ -16,8 +19,12 @@ export default function HomePage() {
       <About />
       <Offering/>
       <ExPresident />
+     
+      <EventsGalary />
+    
       {/* <ElixirCommunity /> */}
       {/* <Footer /> */}
+      <CompilationBar />
     </div>
   );
 }

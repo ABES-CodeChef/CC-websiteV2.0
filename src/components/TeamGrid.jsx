@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   IconHome,
   IconCalendar,
@@ -18,23 +19,23 @@ export default function TeamGrid() {
   const navigate = useNavigate();
 
   const teamMembers = [
-    { name: 'Vishesh Dudeja', role: 'Advisory',  row: 0, col: 0, transformOrigin: 'right bottom',img:'1.webp', linkedin: 'https://linkedin.com/in/vishesh-dudeja-b62a79242', tech: ['Python', 'Java', 'SQL'] },
-    { name: 'Sai Aryan Goswami', role: 'Core Team',  row: 0, col: 2, transformOrigin: 'left bottom',img:'2.webp', linkedin: 'https://linkedin.com/in/saiaryangoswami', tech: ['UI/UX', 'Next.js', 'Full Stack'] },
-    { name: 'Vidhi Gandhi', role: 'President', row: 1, col: 1, transformOrigin: 'left bottom',img:'vidhi-didi.jpg', linkedin: 'https://linkedin.com/in/vidhi-gandhi-640806296', tech: ['React.js', 'HTML', 'CSS'] },
-    { name: 'Rohit Bhardwaj', role: 'Vice-president',  row: 2, col: 0, transformOrigin: 'right bottom',img:'rohit-bhaiya.jpg', linkedin: 'https://linkedin.com/in/dev-rohitbhardwaj', tech: ['Solidity', 'Web3', 'Open Source'] },
-    { name: 'Lavish Aggarwal', role: 'Vice-president', row: 2, col: 3, transformOrigin: 'left bottom', img:'lavish-bhaiya.jpg',  linkedin: 'https://linkedin.com/in/lavishagrwl', tech: ['JavaScript', 'Python', 'React.js'] },
-    { name: 'Abhinav Vishwakarma', role: 'Development Lead',  row: 3, col: 1, transformOrigin: 'left bottom',img:'abhinav-bhaiya.jpg', linkedin: 'https://linkedin.com/in/abhinav-vishwakarma-fsd', tech: ['Canva', 'Python', 'Video Editing'] },
-    { name: 'Ramyak Jain', role: 'Event Lead',  row: 3, col: 2, transformOrigin: 'right bottom', img:'ramayk bhaiya.jpg', linkedin: 'https://linkedin.com/in/ramyak-jain', tech: ['Graphic Designer', 'Content Writing', 'Wed Designer'] },
-    { name: 'Utkarsh Saxena', role: 'Cp Lead',row: 4, col: 0, transformOrigin: 'left bottom',img:'utkarsh-bhaiya.jpg', linkedin: 'https://linkedin.com/in/utkarsh-saxena-91005a290', tech: ['React.js', 'Javascript', 'DSA'] },
-    { name: 'Deepanshu', role: 'Graphics Lead', row: 4, col: 3, transformOrigin: 'left bottom',img:'deepanshu bhaiya.jpg', linkedin: 'https://linkedin.com/in/deepanshu-kaushik-174059297', tech: ['UI/UX Designer', 'DSA', 'Javascript'] },
-    { name: 'Swati Mittal', role: 'Pr Lead', row: 5, col: 1, transformOrigin: 'left bottom',img:'swati-didi.jpg', linkedin: 'https://linkedin.com/in/swati-mittal24', tech: ['MongoDB', 'Node.js', 'express.js'] },
-    { name: 'Ananya', role: 'Content Lead', row: 6, col: 1, transformOrigin: 'left bottom',img:'ananya-didi.jpg', linkedin: 'https://linkedin.com/in/', tech: ['Copywriting', 'SEO', 'Content Strategy'] },
-    { name: 'Sakhi Vishnoi', role: 'Graphics Lead', row: 6, col: 3, transformOrigin: 'left bottom', img:'sakshi didi.jpg', linkedin: 'https://linkedin.com/in/sakshi-vishnoi-7770b2315', tech: ['Flutter', 'DSA', 'C++'] },
-    { name: 'Anvesh Srivastava ', role: 'Backend Developer', row: 7, col: 0, transformOrigin: 'right bottom',img:'anvesh-bhaiya.jpg', linkedin: 'https://linkedin.com/in/anvesh-srivastava', tech: ['Node.js', 'RestAPI', 'MongoDB'] },
-    { name: 'kaif azmi', role: 'Frontend Developer', row: 7, col: 2, transformOrigin: 'left bottom',img:'kaif-bhaiya.jpg', linkedin: 'https://linkedin.com/in/kaifazmi', tech: ['React', 'CSS', 'JavaScript'] },
-    { name: "Bhaskar Dwivedi", role: 'Mobile Developer', row: 8, col: 1, transformOrigin: 'left bottom',img:'bhaskar-bhaiya.jpg', linkedin: 'https://linkedin.com/in/bhaskar-dwi', tech: ['React Native', 'Flutter', 'TailwidCSS'] },
-    { name: 'Dhruv Khare', role: 'Design Systems', row: 9, col: 0, transformOrigin: 'right bottom',img:'dhruv-bhaiya.jpg', linkedin: 'https://linkedin.com/in/dhruvkhare-softwaredev', tech: ['RestAPI', 'MonogoDB', 'Express.js'] },
-    { name: 'Amit Gupta', role: 'Product Analyst', row: 9, col: 3, transformOrigin: 'left bottom', img:'amit bhaiya.png', linkedin: 'linkedin.com/in/amitguptadev', tech: ['Node.js', 'AI/ML', 'Typescript'] }
+    { name: 'Vishesh Dudeja', role: 'Advisory', row: 0, col: 0, transformOrigin: 'right bottom', img: '1.webp', linkedin: 'https://linkedin.com/in/vishesh-dudeja-b62a79242', tech: ['Python', 'Java', 'SQL'] },
+    { name: 'Sai Aryan Goswami', role: 'Core Team', row: 0, col: 2, transformOrigin: 'left bottom', img: '2.webp', linkedin: 'https://linkedin.com/in/saiaryangoswami', tech: ['UI/UX', 'Next.js', 'Full Stack'] },
+    { name: 'Vidhi Gandhi', role: 'President', row: 1, col: 1, transformOrigin: 'left bottom', img: 'vidhi-didi.jpg', linkedin: 'https://linkedin.com/in/vidhi-gandhi-640806296', tech: ['React.js', 'HTML', 'CSS'] },
+    { name: 'Rohit Bhardwaj', role: 'Vice-president', row: 2, col: 0, transformOrigin: 'right bottom', img: 'rohit-bhaiya.jpg', linkedin: 'https://linkedin.com/in/dev-rohitbhardwaj', tech: ['Solidity', 'Web3', 'Open Source'] },
+    { name: 'Lavish Aggarwal', role: 'Vice-president', row: 2, col: 3, transformOrigin: 'left bottom', img: 'lavish-bhaiya.jpg', linkedin: 'https://linkedin.com/in/lavishagrwl', tech: ['JavaScript', 'Python', 'React.js'] },
+    { name: 'Abhinav Vishwakarma', role: 'Development Lead', row: 3, col: 1, transformOrigin: 'left bottom', img: 'abhinav-bhaiya.jpg', linkedin: 'https://linkedin.com/in/abhinav-vishwakarma-fsd', tech: ['Canva', 'Python', 'Video Editing'] },
+    { name: 'Ramyak Jain', role: 'Event Lead', row: 3, col: 2, transformOrigin: 'right bottom', img: 'ramayk bhaiya.jpg', linkedin: 'https://linkedin.com/in/ramyak-jain', tech: ['Graphic Designer', 'Content Writing', 'Wed Designer'] },
+    { name: 'Utkarsh Saxena', role: 'Cp Lead', row: 4, col: 0, transformOrigin: 'left bottom', img: 'utkarsh-bhaiya.jpg', linkedin: 'https://linkedin.com/in/utkarsh-saxena-91005a290', tech: ['React.js', 'Javascript', 'DSA'] },
+    { name: 'Deepanshu', role: 'Graphics Lead', row: 4, col: 3, transformOrigin: 'left bottom', img: 'deepanshu bhaiya.jpg', linkedin: 'https://linkedin.com/in/deepanshu-kaushik-174059297', tech: ['UI/UX Designer', 'DSA', 'Javascript'] },
+    { name: 'Swati Mittal', role: 'Pr Lead', row: 5, col: 1, transformOrigin: 'left bottom', img: 'swati-didi.jpg', linkedin: 'https://linkedin.com/in/swati-mittal24', tech: ['MongoDB', 'Node.js', 'express.js'] },
+    { name: 'Ananya', role: 'Content Lead', row: 6, col: 1, transformOrigin: 'left bottom', img: 'ananya-didi.jpg', linkedin: 'https://linkedin.com/in/', tech: ['Copywriting', 'SEO', 'Content Strategy'] },
+    { name: 'Sakhi Vishnoi', role: 'Graphics Lead', row: 6, col: 3, transformOrigin: 'left bottom', img: 'sakshi didi.jpg', linkedin: 'https://linkedin.com/in/sakshi-vishnoi-7770b2315', tech: ['Flutter', 'DSA', 'C++'] },
+    { name: 'Anvesh Srivastava ', role: 'Backend Developer', row: 7, col: 0, transformOrigin: 'right bottom', img: 'anvesh-bhaiya.jpg', linkedin: 'https://linkedin.com/in/anvesh-srivastava', tech: ['Node.js', 'RestAPI', 'MongoDB'] },
+    { name: 'kaif azmi', role: 'Frontend Developer', row: 7, col: 2, transformOrigin: 'left bottom', img: 'kaif-bhaiya.jpg', linkedin: 'https://linkedin.com/in/kaifazmi', tech: ['React', 'CSS', 'JavaScript'] },
+    { name: "Bhaskar Dwivedi", role: 'Mobile Developer', row: 8, col: 1, transformOrigin: 'left bottom', img: 'bhaskar-bhaiya.jpg', linkedin: 'https://linkedin.com/in/bhaskar-dwi', tech: ['React Native', 'Flutter', 'TailwidCSS'] },
+    { name: 'Dhruv Khare', role: 'Design Systems', row: 9, col: 0, transformOrigin: 'right bottom', img: 'dhruv-bhaiya.jpg', linkedin: 'https://linkedin.com/in/dhruvkhare-softwaredev', tech: ['RestAPI', 'MonogoDB', 'Express.js'] },
+    { name: 'Amit Gupta', role: 'Product Analyst', row: 9, col: 3, transformOrigin: 'left bottom', img: 'amit bhaiya.png', linkedin: 'linkedin.com/in/amitguptadev', tech: ['Node.js', 'AI/ML', 'Typescript'] }
   ];
 
   useEffect(() => {
@@ -139,7 +140,7 @@ export default function TeamGrid() {
         onClick: () => navigate("/admin"),
       });
     }
-    
+
     navLinks.push({
       title: "Logout",
       icon: <IconLogout className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
@@ -153,17 +154,36 @@ export default function TeamGrid() {
       <FloatingNav navItems={navLinks} />
 
       <section className="relative w-full bg-black text-white">
-        <div className="absolute left-1/2 top-24 grid -translate-x-1/2 content-start justify-items-center gap-6 text-center">
-          <span className="relative max-w-[12ch] text-xs uppercase leading-tight text-white/50 after:absolute after:left-1/2 after:top-full after:h-16 after:w-px after:bg-gradient-to-b after:from-transparent after:to-white/50 after:content-['']">
-            scroll down to meet the teams
-          </span>
-        </div>
+        <motion.div
+          className="pointer-events-none sticky top-50 z-20 -translate-y-1/2 text-center text-white mix-blend-difference"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 1 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.05,
+              },
+            },
+          }}
+        >
+          <h2 className="text-7xl font-semibold tracking-tighter">
+            {"Meet our Bawarchis".split("").map((char, index) => (
+              <motion.span
+                key={index}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+                }}
+              >
+                {char}
+              </motion.span>
+            ))}
+          </h2>
+        </motion.div>
 
-        <div className="pointer-events-none sticky top-1/2 z-20 -translate-y-1/2 text-center text-white mix-blend-difference">
-          <h2 className="text-9xl font-semibold tracking-tighter">Teams</h2>
-        </div>
-
-        <div className="relative z-0 mb-[50vh] mt-[50vh]">
+        <div className="relative z-0 lg:mb-[50vh] lg:mt-[45vh] mb-[30vh] mt-[35vh]">
           {grid.map((row, rowIndex) => (
             <div key={rowIndex} className="flex w-full">
               {row.map((member, colIndex) => (
@@ -183,9 +203,8 @@ export default function TeamGrid() {
                     >
                       <img
                         alt={member.name}
-                        className={`h-full w-full object-cover object-[center_top] contrast-125 filter transition-all duration-300 ease-in-out group-hover:scale-95 ${
-                          hoveredIndex === member.index ? "" : "saturate-0"
-                        }`}
+                        className={`h-full w-full object-cover object-[center_top] contrast-125 filter transition-all duration-300 ease-in-out group-hover:scale-95 ${hoveredIndex === member.index ? "" : "saturate-0"
+                          }`}
                         src={member.img}
                       />
 
@@ -194,11 +213,10 @@ export default function TeamGrid() {
     flex flex-col items-center justify-center 
     gap-2 sm:gap-3 
     transition-opacity duration-300 
-    ${
-      hoveredIndex === member.index
-        ? "opacity-100"
-        : "opacity-0 pointer-events-none"
-    }
+    ${hoveredIndex === member.index
+                            ? "opacity-100"
+                            : "opacity-0 pointer-events-none"
+                          }
   `}
                       >
                         <h3 className="text-sm xs:text-base sm:text-lg font-bold uppercase tracking-wider text-center px-2 leading-tight">
@@ -239,8 +257,6 @@ export default function TeamGrid() {
             </div>
           ))}
         </div>
-
-        <div style={{ height: "50vh" }} />
       </section>
     </div>
   );
