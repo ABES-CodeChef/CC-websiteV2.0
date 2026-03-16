@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { BackgroundOverlayCard } from "../components/BackgroundOverlayCard";
-import Particles from "../components/particles";
+import Particles from '../components/Particles';
 import { FloatingNav } from "../components/FloatingNavbar";
 import {
   IconHome,

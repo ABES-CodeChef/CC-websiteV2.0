@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import useLenis from '../hooks/useLenis';
 // import Footer from '../components/Footer';
-import Particles from '../components/particles';
+import Particles from '../components/Particles';
 import { FloatingNav } from "../components/FloatingNavbar";
 import {
   IconHome,
